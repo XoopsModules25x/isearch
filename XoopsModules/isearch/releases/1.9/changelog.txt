@@ -1,0 +1,58 @@
+Changelog
+
+*******
+v1.9
+*******
+- New module's logo
+- Addition of a new module's option to select a list of IPs you don't want to record
+- UTF8 translations (French & English)
+- There was somes changes in the translations (see lang.diff)
+
+*******
+v1.8
+*******
+- The module is now Xoops 2.3 compatible
+- Bugs corrections in class/blacklist.php
+- Minor change in the search
+
+*******
+v1.6
+*******
+- Bug correction in the nederlands translation
+- Added statistics per IP in the module's administration
+- In the module's admin part, in the daily view, you can filter results per searched word, user and IP
+  So I have added a new constant in xoops/modules/isearch/yourlanguage/admin.php :
+	define('_AM_ISEARCH_FILTER_BY',"Filter by");
+
+
+*******
+v1.5
+*******
+- Some bugs in the admin's part
+- Possibility, in the admin, to remove by IP directly from the keywords list
+
+*******
+v1.4
+*******
+- A bug was corrected in the words deletion
+- The search in the blacklist is now case insensitive
+- The code is lighter
+- The export now uses the IP
+
+*******
+v1.3
+*******
+- The module now records visitors IPs (because of spamers), so the database was modified.
+  I have made a small upgrade script you can call here :
+  	http://www.example.com/modules/isearch/admin/upgrade.php
+- You can prune keywords by IP
+- A bug in the words deletion was corrected
+- Your starting positions in the different lists visible in the admin are saved in session
+- Visitors IP is now visible in the module's stat part
+- All the modules sql queries were modified to run with old mysql versions (thanks jseymour for the tests)
+- The blacklist's content is now sorted alphabetically
+- You can use regular expressions in the blacklist
+- I have added a new constant in the file /xoops/modules/isearch/language/yourlanguage/admin.php (_AM_ISEARCH_IP)
+
+
+
