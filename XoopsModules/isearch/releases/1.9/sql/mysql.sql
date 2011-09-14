@@ -9,5 +9,5 @@ CREATE TABLE isearch_searches (
   KEY uid (uid),
   KEY datesearch (datesearch),
   FULLTEXT KEY keyword_2 (keyword)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
