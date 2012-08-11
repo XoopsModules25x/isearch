@@ -21,7 +21,7 @@
  */
 
 define("_AM_ISEARCH_DBUPDATED","Mise &agrave; jour de la base de donn&eacute;es avec succ&egrave;s");
-define("_AM_ISEARCH_GENERALSET", "Options du module" );
+define("_AM_ISEARCH_GENERALSET","Options du module");
 define("_AM_ISEARCH_GOTOMOD","Aller au module");
 define("_AM_ISEARCH_MODULEADMIN","Administration du module");
 define("_AM_ISEARCH_STATS","Statistiques de recherche (%d mots enregistr&eacute;s)");
@@ -44,7 +44,7 @@ define("_AM_ISEARCH_PRUNE_DESC","Si vous ne saisissez pas un mot, la purge s'eff
 define("_AM_ISEARCH_PRUNE_CONFIRM","Confirmez vous la suppression %u de ces &eacute;l&eacute;ment(s) ?");
 define("_AM_ISEARCH_NOTHING_PRUNE","Il n'y a rien &agrave; supprimer");
 define("_AM_ISEARCH_EXPORT","Export");
-define('_AM_ISEARCH_EXPORT_BETWEEN', 'Exporter les recherches effectu&eacute;es entre les');
+define('_AM_ISEARCH_EXPORT_BETWEEN','Exporter les recherches effectu&eacute;es entre les');
 define('_AM_ISEARCH_EXPORT_AND'," et le ");
 define("_AM_ISEARCH_DATE_FORMAT","Format de la date (au format php de la fonction date)");
 define("_AM_ISEARCH_DELIMITER","D&eacute;limiteur de champs");
