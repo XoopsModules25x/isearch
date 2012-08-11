@@ -25,7 +25,7 @@
 //  ------------------------------------------------------------------------ //
 
 define("_AM_ISEARCH_DBUPDATED","پایگاه داده با موفقیت به روز شد");
-define("_AM_ISEARCH_GENERALSET", "ویژگی های ماژول" );
+define("_AM_ISEARCH_GENERALSET","ویژگی های ماژول");
 define("_AM_ISEARCH_GOTOMOD","نمایش ماژول");
 define("_AM_ISEARCH_MODULEADMIN","مدیریت ماژول");
 define("_AM_ISEARCH_STATS","آمار جست و جو (%d کلمه ذخیره شده اند)");
@@ -48,7 +48,7 @@ define("_AM_ISEARCH_PRUNE_DESC","اگر کلمه ای وارد نکنید ، ا�
 define("_AM_ISEARCH_PRUNE_CONFIRM","آیا پاک کردن  این%u مورد را تائید می کنید؟ ");
 define("_AM_ISEARCH_NOTHING_PRUNE","چیزی برای پاک کردن پیدا نشد");
 define("_AM_ISEARCH_EXPORT","خروجی");
-define('_AM_ISEARCH_EXPORT_BETWEEN', 'جست و جوی انجام شده بین این تاریخ را خارج کن ');
+define('_AM_ISEARCH_EXPORT_BETWEEN','جست و جوی انجام شده بین این تاریخ را خارج کن ');
 define('_AM_ISEARCH_EXPORT_AND'," و ");
 define("_AM_ISEARCH_DATE_FORMAT","فرمت تاریخ (بر اساس فرمت PHP)");
 define("_AM_ISEARCH_DELIMITER","جداساز بین فیلد ها");

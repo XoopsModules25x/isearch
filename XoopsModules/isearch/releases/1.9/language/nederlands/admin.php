@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,17 +11,17 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @copyright       HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @author 			HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * Version : $Id:
  * ****************************************************************************
  */
 
 define("_AM_ISEARCH_DBUPDATED","De Database is succesvol bijgewerkt.");
-define("_AM_ISEARCH_GENERALSET", "Module opties" );
+define("_AM_ISEARCH_GENERALSET","Module opties");
 define("_AM_ISEARCH_GOTOMOD","Ga naar de module");
 define("_AM_ISEARCH_MODULEADMIN","Module admininstratie");
 define("_AM_ISEARCH_STATS","Zoek Statistieken (%d zoekwoorden opgeslagen)");
@@ -38,17 +38,17 @@ define("_AM_ISEARCH_DAY_STATS","Dagelijkse statistieken");
 define("_AM_ISEARCH_USE","Oproepen");
 
 define("_AM_ISEARCH_PRUNE","Prune");
-define("_AM_ISEARCH_PRUNE_DATE","Prune zoekwoorden vóór: ");
+define("_AM_ISEARCH_PRUNE_DATE","Prune zoekwoorden vÃ³Ã³r: ");
 define("_AM_ISEARCH_PRUNE_KEYONLY","of verwijder alleen dit woord: ");
 define("_AM_ISEARCH_PRUNE_DESC","Indien u geen woord invoert, zal het script per datum prunen");
 define("_AM_ISEARCH_PRUNE_CONFIRM","Bevestigt u de verwijdering van %u elementen ?");
 define("_AM_ISEARCH_NOTHING_PRUNE","Niets te verwijderen");
 define("_AM_ISEARCH_EXPORT","Exporteren");
-define('_AM_ISEARCH_EXPORT_BETWEEN', 'Exporteer zoekopdrachten tussen ');
+define('_AM_ISEARCH_EXPORT_BETWEEN','Exporteer zoekopdrachten tussen ');
 define('_AM_ISEARCH_EXPORT_AND'," en ");
 define("_AM_ISEARCH_DATE_FORMAT","Datum weergave (in PHP formaat)");
 define("_AM_ISEARCH_DELIMITER","Fields delimiter");
-define("_AM_ISEARCH_EXPORT_ERROR","Error, het is niet mogelijk om het exportbestand %s  te creëren");
+define("_AM_ISEARCH_EXPORT_ERROR","Error, het is niet mogelijk om het exportbestand %s  te creÃ«ren");
 define('_AM_ISEARCH_EXPORT_READY', "Uw gexporteerde bestand is beschikbaar.<br /><a href='%s'>Klik Hier </a> om het bestand te downloaden.<br />Vergeet niet om het bestand te <a href='%s'>verwijderen</a> nadat u klaar bent.");
 define('_AM_ISEARCH_DELETED_OK',"Het bestand is verwijderd");
 define('_AM_ISEARCH_DELETED_PB',"Error, het is niet mogelijk het bestand te verwijderen.");

@@ -20,7 +20,7 @@
  * ****************************************************************************
  */
 define("_AM_ISEARCH_DBUPDATED","The database was successfully updated");
-define("_AM_ISEARCH_GENERALSET", "Module's options" );
+define("_AM_ISEARCH_GENERALSET","Module's options");
 define("_AM_ISEARCH_GOTOMOD","Go to the module");
 define("_AM_ISEARCH_MODULEADMIN","Module's admin");
 define("_AM_ISEARCH_STATS","Search statistics (%d words recorded)");
@@ -43,7 +43,7 @@ define("_AM_ISEARCH_PRUNE_DESC","If you don't enter a word the the script will p
 define("_AM_ISEARCH_PRUNE_CONFIRM","Do you confirm the deletion of %u elements ?");
 define("_AM_ISEARCH_NOTHING_PRUNE","Nothing to delete");
 define("_AM_ISEARCH_EXPORT","Export");
-define('_AM_ISEARCH_EXPORT_BETWEEN', 'Export searchs made between ');
+define('_AM_ISEARCH_EXPORT_BETWEEN','Export searchs made between ');
 define('_AM_ISEARCH_EXPORT_AND'," and ");
 define("_AM_ISEARCH_DATE_FORMAT","Date's format (in the PHP format)");
 define("_AM_ISEARCH_DELIMITER","Fields delimiter");
