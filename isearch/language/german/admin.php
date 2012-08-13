@@ -49,7 +49,7 @@ define('_AM_ISEARCH_EXPORT_AND'," und ");
 define("_AM_ISEARCH_DATE_FORMAT","Datumsformat (im PHP-Format)");
 define("_AM_ISEARCH_DELIMITER","Feld-Begrenzer");
 define("_AM_ISEARCH_EXPORT_ERROR","Fehler beim Erstellen der Export-Datei %s");
-define('_AM_ISEARCH_EXPORT_READY', "Ihre Export-Datei steht bereit.<br /><a href='%s'>Klicken Sie hier zum Download</a>.<br />Vergessen Sie nicht, sie danach zu <a href='%s'>löschen</a>.");
+define('_AM_ISEARCH_EXPORT_READY',"Ihre Export-Datei steht bereit.<br /><a href='%s'>Klicken Sie hier zum Download</a>.<br />Vergessen Sie nicht, sie danach zu <a href='%s'>löschen</a>.");
 define('_AM_ISEARCH_DELETED_OK',"Die Datei wurde gelöscht");
 define('_AM_ISEARCH_DELETED_PB',"Fehler: Datei kann nicht entfernt werden");
 define("_AM_ISEARCH_NOTHING_TO_EXPORT","Nichts zu exportieren!");

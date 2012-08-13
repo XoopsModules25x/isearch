@@ -48,7 +48,7 @@ define('_AM_ISEARCH_EXPORT_AND'," and ");
 define("_AM_ISEARCH_DATE_FORMAT","Date's format (in the PHP format)");
 define("_AM_ISEARCH_DELIMITER","Fields delimiter");
 define("_AM_ISEARCH_EXPORT_ERROR","Error, impossible to create the export file %s");
-define('_AM_ISEARCH_EXPORT_READY', "Your export file is available.<br /><a href='%s'>Click here to download it</a>.<br />Don't forget to <a href='%s'>remove it </a> once you have finished.");
+define('_AM_ISEARCH_EXPORT_READY',"Your export file is available.<br /><a href='%s'>Click here to download it</a>.<br />Don't forget to <a href='%s'>remove it </a> once you have finished.");
 define('_AM_ISEARCH_DELETED_OK',"The file was deleted");
 define('_AM_ISEARCH_DELETED_PB',"Error, impossible to remove the file");
 define("_AM_ISEARCH_NOTHING_TO_EXPORT","Nothing to export !");

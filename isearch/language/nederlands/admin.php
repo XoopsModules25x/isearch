@@ -49,7 +49,7 @@ define('_AM_ISEARCH_EXPORT_AND'," en ");
 define("_AM_ISEARCH_DATE_FORMAT","Datum weergave (in PHP formaat)");
 define("_AM_ISEARCH_DELIMITER","Fields delimiter");
 define("_AM_ISEARCH_EXPORT_ERROR","Error, het is niet mogelijk om het exportbestand %s  te creëren");
-define('_AM_ISEARCH_EXPORT_READY', "Uw gexporteerde bestand is beschikbaar.<br /><a href='%s'>Klik Hier </a> om het bestand te downloaden.<br />Vergeet niet om het bestand te <a href='%s'>verwijderen</a> nadat u klaar bent.");
+define('_AM_ISEARCH_EXPORT_READY',"Uw gexporteerde bestand is beschikbaar.<br /><a href='%s'>Klik Hier </a> om het bestand te downloaden.<br />Vergeet niet om het bestand te <a href='%s'>verwijderen</a> nadat u klaar bent.");
 define('_AM_ISEARCH_DELETED_OK',"Het bestand is verwijderd");
 define('_AM_ISEARCH_DELETED_PB',"Error, het is niet mogelijk het bestand te verwijderen.");
 define("_AM_ISEARCH_NOTHING_TO_EXPORT","Er valt niets te exporteren!");
