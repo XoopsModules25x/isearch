@@ -37,8 +37,8 @@ define('_MI_ISEARCH_OPT1_DSC',"Toutes les recherches des personnes qui font part
 define('_MI_ISEARCH_OPT2',"Nombre de mots cl&eacute;s visibles dans l'administration");
 define('_MI_ISEARCH_OPT2_DSC',"");
 
-define('_MI_ISEARCH_OPT3', "Liste d'adresses IP dont vous ne souhaitez pas enregistrer les recherches");
-define('_MI_ISEARCH_OPT3_DSC', "Entrez une adresse IP par ligne et utilisez les même conventions que dans le banissement d'adresse IP dans les préférences générales de votre site");
+define('_MI_ISEARCH_OPT3',"Liste d'adresses IP dont vous ne souhaitez pas enregistrer les recherches");
+define('_MI_ISEARCH_OPT3_DSC',"Entrez une adresse IP par ligne et utilisez les même conventions que dans le banissement d'adresse IP dans les préférences générales de votre site");
 
 define('_MI_ISEARCH_BNAME1',"Derni&egrave;res recherches");
 define('_MI_ISEARCH_BNAME2',"Personnes qui utilisent le plus la recherche");

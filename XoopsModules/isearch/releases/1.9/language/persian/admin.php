@@ -53,7 +53,7 @@ define('_AM_ISEARCH_EXPORT_AND'," و ");
 define("_AM_ISEARCH_DATE_FORMAT","فرمت تاریخ (بر اساس فرمت PHP)");
 define("_AM_ISEARCH_DELIMITER","جداساز بین فیلد ها");
 define("_AM_ISEARCH_EXPORT_ERROR","خطا: ناتوانی در خارج کردن فایل %s");
-define('_AM_ISEARCH_EXPORT_READY', "خروجی شما موجود می باشد<br /><a href='%s'>برای دریافت فایل اینجا را کلیک کنید</a>.<br />فراموش نکنید <a href='%s'>آن را پاک کنید </a> وقتی تمام کردید.");
+define('_AM_ISEARCH_EXPORT_READY',"خروجی شما موجود می باشد<br /><a href='%s'>برای دریافت فایل اینجا را کلیک کنید</a>.<br />فراموش نکنید <a href='%s'>آن را پاک کنید </a> وقتی تمام کردید.");
 define('_AM_ISEARCH_DELETED_OK',"فایل پاک شد");
 define('_AM_ISEARCH_DELETED_PB',"خطا: ناتونی در پاک کردن فایل");
 define("_AM_ISEARCH_NOTHING_TO_EXPORT","چیزی برای خروج پیدا نشد");

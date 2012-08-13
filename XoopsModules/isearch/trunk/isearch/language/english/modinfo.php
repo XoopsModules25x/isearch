@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,10 +11,10 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @copyright       HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @author 			HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * Version : $Id:
  * ****************************************************************************
@@ -37,8 +37,8 @@ define('_MI_ISEARCH_OPT1_DSC',"All the searches made by people who are in those 
 define('_MI_ISEARCH_OPT2',"Count of keywords visible in the administration");
 define('_MI_ISEARCH_OPT2_DSC',"");
 
-define('_MI_ISEARCH_OPT3', "List of IPs you don't want to record searches");
-define('_MI_ISEARCH_OPT3_DSC', "Type one IP per line and use the same conventions as the IPs ban in the general preferences of your site");
+define('_MI_ISEARCH_OPT3',"List of IPs you don't want to record searches");
+define('_MI_ISEARCH_OPT3_DSC',"Type one IP per line and use the same conventions as the IPs ban in the general preferences of your site");
 
 define('_MI_ISEARCH_BNAME1',"Last searchs");
 define('_MI_ISEARCH_BNAME2',"Biggest users of the search");

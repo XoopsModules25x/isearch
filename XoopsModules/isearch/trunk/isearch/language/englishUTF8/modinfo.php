@@ -37,8 +37,8 @@ define('_MI_ISEARCH_OPT1_DSC',"All the searches made by people who are in those 
 define('_MI_ISEARCH_OPT2',"Count of keywords visible in the administration");
 define('_MI_ISEARCH_OPT2_DSC',"");
 
-define('_MI_ISEARCH_OPT3', "List of IPs you don't want to record searches");
-define('_MI_ISEARCH_OPT3_DSC', "Type one IP per line and use the same conventions as the IPs ban in the general preferences of your site");
+define('_MI_ISEARCH_OPT3',"List of IPs you don't want to record searches");
+define('_MI_ISEARCH_OPT3_DSC',"Type one IP per line and use the same conventions as the IPs ban in the general preferences of your site");
 
 define('_MI_ISEARCH_BNAME1',"Last searchs");
 define('_MI_ISEARCH_BNAME2',"Biggest users of the search");

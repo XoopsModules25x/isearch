@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,10 +11,10 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @copyright       HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @author 			HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * Version : $Id:
  * ****************************************************************************
@@ -37,8 +37,8 @@ define('_MI_ISEARCH_OPT1_DSC',"Toutes les recherches des personnes qui font part
 define('_MI_ISEARCH_OPT2',"Nombre de mots cl&eacute;s visibles dans l'administration");
 define('_MI_ISEARCH_OPT2_DSC',"");
 
-define('_MI_ISEARCH_OPT3', "Liste d'adresses IP dont vous ne souhaitez pas enregistrer les recherches");
-define('_MI_ISEARCH_OPT3_DSC', "Entrez une adresse IP par ligne et utilisez les même conventions que dans le banissement d'adresse IP dans les préférences générales de votre site");
+define('_MI_ISEARCH_OPT3',"Liste d'adresses IP dont vous ne souhaitez pas enregistrer les recherches");
+define('_MI_ISEARCH_OPT3_DSC',"Entrez une adresse IP par ligne et utilisez les mÃªme conventions que dans le banissement d'adresse IP dans les prÃ©fÃ©rences gÃ©nÃ©rales de votre site");
 
 define('_MI_ISEARCH_BNAME1',"Derni&egrave;res recherches");
 define('_MI_ISEARCH_BNAME2',"Personnes qui utilisent le plus la recherche");
