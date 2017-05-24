@@ -30,7 +30,7 @@ class isearch_blacklist
 	function getAllKeywords()
 	{
 		$ret = $tbl_black_list = array();
-		$myts =& MyTextSanitizer::getInstance();
+		$myts = MyTextSanitizer::getInstance();
 		$filename=XOOPS_UPLOAD_PATH.'/isearch_black_list.php';
 		if(file_exists($filename)) {
 			include_once $filename;
@@ -69,7 +69,7 @@ class isearch_blacklist
  	 */
 	function addkeywords($keyword)
 	{
-		$myts =& MyTextSanitizer::getInstance();
+		$myts = MyTextSanitizer::getInstance();
 		if(is_array($keyword)) {
 			foreach($keyword as $onekeyword) {
 				$onekeyword=xoops_trim($myts->htmlSpecialChars($onekeyword));
