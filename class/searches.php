@@ -244,7 +244,7 @@ class IsearchSearchesHandler extends XoopsObjectHandler
 	*/
 	function getMostSearched($start, $limit, $id_as_key = false)
 	{
-		$ts =& MyTextSanitizer::getInstance();
+		$ts = MyTextSanitizer::getInstance();
 		$ret = array();
 		$sql = "SELECT Count(keyword) AS cpt, keyword, isearchid FROM ".$this->db->prefix('isearch_searches').' GROUP BY keyword ORDER BY cpt desc';
 		$result = $this->db->query($sql, $limit, $start);

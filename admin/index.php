@@ -48,7 +48,7 @@ if(isset($_POST['op'])) {
 	$op = $_GET['op'];
 }
 $isearch_handler =& xoops_getmodulehandler('searches', 'isearch');
-$myts =& MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 
 switch ($op) {
 	/**
