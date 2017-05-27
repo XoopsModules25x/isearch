@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervï¿½ Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,16 +11,16 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @copyright       Hervï¿½ Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @author             Hervï¿½ Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * Version : $Id:
  * ****************************************************************************
  */
 if (!defined('XOOPS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
+    die("XOOPS root path not defined");
 }
 
 /**
@@ -28,31 +28,31 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 function isearch_getmoduleoption($option, $repmodule='isearch')
 {
-	global $xoopsModuleConfig, $xoopsModule;
-	static $tbloptions= Array();
-	if(is_array($tbloptions) && array_key_exists($option,$tbloptions)) {
-		return $tbloptions[$option];
-	}
+    global $xoopsModuleConfig, $xoopsModule;
+    static $tbloptions= Array();
+    if(is_array($tbloptions) && array_key_exists($option,$tbloptions)) {
+        return $tbloptions[$option];
+    }
 
-	$retval=false;
-	if (isset($xoopsModuleConfig) && (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $repmodule && $xoopsModule->getVar('isactive'))) {
-		if(isset($xoopsModuleConfig[$option])) {
-			$retval= $xoopsModuleConfig[$option];
-		}
+    $retval=false;
+    if (isset($xoopsModuleConfig) && (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $repmodule && $xoopsModule->getVar('isactive'))) {
+        if(isset($xoopsModuleConfig[$option])) {
+            $retval= $xoopsModuleConfig[$option];
+        }
 
-	} else {
-		$module_handler =& xoops_gethandler('module');
-		$module =& $module_handler->getByDirname($repmodule);
-		$config_handler =& xoops_gethandler('config');
-		if ($module) {
-		    $moduleConfig =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
-	    	if(isset($moduleConfig[$option])) {
-	    		$retval= $moduleConfig[$option];
-	    	}
-		}
-	}
-	$tbloptions[$option]=$retval;
-	return $retval;
+    } else {
+        $module_handler = xoops_gethandler('module');
+        $module = $module_handler->getByDirname($repmodule);
+        $config_handler = xoops_gethandler('config');
+        if ($module) {
+            $moduleConfig = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+            if(isset($moduleConfig[$option])) {
+                $retval= $moduleConfig[$option];
+            }
+        }
+    }
+    $tbloptions[$option]=$retval;
+    return $retval;
 }
 
 /**
@@ -60,7 +60,7 @@ function isearch_getmoduleoption($option, $repmodule='isearch')
  */
 function isearch_JavascriptLinkConfirm($msg)
 {
-	return "onclick=\"javascript:return confirm('".str_replace("'"," ",$msg)."')\"";
+    return "onclick=\"javascript:return confirm('".str_replace("'"," ",$msg)."')\"";
 }
 
 /**
@@ -72,9 +72,9 @@ function isearch_JavascriptLinkConfirm($msg)
 */
 function isearch_FieldExists($fieldname,$table)
 {
-	global $xoopsDB;
-	$result=$xoopsDB->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
-	return($xoopsDB->getRowsNum($result) > 0);
+    global $xoopsDB;
+    $result=$xoopsDB->queryF("SHOW COLUMNS FROM    $table LIKE '$fieldname'");
+    return($xoopsDB->getRowsNum($result) > 0);
 }
 
 /**
@@ -86,9 +86,9 @@ function isearch_FieldExists($fieldname,$table)
 */
 function isearch_AddField($field, $table)
 {
-	global $xoopsDB;
-	$result=$xoopsDB->queryF("ALTER TABLE " . $table . " ADD $field;");
-	return $result;
+    global $xoopsDB;
+    $result=$xoopsDB->queryF("ALTER TABLE " . $table . " ADD $field;");
+    return $result;
 }
 
 /**
