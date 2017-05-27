@@ -1,7 +1,7 @@
 <?php
 /**
  * ****************************************************************************
- * isearch - MODULE FOR XOOPS
+ * iSearch - MODULE FOR XOOPS
  * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,15 +11,14 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author             Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package         modules\isearch\language
+ * @author          Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
 
-define('_ISEARCH_DATE',"Date");
-define('_ISEARCH_KEYWORD',"Searched words");
-define('_ISEARCH_PAGE',"Page");
+define('_ISEARCH_DATE', 'Date');
+define('_ISEARCH_KEYWORD', 'Searched words');
+define('_ISEARCH_PAGE', 'Page');
