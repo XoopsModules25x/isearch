@@ -73,7 +73,7 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid){
     $count = count($queryarray);
     if (count(array_intersect($groups, $banned)) == 0 && $userid == 0) {    // If it's not a banned user and if we are not viewing someone's profile
         if (is_array($queryarray) && $count >0) {
-            for($i = 0; $i < $count; $i++) {
+            for($i = 0; $i < $count; ++$i) {
                 $isearch = $isearch_handler->create(true);
                 $isearch->setVar('uid',$uid);
                 $isearch->setVar('datesearch',$datesearch);

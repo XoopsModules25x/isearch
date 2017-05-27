@@ -41,12 +41,15 @@ $keywords_count = isearch_getmoduleoption('admincount');
 // **********************************************************************************************************************************************
 // **** Main
 // **********************************************************************************************************************************************
+$op = Xmf\Request::getCmd('op', 'stats');
+/*
 $op = 'default';
 if(isset($_POST['op'])) {
  $op = $_POST['op'];
 } elseif(isset($_GET['op'])) {
     $op = $_GET['op'];
 }
+*/
 $isearch_handler = xoops_getmodulehandler('searches', 'isearch');
 $myts = MyTextSanitizer::getInstance();
 
@@ -59,7 +62,7 @@ switch ($op) {
         xoops_cp_header();
         isearch_adminmenu(1);
         echo '<br />';
-        $sform = new XoopsThemeForm(_AM_ISEARCH_PRUNE, 'pruneform', XOOPS_URL.'/modules/isearch/admin/index.php', 'post');
+        $sform = new XoopsThemeForm(_AM_ISEARCH_PRUNE, 'pruneform', XOOPS_URL.'/modules/isearch/admin/index.php', 'post', true);
         $sform->addElement(new XoopsFormTextDateSelect(_AM_ISEARCH_PRUNE_DATE, 'prune_date',15,time()), false);
         $sform->addElement(new XoopsFormText(_AM_ISEARCH_PRUNE_KEYONLY, 'keyword', 50, 255, ''), false);
         $sform->addElement(new XoopsFormText(_AM_ISEARCH_IP, 'ip', 20, 255, ''), false);
@@ -77,6 +80,10 @@ switch ($op) {
       * Ask a confirmation before to remove keywords
       */
     case 'ConfirmBeforeToPrune':
+        if (!$xoopsSecurity->check()) {
+            redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
+        }
+
         xoops_cp_header();
         isearch_adminmenu(1);
         echo '<br />';
@@ -89,7 +96,7 @@ switch ($op) {
 
         if(isset($_POST['prune_date']) && xoops_trim($_POST['prune_date'])!='') {
             $date=$_POST['prune_date'];
-            $timestamp=mktime(0,0,0,intval(substr($date,5,2)), intval(substr($date,8,2)), intval(substr($date,0,4)));
+            $timestamp=mktime(0, 0, 0, (int)substr($date,5,2), (int)substr($date,8,2), (int)substr($date,0,4));
             $date=date('Y-m-d',$timestamp);
             $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $date,'<='));
         }
@@ -117,14 +124,18 @@ switch ($op) {
       * Effectively delete keywords
       */
     case 'pruneKeywords':
+        if (!$xoopsSecurity->check()) {
+            redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
+        }
+
         $timestamp = 0;
         $keyword = '';
         $ip = '';
         $criteria = new CriteriaCompo();
 
-        if(isset($_POST['prune_date']) && intval($_POST['prune_date'])!=0) {
+        if(isset($_POST['prune_date']) && 0 !== (int)$_POST['prune_date']) {
             $timestamp=$_POST['prune_date'];
-            $date=date('Y-m-d',$timestamp);
+            $date=date('Y-m-d',(int)$timestamp);
             $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $date,'<='));
         }
         if(isset($_POST['keyword']) && xoops_trim($_POST['keyword'])!='') {
@@ -136,7 +147,7 @@ switch ($op) {
             $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']),'='));
         }
 
-        if(intval($_POST['ok'])==1) {
+        if(1 === (int)$_POST['ok']) {
             xoops_cp_header();
             $isearch_handler->deleteAll($criteria);
             redirect_header('index.php?op=purge', 2, _AM_ISEARCH_DBUPDATED);
@@ -146,11 +157,14 @@ switch ($op) {
 
     /**
       * Remove a keyword from the database (directly called from the statistics part)
+      *
+      * @todo - refactor so that this takes $_POST input from statistics, probably requires adding
+      * a confirmation step from statistics before this code is executed
       */
     case 'removekeyword':
         xoops_cp_header();
-        if(intval($_GET['id'])!=0) {
-            $tmp_search = $isearch_handler->get(intval($_GET['id']));
+        if(0 !== (int)$_GET['id']) {
+            $tmp_search = $isearch_handler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $critere = new Criteria('keyword', $tmp_search->getVar('keyword'),'=');
                 $isearch_handler->deleteAll($critere);
@@ -175,7 +189,7 @@ switch ($op) {
         $mint=strtotime($min);
         $maxt=strtotime($max);
 
-        $sform = new XoopsThemeForm(_AM_ISEARCH_EXPORT, 'exportform', XOOPS_URL.'/modules/isearch/admin/index.php', 'post');
+        $sform = new XoopsThemeForm(_AM_ISEARCH_EXPORT, 'exportform', XOOPS_URL.'/modules/isearch/admin/index.php', 'post', true);
         $dates_tray = new XoopsFormElementTray(_AM_ISEARCH_EXPORT_BETWEEN);
         $date1 = new XoopsFormTextDateSelect('', 'date1',15,$mint);
         $date2 = new XoopsFormTextDateSelect(_AM_ISEARCH_EXPORT_AND, 'date2',15,$maxt);
@@ -201,10 +215,14 @@ switch ($op) {
       * Lauch the export
       */
     case 'SearchExport':
+        if (!$xoopsSecurity->check()) {
+            redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
+        }
+
         xoops_cp_header();
         isearch_adminmenu(2);
         $criteria = new CriteriaCompo();
-        $dateformat = isset($_POST['dateformat']) ? $_POST['dateformat'] : '';
+        //$dateformat = isset($_POST['dateformat']) ? $_POST['dateformat'] : '';
         $delimiter = isset($_POST['delimiter']) ? $_POST['delimiter'] : ';';
         $searchfile=XOOPS_ROOT_PATH.'/uploads/isearch_keywords.txt';
         $searchfile2 =XOOPS_URL.'/uploads/isearch_keywords.txt';
@@ -213,11 +231,14 @@ switch ($op) {
         if(isset($_POST['date1']) && isset($_POST['date2'])) {
             $startdate=date('Y-m-d',strtotime($_POST['date1']));
             $enddate=date('Y-m-d',strtotime($_POST['date2']));
-            $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $startdate,'>='));
-            $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $enddate,'<='));
+            if (false !== $startdate && $false !== $enddate) {
+                $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $startdate,'>='));
+                $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $enddate,'<='));
+            }
         }
-        if(isset($_POST['user']) && xoops_trim($_POST['user'])!='') {
-            $criteria->add(new Criteria('uid', '('.implode(',', $_POST['user']).')','IN'));
+        if(isset($_POST['user']) && xoops_trim($_POST['user'])!='' && is_array($_POST['user'])) {
+            $userarray = array_map('intval', $_POST['user']);
+            $criteria->add(new Criteria('uid', '('.implode(',', $userarray).')','IN'));
         }
         if(isset($_POST['keyword']) && xoops_trim($_POST['keyword'])!='') {
             $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']),'='));
@@ -271,7 +292,7 @@ switch ($op) {
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
         include_once XOOPS_ROOT_PATH.'/modules/isearch/class/blacklist.php';
         echo '<h3>'._AM_ISEARCH_BLACKLIST.'</h3>';
-        $sform = new XoopsThemeForm(_AM_ISEARCH_BLACKLIST, 'MetagenBlackList', XOOPS_URL.'/modules/isearch/admin/index.php', 'post');
+        $sform = new XoopsThemeForm(_AM_ISEARCH_BLACKLIST, 'MetagenBlackList', XOOPS_URL.'/modules/isearch/admin/index.php', 'post', true);
         $sform->addElement(new XoopsFormHidden('op', 'MetagenBlackList'), false);
 
         // Remove words
@@ -310,8 +331,8 @@ switch ($op) {
       */
     case 'addblacklist':
         include_once XOOPS_ROOT_PATH.'/modules/isearch/class/blacklist.php';
-        if(intval($_GET['id'])!=0) {
-            $tmp_search = $isearch_handler->get(intval($_GET['id']));
+        if(0 !== (int)$_GET['id']) {
+            $tmp_search = $isearch_handler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $keyword = $tmp_search->getVar('keyword');
                 $blacklist = new isearch_blacklist();
@@ -328,6 +349,10 @@ switch ($op) {
       * Actions on the blacklist (add or remove keyword(s))
       */
     case 'MetagenBlackList':
+        if (!$xoopsSecurity->check()) {
+            redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
+        }
+
         include_once XOOPS_ROOT_PATH.'/modules/isearch/class/blacklist.php';
         $blacklist = new isearch_blacklist();
         $keywords=$blacklist->getAllKeywords();
@@ -355,11 +380,13 @@ switch ($op) {
 
     /**
      * Remove content based on the IP
+     *
+     * @todo - refactor so this takes a $_POST input since it's deleting info from database
      */
      case 'removeip':
         xoops_cp_header();
-        if(intval($_GET['id'])!=0) {
-            $tmp_search = $isearch_handler->get(intval($_GET['id']));
+        if(is_numeric($_GET['id']) && 0 !== (int)$_GET['id']) {
+            $tmp_search = $isearch_handler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $critere = new Criteria('ip', $tmp_search->getVar('ip'),'=');
                 $isearch_handler->deleteAll($critere);
@@ -382,11 +409,15 @@ switch ($op) {
         $start = 0;
         $more_parameter = 'op=stats';
         if(isset($_GET['start1'])) {
-            $start = intval($_GET['start1']);
+            $start = (int)$_GET['start1'];
         } elseif(isset($_SESSION['start1'])) {
-                $start=intval($_SESSION['start1']);
+            $start = (int)$_SESSION['start1'];
         }
         $_SESSION['start1']=$start;
+        $s_keyword = Xmf\Request::getString('s_keyword', '');
+        $s_uid     = Xmf\Request::getInt('s_uid', '');
+        $s_ip      = Xmf\Request::getString('s_ip', '');
+        /*
         $s_keyword = $s_uid = $s_ip = '';
         if(isset($_POST['s_keyword'])) {
             $s_keyword = $_POST['s_keyword'];
@@ -405,7 +436,7 @@ switch ($op) {
         } elseif(isset($_GET['s_ip'])) {
             $s_ip = $_GET['s_ip'];
         }
-
+        */
         $critere = new CriteriaCompo();
         if($s_keyword != '') {
             $critere->add(new Criteria('keyword', $s_keyword,'LIKE'));
@@ -427,7 +458,7 @@ switch ($op) {
                 $users_list = '('.implode(',',$tbl_users2).')';
                 $critere->add(new Criteria('uid', $users_list,'IN'));
             } else {
-                $s_uid = intval($s_uid);
+                $s_uid = (int)$s_uid;
                 $critere->add(new Criteria('uid', $s_uid,'='));
             }
             $more_parameter .= '&s_uid='.$s_uid;
@@ -471,9 +502,9 @@ switch ($op) {
         // Most searched words ********************************************************************************************************************************
         $start = 0;
         if(isset($_GET['start2'])) {
-            $start = intval($_GET['start2']);
+            $start = (int)$_GET['start2'];
         } elseif(isset($_SESSION['start2'])) {
-                $start=intval($_SESSION['start2']);
+            $start = (int)$_SESSION['start2'];
         }
         $_SESSION['start2']=$start;
 
@@ -501,9 +532,9 @@ switch ($op) {
         $tmpisearch = new searches();
         $start = 0;
         if(isset($_GET['start3'])) {
-            $start = intval($_GET['start3']);
+            $start = (int)$_GET['start3'];
         } elseif(isset($_SESSION['start3'])) {
-                $start=intval($_SESSION['start3']);
+            $start = (int)$_SESSION['start3'];
         }
         $_SESSION['start3']=$start;
 
@@ -526,9 +557,9 @@ switch ($op) {
         // daily stats ****************************************************************************************************************************************
         $start = 0;
         if(isset($_GET['start4'])) {
-            $start = intval($_GET['start4']);
+            $start = (int)$_GET['start4'];
         } elseif(isset($_SESSION['start4'])) {
-                $start=intval($_SESSION['start4']);
+            $start = (int)$_SESSION['start4'];
         }
         $_SESSION['start4']=$start;
         $pagenav = new XoopsPageNav($isearch_handler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
@@ -550,9 +581,9 @@ switch ($op) {
         // IP stats *******************************************************************************************************************************************
         $start = 0;
         if(isset($_GET['start4'])) {
-            $start = intval($_GET['start4']);
+            $start = (int)$_GET['start4'];
         } elseif(isset($_SESSION['start4'])) {
-                $start=intval($_SESSION['start4']);
+            $start = (int)$_SESSION['start4'];
         }
         $_SESSION['start4']=$start;
 
@@ -570,12 +601,7 @@ switch ($op) {
             echo "<tr class='".$class."'><td align='center'>" .$oneip."</td><td align='center'>" .$onecount. "</td></tr>";
         }
         echo "</table><div align='right'>".$pagenav->renderNav().'</div></div><br />';
-
-
-
         echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
         break;
 }
 xoops_cp_footer();
-?>
-
