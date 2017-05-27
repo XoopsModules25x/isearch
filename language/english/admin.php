@@ -61,3 +61,9 @@ define('_AM_ISEARCH_BLACKLIST_ADD',"Add");
 define('_AM_ISEARCH_BLACKLIST_ADD_DSC',"Enter words to add in the list<br />(one word by line)");
 define('_AM_ISEARCH_IP',"IP");
 define('_AM_ISEARCH_FILTER_BY',"Filter by");
+
+// Install/Uninstall/Update
+define('_AM_ISEARCH_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
+define('_AM_ISEARCH_ERROR_BAD_XOOPS', 'This module requires XOOPS version %s+ (%s installed)');
+define('_AM_ISEARCH_ERROR_BAD_DEL_PATH', 'Could not delete %s directory');
+define('_AM_ISEARCH_ERROR_BAD_REMOVE', 'Could not delete %s');
