@@ -21,7 +21,7 @@
  */
 
 include "../../mainfile.php";
-$xoopsOption['template_main'] = 'isearch_index.html';
+$xoopsOption['template_main'] = 'isearch_index.tpl';
 include_once XOOPS_ROOT_PATH.'/header.php';
 include_once XOOPS_ROOT_PATH."/modules/isearch/include/functions.php";
 $isearch_handler = xoops_getmodulehandler('searches', 'isearch');
