@@ -1,6 +1,6 @@
 <{if $visiblekeywords>0}>
 <h2><{$smarty.const._ISEARCH_KEYWORD}></h2>
-<br />
+<br>
 <{if $pagenav}><div class="left marg10"><{$smarty.const._ISEARCH_PAGE}> <{$pagenav}></div><{/if}>
 <table class="width100 bnone">
     <tr><th class="center"><{$smarty.const._ISEARCH_DATE}></th><th class="center"><{$smarty.const._ISEARCH_KEYWORD}></th></tr>

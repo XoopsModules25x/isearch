@@ -1,19 +1,19 @@
 /*
 Copyright Scand LLC http://www.scbr.com
 This version of Software is free for using in non-commercial applications. For commercial use please contact info@scbr.com to obtain license
-*/ 
-
- 
+*/
 
 
- 
+
+
+
 function dhtmlXTabBar(parentObject,mode,height)
 {
  mode=mode||"top";
  this._mode=mode+"/";
 
 
- 
+
  if(typeof(parentObject)!="object")
  this.entBox=document.getElementById(parentObject);
  else
@@ -49,17 +49,17 @@ function dhtmlXTabBar(parentObject,mode,height)
  return this;
 }
 
- 
+
 dhtmlXTabBar.prototype.setOffset = function(offset){
  this._offset=offset;
 }
- 
+
 dhtmlXTabBar.prototype.setAlign = function(align){
  if(align=="top")align="left";
  if(align=="bottom")align="right";
  this._align=align;
 }
- 
+
 dhtmlXTabBar.prototype.setMargin = function(margin){
  this._margin=margin;
 }
@@ -68,7 +68,7 @@ dhtmlXTabBar.prototype.setMargin = function(margin){
 
 
 
- 
+
 dhtmlXTabBar.prototype._createSelf = function(vMode)
 {
  this._tabAll=document.createElement("DIV");
@@ -77,13 +77,13 @@ dhtmlXTabBar.prototype._createSelf = function(vMode)
 
 
  this.entBox.appendChild(this._tabAll);
- 
+
 if(this._bMode){
  this._tabAll.appendChild(this._conZone);
  this._tabAll.appendChild(this._tabZone);
 }
  else
- 
+
 {
  this._tabAll.appendChild(this._tabZone);
  this._tabAll.appendChild(this._conZone);
@@ -91,7 +91,7 @@ if(this._bMode){
 
 
  this._vMode=vMode;
- 
+
  if(vMode){
  this._tabAll.className='dhx_tabbar_zoneV';
  this._setSizes=this._setSizesV;
@@ -99,13 +99,13 @@ if(this._bMode){
 
 }
  else
- 
+
  this._tabAll.className='dhx_tabbar_zone';
 
- 
+
  if(this._bMode)
  this._tabAll.className+='B';
- 
+
  this._tabZone.className='dhx_tablist_zone';
  this._conZone.className='dhx_tabcontent_zone';
 
@@ -123,11 +123,11 @@ if(this._bMode){
 
  this._lineA.style[vMode?"left":"top"]=(this._bMode?0:(this._height+2))+"px";
  this._lineA.style[vMode?"height":"width"]=this[vMode?"height":"width"];
- 
+
  if(vMode)
  this._conZone.style.height=this.height;
  else
- 
+
  this._conZone.style.width=this.width;
 
  this.rows=new Array();
@@ -136,7 +136,7 @@ if(this._bMode){
  this._setSizes();
 }
 
- 
+
 dhtmlXTabBar.prototype._createRow = function(){
  var z=document.createElement("DIV");
  z.className='dhx_tabbar_row';
@@ -145,7 +145,7 @@ dhtmlXTabBar.prototype._createRow = function(){
  z._rowScroller.style.display="none";
  z.appendChild(z._rowScroller);
  this.rows[this.rows.length]=z;
- 
+
  if(this._vMode){
  z.style.width=this._height+3+"px";
  z.style.height=parseInt(this.height)+"px";
@@ -155,7 +155,7 @@ dhtmlXTabBar.prototype._createRow = function(){
  this.setRowSizesB();
 }
  else
- 
+
 {
  z.style.height=this._height+3+"px";
  z.style.width=parseInt(this.width)+"px";
@@ -163,9 +163,9 @@ dhtmlXTabBar.prototype._createRow = function(){
 
  z.appendChild(this._lineA);
 }
- 
+
 dhtmlXTabBar.prototype._setSizes = function(){
- 
+
  this._tabAll.height=this.height;
  this._tabAll.width=this.width;
 
@@ -179,8 +179,8 @@ dhtmlXTabBar.prototype._setSizes = function(){
  a=parseInt(this.height)-z-4;
  this._conZone.style.height=(a>0?a:0)+"px";
 }
- 
- 
+
+
 dhtmlXTabBar.prototype._setSizesV = function(){
  this._tabAll.height=this.height;
  this._tabAll.width=this.width;
@@ -203,7 +203,7 @@ dhtmlXTabBar.prototype._setSizesV = function(){
 }
 
 
- 
+
 dhtmlXTabBar.prototype._redrawRowV=function(row){
  var talign=this._align=="left"?"top":"bottom";
  var count=parseInt(this._offset);
@@ -218,31 +218,31 @@ dhtmlXTabBar.prototype._redrawRowV=function(row){
 
 
 
- 
+
 dhtmlXTabBar.prototype.setRowSizesA=function(){
  for(var i=0;i<this.rows.length;i++){
  this.rows[i].style.left=i*this._height+"px";
  this.rows[i].style.zIndex=5+i;
 }
 }
- 
+
 dhtmlXTabBar.prototype.setRowSizesB=function(){
  for(var i=this.rows.length-1;i>=0;i--){
  this.rows[i].style.left=i*this._height+"px";
  this.rows[i].style.zIndex=15-i;
 }
 }
- 
+
 dhtmlXTabBar.prototype.setRowSizesC=function(){
  for(var i=this.rows.length-1;i>=0;i--){
  this.rows[i].style.zIndex=15-i;
 }
 }
 
- 
 
 
- 
+
+
 dhtmlXTabBar.prototype._onMouseOverHandler=function(e)
 {
  if(_isIE)
@@ -258,7 +258,7 @@ dhtmlXTabBar.prototype._onMouseOverHandler=function(e)
 
 (e||event).cancelBubble=true;
 }
- 
+
 dhtmlXTabBar.prototype._onMouseOutHandler=function(e)
 {
  this.parentNode.tabbar._hideHover(null);return;
@@ -267,7 +267,7 @@ dhtmlXTabBar.prototype._onMouseOutHandler=function(e)
 
 
 
- 
+
 dhtmlXTabBar.prototype._onClickHandler=function(e)
 {
  if(_isIE)
@@ -284,7 +284,7 @@ dhtmlXTabBar.prototype._onClickHandler=function(e)
  return false;
 }
 
- 
+
 dhtmlXTabBar.prototype._getTabTarget=function(t){
  while((!t.className)||(t.className.indexOf("dhx_tab_element")==-1)){
  if((t.className)&&(t.className.indexOf("dhx_tabbar_zone")!=-1))return null;
@@ -293,7 +293,7 @@ dhtmlXTabBar.prototype._getTabTarget=function(t){
  return t;
 }
 
- 
+
 dhtmlXTabBar.prototype._redrawRow=function(row){
  var count=parseInt(this._offset);
  for(var i=0;i<row.tabCount;i++){
@@ -305,7 +305,7 @@ dhtmlXTabBar.prototype._redrawRow=function(row){
 };
 
 
- 
+
 dhtmlXTabBar.prototype.addTab = function(id,text,size,position,row){
  row=row||0;
 
@@ -324,7 +324,7 @@ dhtmlXTabBar.prototype.addTab = function(id,text,size,position,row){
  this._setSizes();
 }
 
- 
+
 dhtmlXTabBar.prototype._showHover=function(tab){
  this._hideHover(tab);
  if(tab==this._lastActive)return;
@@ -335,7 +335,7 @@ dhtmlXTabBar.prototype._showHover=function(tab){
 }
  this._lastHower=tab;
 }
- 
+
 dhtmlXTabBar.prototype._hideHover=function(tab){
  if((!this._lastHower)||(this._lastHower==tab)||(this._lastHower==this._lastActive))
  return;
@@ -347,17 +347,17 @@ dhtmlXTabBar.prototype._hideHover=function(tab){
  this._lastHower=null;
 }
 
- 
+
 dhtmlXTabBar.prototype._getTabById=function(tabId){
  return this.tabsId[tabId];
 }
 
- 
+
 dhtmlXTabBar.prototype.setTabActive=function(tabId){
  var tab=this._getTabById(tabId);
  if(tab)this._setTabActive(tab);
 }
- 
+
 dhtmlXTabBar.prototype._setTabActive=function(tab){
  if((this._onsel)&&(!this._onsel(tab.idd,this._lastActive?this._lastActive.idd:null)))return;
  if(this._lastActive)
@@ -368,7 +368,7 @@ dhtmlXTabBar.prototype._setTabActive=function(tab){
  if(this._styles[this._cstyle][11])
  tab.style.backgroundColor=this._styles[this._cstyle][11];
 
- 
+
  if(this._vMode){
  switch(this._tbst){
  case "win_text":
@@ -397,7 +397,7 @@ dhtmlXTabBar.prototype._setTabActive=function(tab){
 }
 }
  else
- 
+
 {
  switch(this._tbst){
  case "win_text":
@@ -409,10 +409,10 @@ dhtmlXTabBar.prototype._setTabActive=function(tab){
  this._lastActive._lChild.style.width=parseInt(this._lastActive._lChild.style.width)-this._styles[this._cstyle][9]+"px";
  this._lastActive.style[this._align=="left"?"marginLeft":"marginRight"]="0px"
  this._lastActive.style.height=this._height+1+"px";
- 
+
  if(this._bMode)
  this._lastActive._lChild.style.height=this._height+1+"px";
- 
+
 }
 
  tab._lChild.style.backgroundImage='url('+this._imgPath+this._mode+this._styles[this._cstyle][4]+')';
@@ -422,10 +422,10 @@ dhtmlXTabBar.prototype._setTabActive=function(tab){
  tab._lChild.style.width=parseInt(tab._lChild.style.width)+this._styles[this._cstyle][9]+"px";
  tab.style[this._align=="left"?"marginLeft":"marginRight"]="-3px"
  tab.style.height=this._height+3+"px";
- 
+
  if(this._bMode)
  tab._lChild.style.height=this._height+3+"px";
- 
+
  break;
 }
 }
@@ -443,7 +443,7 @@ dhtmlXTabBar.prototype._setTabActive=function(tab){
 
 
 
- 
+
 dhtmlXTabBar.prototype._createTab = function(text,size){
  var tab=document.createElement("DIV");
  tab.className='dhx_tab_element dhx_tab_element_inactive';
@@ -454,7 +454,7 @@ dhtmlXTabBar.prototype._createTab = function(text,size){
  thml=text;
  break;
  case 'win_text':
- 
+
  if(this._vMode)
 {
  thml='<div style="position:absolute;'+(this._bMode?"right":"left")+':0px;top:0px;height:'+this._styles[this._cstyle][7]+'px;width:'+(this._height+3)+'px;"><img src="'+this._imgPath+this._mode+this._styles[this._cstyle][0]+((this._bMode&&(_isFF||_isOpera))?'" style="position:absolute;right:1px;"':'"')+'></div>';
@@ -462,7 +462,7 @@ dhtmlXTabBar.prototype._createTab = function(text,size){
  thml+='<div style="position:absolute;background-repeat: repeat-y;background-image:url('+this._imgPath+this._mode+this._styles[this._cstyle][1]+');width:'+(this._height)+'px;left:0px;top:'+this._styles[this._cstyle][7]+'px;height:'+(parseInt(size||this._tabSize)-this._styles[this._cstyle][8]-this._styles[this._cstyle][7]+"px")+'">'+text+'</div>';
 }
  else
- 
+
 {
  thml='<div style="position:absolute;'+(this._bMode?"bottom":"top")+':0px;left:0px;width:'+this._styles[this._cstyle][7]+'px;height:'+(this._height+3)+'px;"><img src="'+this._imgPath+this._mode+this._styles[this._cstyle][0]+((this._bMode&&_isFF)?'" style="position:absolute;bottom:0px;"':'"')+'></div>';
  thml+='<div style="position:absolute;'+(this._bMode?"bottom":"top")+':0px;right:0px;width:'+this._styles[this._cstyle][8]+'px;height:'+(this._height+3)+'px;"><img src="'+this._imgPath+this._mode+this._styles[this._cstyle][2]+((this._bMode&&_isFF)?'" style="position:absolute;bottom:0px;left:0px;"':'"')+'></div>';
@@ -476,14 +476,14 @@ dhtmlXTabBar.prototype._createTab = function(text,size){
  tab._lChild=tab.childNodes[tab.childNodes.length-1];
 
 
- 
+
  if(this._vMode)
 {
  tab.style.height=size||this._tabSize;
  tab.style.width=this._height+1+"px";
 }
  else
- 
+
 {
  tab.style.width=size||this._tabSize;
  tab.style.height=this._height+1+"px";
@@ -493,7 +493,7 @@ dhtmlXTabBar.prototype._createTab = function(text,size){
  return tab;
 }
 
- 
+
 dhtmlXTabBar.prototype.clearAll = function(){
  this.tabsId=new Array();
  this.rows=new Array();
@@ -506,7 +506,7 @@ dhtmlXTabBar.prototype.clearAll = function(){
 
 
 
- 
+
 dhtmlXTabBar.prototype.setImagePath = function(path){
  this._imgPath=path;
 }
@@ -514,13 +514,13 @@ dhtmlXTabBar.prototype.setImagePath = function(path){
 
 
 
- 
+
 dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  this.XMLLoader=new dtmlXMLLoaderObject(this._parseXML,this);
  this.waitCall=afterCall||0;
  this.XMLLoader.loadXMLString(xmlString);
 };
- 
+
  dhtmlXTabBar.prototype.loadXML=function(file,afterCall){
  this.XMLLoader=new dtmlXMLLoaderObject(this._parseXML,this);
  this.waitCall=afterCall||0;
@@ -537,17 +537,17 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
 }
  return text;
 }
- 
+
  dhtmlXTabBar.prototype._parseXML=function(that,a,b,c,obj){
  var selected="";
  if(!obj)obj=that.XMLLoader;
 
  var atop=obj.getXMLTopNode("tabbar");
  var arows = obj.doXPath("//row",atop);
- 
+
  that._hrfmode=atop.getAttribute("hrefmode")||that._hrfmode;
- 
- 
+
+
  that._margin =atop.getAttribute("margin")||that._margin;
  that._align =atop.getAttribute("align")||that._align;
  that._offset =atop.getAttribute("offset")||that._offset;
@@ -557,7 +557,7 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
 
  acs=atop.getAttribute("skinColors");
  if(acs)that.setSkinColors(acs.split(",")[0],acs.split(",")[1]);
- 
+
  for(var i=0;i<arows.length;i++){
  var atabs = obj.doXPath("./tab",arows[i]);
  for(var j=0;j<atabs.length;j++){
@@ -567,16 +567,16 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  that.addTab(id,name,width,"",i);
  if(atabs[j].getAttribute("selected"))selected=id;
 
- 
+
  if(that._hrfmode)
  that.setContentHref(id,atabs[j].getAttribute("href"));
  else
- 
- 
+
+
  for(var k=0;k<atabs[j].childNodes.length;k++)
  if(atabs[j].childNodes[k].tagName=="content")
  that.setContentHTML(id,that._getXMLContent(atabs[j].childNodes[k]));
- 
+
 
 
 }
@@ -585,7 +585,7 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  if(that.dhx_xml_end)that.dhx_xml_end(that);
 }
 
- 
+
  dhtmlXTabBar.prototype.setOnLoadingEnd=function(func){
  if(typeof(func)=="function")
  this.dhx_xml_end=func;
@@ -593,12 +593,12 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  this.dhx_xml_end=eval(func);
 };
 
- 
- 
+
+
  dhtmlXTabBar.prototype.setHrefMode=function(mode){
  this._hrfmode=mode;
 }
- 
+
  dhtmlXTabBar.prototype.setContentHref=function(id,href){
  if(!this._hrefs)this._hrefs=new Array();
  this._hrefs[id]=href;
@@ -633,7 +633,7 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
 }
 }
 
- 
+
  dhtmlXTabBar.prototype.tabWindow=function(tab_id){
  if((this._hrfmode=="iframes")||(this._hrfmode=="iframe"))
  return(this._content[tab_id]?this._content[tab_id].childNodes[0].contentWindow:null);
@@ -644,22 +644,22 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  var id=z.getAttribute("tab");
  obj._content[id].innerHTML= obj._getXMLContent(z);
 
- 
+
  obj.adjustSize();
- 
+
 }
 
- 
 
 
- 
+
+
  dhtmlXTabBar.prototype.setOnSelectHandler=function(func){
  if(typeof(func)=="function")
  this._onsel=func;
  else
  this._onsel=eval(func);
 }
- 
+
  dhtmlXTabBar.prototype.setContent=function(id,nodeId){
  if(typeof(nodeId)=="string")
  nodeId=document.getElementById(nodeId);
@@ -675,9 +675,9 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  this._conZone.appendChild(nodeId);
  if((this._lastActive)&&(this._lastActive.idd==id))this._setContent(this._lastActive);
 }
- 
+
  dhtmlXTabBar.prototype._setContent=function(tab){
- 
+
  if(this._hrfmode)
  switch(this._hrfmode){
  case "iframe":
@@ -694,13 +694,13 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  case "ajax":
  var z=this._content[tab.idd];
  if(!z._loaded){
- z.innerHTML="<div class='dhx_ajax_loader'><img src='"+this._imgPath+"loading.gif' />&nbsp;Loading...</div>";
+ z.innerHTML="<div class='dhx_ajax_loader'><img src='"+this._imgPath+"loading.gif'>&nbsp;Loading...</div>";
 (new dtmlXMLLoaderObject(this._ajaxOnLoad,this,true)).loadXML(this._hrefs[tab.idd]);
  z._loaded=true;
 }
  break;
 }
- 
+
 
 
  if((this._lastActive)&&(this._content[this._lastActive.idd]))
@@ -709,11 +709,11 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  if(this._content[tab.idd])
  this._content[tab.idd].style.visibility='';
 
- 
+
  this.adjustSize();
- 
+
 }
- 
+
  dhtmlXTabBar.prototype.setContentHTML=function(id,html){
  var z=document.createElement("DIV");
  z.style.width="100%";
@@ -723,7 +723,7 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
  this.setContent(id,z);
 }
 
- 
+
  dhtmlXTabBar.prototype.setStyle=function(name){
  if(this._styles[name]){
  this._cstyle=name;
@@ -732,7 +732,7 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
 }
 
 
- 
+
  dhtmlXTabBar.prototype.allignToContainer=function(id,mode){
  if(id)
  this._conZone.style.display='none';
@@ -755,26 +755,26 @@ dhtmlXTabBar.prototype.loadXMLString=function(xmlString,afterCall){
 dhtmlXTabBar.prototype.setTabBarStyle = function(name){
  this._tbst=name;
 }
- 
 
- 
+
+
  dhtmlXTabBar.prototype.enableContentZone=function(mode){
  this._conZone.style.display=convertStringToBoolean(mode)?"":'none';
 }
 
- 
+
  dhtmlXTabBar.prototype.setSkinColors=function(a_tab,p_tab){
  this._styles[this._cstyle][10]=p_tab;
  this._styles[this._cstyle][11]=a_tab;
  this._conZone.style.backgroundColor=a_tab;
 }
 
- 
+
 dhtmlXTabBar.prototype.getActiveTab=function(){
  if(this._lastActive)return this._lastActive.idd;
  return null;
 }
- 
+
 dhtmlXTabBar.prototype.goToNextTab=function(){
  if(this._lastActive){
  if(this._lastActive.nextSibling.idd){
@@ -790,7 +790,7 @@ dhtmlXTabBar.prototype.goToNextTab=function(){
 }
  return null;
 }
- 
+
 dhtmlXTabBar.prototype.goToPrevTab=function(){
  if(this._lastActive){
  if(this._lastActive.previousSibling){
@@ -807,21 +807,21 @@ dhtmlXTabBar.prototype.goToPrevTab=function(){
  return null;
 }
 
- 
- 
+
+
 dhtmlXTabBar.prototype.enableAutoSize=function(autoWidth,autoHeight){
  this._ahdj=convertStringToBoolean(autoHeight);
  this._awdj=convertStringToBoolean(autoWidth);
 }
 
- 
+
 dhtmlXTabBar.prototype.setSize=function(width,height,contentZone){
  if(contentZone){
- 
+
  if(!this._vMode)
  height+=20;
  else
- 
+
  width+=20;
 }
 
@@ -831,7 +831,7 @@ dhtmlXTabBar.prototype.setSize=function(width,height,contentZone){
  this._lineA.style[this._vMode?"left":"top"]=(this._bMode?0:(this._height+2))+"px";
  this._lineA.style[this._vMode?"height":"width"]=this[this._vMode?"height":"width"];
 
- 
+
  if(this._vMode){
  for(var i=0;i<this.rows.length;i++)
  this.rows[i].style.height=parseInt(this.height)+"px";
@@ -839,7 +839,7 @@ dhtmlXTabBar.prototype.setSize=function(width,height,contentZone){
  this._conZone.style.height=height;
 }
  else
- 
+
 {
  this._conZone.style.width=this.width;
  for(var i=0;i<this.rows.length;i++)
@@ -864,6 +864,6 @@ dhtmlXTabBar.prototype.adjustSize=function(){
 }
  if(flag)this.setSize(x,y,true);
 }
- 
+
 
 

@@ -73,7 +73,7 @@ function isearch_adminmenu($currentoption = 0, $breadcrumb = '')
     echo "<li id='" . $tblColors[2] . "'><a href=\"index.php?op=export\"><span>" . _MI_ISEARCH_ADMMENU3 . "</span></a></li>\n";
     echo "<li id='" . $tblColors[3] . "'><a href=\"index.php?op=blacklist\"><span>" . _MI_ISEARCH_ADMMENU4 . "</span></a></li>\n";
     echo "</ul></div>";
-    echo "<br /><br /><pre>&nbsp;</pre><pre>&nbsp;</pre><br />";
+    echo "<br><br><pre>&nbsp;</pre><pre>&nbsp;</pre><br>";
 }
 
 
