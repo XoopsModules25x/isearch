@@ -39,4 +39,3 @@ function b_isearch_stats_show()
     }
     return $block;
 }
-?>

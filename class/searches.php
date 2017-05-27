@@ -311,4 +311,3 @@ class IsearchSearchesHandler extends XoopsObjectHandler
         return true;
     }
 }
-?>

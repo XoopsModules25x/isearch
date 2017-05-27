@@ -14,7 +14,7 @@
  * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @author             Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * Version : $Id:
  * ****************************************************************************
@@ -61,4 +61,3 @@ define('_AM_ISEARCH_BLACKLIST_ADD',"Add");
 define('_AM_ISEARCH_BLACKLIST_ADD_DSC',"Enter words to add in the list<br />(one word by line)");
 define('_AM_ISEARCH_IP',"IP");
 define('_AM_ISEARCH_FILTER_BY',"Filter by");
-?>

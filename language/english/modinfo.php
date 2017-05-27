@@ -14,7 +14,7 @@
  * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @author             Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * Version : $Id:
  * ****************************************************************************
@@ -43,4 +43,3 @@ define('_MI_ISEARCH_OPT3_DSC',"Type one IP per line and use the same conventions
 define('_MI_ISEARCH_BNAME1',"Last searchs");
 define('_MI_ISEARCH_BNAME2',"Biggest users of the search");
 define('_MI_ISEARCH_BNAME3',"Statistics");
-?>

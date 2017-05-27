@@ -128,4 +128,3 @@ function isearch_IP()
     }
     return $the_IP;
 }
-?>

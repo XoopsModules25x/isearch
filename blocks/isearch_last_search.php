@@ -50,4 +50,3 @@ function b_isearch_last_search_show()
     }
     return $block;
 }
-?>

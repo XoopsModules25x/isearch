@@ -124,4 +124,3 @@ $modversion['config'][4]['default'] = '';
 
 // Notifications
 $modversion['hasNotification'] = 0;
-?>

@@ -84,4 +84,3 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid){
     }
     return array();
 }
-?>

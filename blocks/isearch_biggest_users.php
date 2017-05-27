@@ -40,4 +40,3 @@ function b_isearch_big_user_show()
     }
     return $block;
 }
-?>
