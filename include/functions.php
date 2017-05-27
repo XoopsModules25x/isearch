@@ -67,7 +67,7 @@ function isearch_JavascriptLinkConfirm($msg)
  * Verify that a field exists inside a mysql table
  *
  * @package iSearch
- * @author Instant Zero (http://xoops.instant-zero.com)
+ * @author Instant Zero (http://instant-zero.com/xoops)
  * @copyright (c) Instant Zero
 */
 function isearch_FieldExists($fieldname,$table)
@@ -81,7 +81,7 @@ function isearch_FieldExists($fieldname,$table)
  * Add a field to a mysql table
  *
  * @package iSearch
- * @author Instant Zero (http://xoops.instant-zero.com)
+ * @author Instant Zero (http://instant-zero.com/xoops)
  * @copyright (c) Instant Zero
 */
 function isearch_AddField($field, $table)

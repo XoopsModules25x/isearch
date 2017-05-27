@@ -72,7 +72,7 @@ switch ($op) {
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
-        echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
+        echo "<br /><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
 
@@ -116,7 +116,7 @@ switch ($op) {
         } else {
             printf(_AM_ISEARCH_NOTHING_PRUNE);
         }
-        echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
+        echo "<br /><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
 
@@ -207,7 +207,7 @@ switch ($op) {
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
-        echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
+        echo "<br /><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
 
@@ -265,7 +265,7 @@ switch ($op) {
         } else {
             echo _AM_ISEARCH_NOTHING_TO_EXPORT;
         }
-        echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
+        echo "<br /><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
 
@@ -322,7 +322,7 @@ switch ($op) {
         $add_tray->addElement($add_btn,false);
         $sform->addElement($add_tray);
         $sform->display();
-        echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
+        echo "<br /><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
 
@@ -480,7 +480,7 @@ switch ($op) {
         $pagenav = new XoopsPageNav( $totalcount, $keywords_count, $start, 'start1', $more_parameter);
         $elements = $isearch_handler->getObjects($critere);
         isearch_collapsableBar('keywordscount', 'keywordscounticon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='keywordscounticon' name='keywordscounticon' src=" . XOOPS_URL . "/modules/isearch/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_KEYWORDS."</h4>";
+        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='keywordscounticon' name='keywordscounticon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_KEYWORDS."</h4>";
         echo "<div id='keywordscount'>";
         echo '<br />';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -490,9 +490,9 @@ switch ($op) {
             $class = ($class == 'even') ? 'odd' : 'even';
             $link1 = "<a href='".XOOPS_URL.'/search.php?query='.$oneelement->getVar('keyword')."&action=results' target='_blank'>".$oneelement->getVar('keyword')."</a>";
             $link2 = "<a href='".XOOPS_URL."/userinfo.php?uid=".$oneelement->getVar('uid')."'>".$oneelement->uname()."</a>";
-            $action_del = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=removekeyword&id=".$oneelement->getVar('isearchid')."' title='"._AM_ISEARCH_DELETE."'><img src='../images/delete.png' border='0' alt='"._AM_ISEARCH_DELETE."'></a>";
-            $action_black = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=addblacklist&id=".$oneelement->getVar('isearchid')."' title='"._AM_ISEARCH_BLACKLIST."'><img src='../images/list.png' border='0' alt='"._AM_ISEARCH_BLACKLIST."'></a>";
-            $action_remove_ip = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=removeip&id=".$oneelement->getVar('isearchid')."' title='"._AM_ISEARCH_IP."'><img src='../images/ip.png' border='0' alt='"._AM_ISEARCH_IP."'></a>";
+            $action_del = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=removekeyword&id=".$oneelement->getVar('isearchid')."' title='"._AM_ISEARCH_DELETE."'><img src='../assets/images/delete.png' border='0' alt='"._AM_ISEARCH_DELETE."'></a>";
+            $action_black = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=addblacklist&id=".$oneelement->getVar('isearchid')."' title='"._AM_ISEARCH_BLACKLIST."'><img src='../assets/images/list.png' border='0' alt='"._AM_ISEARCH_BLACKLIST."'></a>";
+            $action_remove_ip = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=removeip&id=".$oneelement->getVar('isearchid')."' title='"._AM_ISEARCH_IP."'><img src='../assets/images/ip.png' border='0' alt='"._AM_ISEARCH_IP."'></a>";
             echo "<tr class='".$class."'><td align='center'>" . $oneelement->getVar('isearchid')."</td><td align='center'>" . $link1 . "</td><td align='center'>".formatTimestamp(strtotime($oneelement->getVar('datesearch')))."</td><td align='center'>".$link2."</td><td align='center'>".$oneelement->getVar('ip')."</td><td align='center'>".$action_del.'&nbsp;'.$action_black.'&nbsp;'.$action_remove_ip.'</td></tr>';
         }
         echo "<tr><form method='post' action='index.php'><th align='center'>"._AM_ISEARCH_FILTER_BY."</th><th align='center'><input type='text' name='s_keyword' value='".$s_keyword."' size='10' /></th><th align='center'></th><th align='center'><input type='text' name='s_uid' value='".$s_uid."' size='10' /></th><th align='center'><input type='text' name='s_ip' value='".$s_ip."' size='10' /></th><th align='center'><input type='submit' name='btngo_filter' value='"._GO."' /></th></form></tr>";
@@ -511,7 +511,7 @@ switch ($op) {
         $pagenav = new XoopsPageNav($isearch_handler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
         $elements = $isearch_handler->getMostSearched($start,$keywords_count);
         isearch_collapsableBar('mostsearch', 'mostsearchicon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src=" . XOOPS_URL . "/modules/isearch/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
+        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src=" . XOOPS_URL . "/modules/assets/isearch/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
         echo "<div id='mostsearch'>";
         echo '<br />';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -522,8 +522,8 @@ switch ($op) {
             $onekeywordcount = $onekeyword_datas['count'];
             $class = ($class == 'even') ? 'odd' : 'even';
             $link1 = "<a href='".XOOPS_URL.'/search.php?query='.$onekeyword."&action=results' target='_blank'>".$onekeyword."</a>";
-            $action_del = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=removekeyword&id=".$onekeyword_id."' title='"._AM_ISEARCH_DELETE."'><img src='../images/delete.png' border='0' alt='"._AM_ISEARCH_DELETE."' /></a>";
-            $action_black = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=addblacklist&id=".$onekeyword_id."' title='"._AM_ISEARCH_BLACKLIST."'><img src='../images/list.png' border='0' alt='"._AM_ISEARCH_BLACKLIST."' /></a>";
+            $action_del = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=removekeyword&id=".$onekeyword_id."' title='"._AM_ISEARCH_DELETE."'><img src='../assets/images/delete.png' border='0' alt='"._AM_ISEARCH_DELETE."' /></a>";
+            $action_black = "<a ".isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE)." href='index.php?op=addblacklist&id=".$onekeyword_id."' title='"._AM_ISEARCH_BLACKLIST."'><img src='../assets/images/list.png' border='0' alt='"._AM_ISEARCH_BLACKLIST."' /></a>";
             echo "<tr class='".$class."'><td align='center'>" . $onekeywordcount."</td><td align='center'>" . $link1 . "</td><td align='center'>".$action_del.'&nbsp;'.$action_black."</td></tr>";
         }
         echo "</table><div align='right'>".$pagenav->renderNav().'</div></div><br />';
@@ -541,7 +541,7 @@ switch ($op) {
         $pagenav = new XoopsPageNav($isearch_handler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
         $elements = $isearch_handler->getBiggestContributors($start,$keywords_count);
         isearch_collapsableBar('bigcontribut', 'bigcontributicon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='bigcontributicon' name='bigcontributicon' src=" . XOOPS_URL . "/modules/isearch/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
+        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='bigcontributicon' name='bigcontributicon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
         echo "<div id='bigcontribut'>";
         echo '<br />';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -565,7 +565,7 @@ switch ($op) {
         $pagenav = new XoopsPageNav($isearch_handler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements = $isearch_handler->GetCountPerDay($start,$keywords_count);
         isearch_collapsableBar('daystat', 'daystaticon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='daystaticon' name='daystaticon' src=" . XOOPS_URL . "/modules/isearch/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
+        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='daystaticon' name='daystaticon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
         echo "<div id='daystat'>";
         echo '<br />';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -590,7 +590,7 @@ switch ($op) {
         $pagenav = new XoopsPageNav($isearch_handler->getIPsCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements = $isearch_handler->getIPs($start,$keywords_count);
         isearch_collapsableBar('ipcount', 'ipcounticon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='ipcounticon' name='ipcounticon' src=" . XOOPS_URL . "/modules/isearch/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_IP."</h4>";
+        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='ipcounticon' name='ipcounticon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt='' /></a>&nbsp;"._AM_ISEARCH_IP."</h4>";
         echo "<div id='ipcount'>";
         echo '<br />';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -601,7 +601,7 @@ switch ($op) {
             echo "<tr class='".$class."'><td align='center'>" .$oneip."</td><td align='center'>" .$onecount. "</td></tr>";
         }
         echo "</table><div align='right'>".$pagenav->renderNav().'</div></div><br />';
-        echo "<br /><div align='center'><a href='http://xoops.instant-zero.com' target='_blank'><img src='../images/instantzero.gif'></a></div>";
+        echo "<br /><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 }
 xoops_cp_footer();
