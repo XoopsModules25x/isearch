@@ -19,6 +19,9 @@
  * ****************************************************************************
  */
 
-define('_ISEARCH_DATE', 'Date');
-define('_ISEARCH_KEYWORD', 'Searched words');
-define('_ISEARCH_PAGE', 'Page');
+define('_MD_ISEARCH_DATE', 'Date');
+define('_MD_ISEARCH_KEYWORD', 'Searched words');
+define('_MD_ISEARCH_PAGE', 'Page');
+
+define('_MD_ISEARCH_SEARCH_CONF', 'Search Information');
+define('_MD_ISEARCH_TOTAL_SEARCHES', 'Total Searches: %s');

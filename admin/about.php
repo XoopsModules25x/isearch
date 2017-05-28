@@ -10,28 +10,25 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 /**
- * Admin index file
+ * Category Admin file
  *
  * @package   module\isearch\admin
- * @author    Raul Recio (aka UNFOR)
+ * @author    Mage
+ * @author    Mamba
  * @author    XOOPS Module Development Team
  * @copyright Copyright (c) 2001-2017 {@link http://xoops.org XOOPS Project}
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @since::   1.91
  *
  * @see Xmf\Module\Admin
  */
 
 include_once __DIR__ . '/admin_header.php';
+
 xoops_cp_header();
 
-/* @var Xmf\Module\Helper $isHelper */
-$isearch_handler = $isHelper->getHandler('searches');
-$totalSearches   = $isearch_handler->getCount();
-
-$adminObject->addInfoBox(_MD_ISEARCH_SEARCH_CONF);
-$adminObject->AddInfoBoxLine(sprintf('<span class="infolabel">' . _MD_ISEARCH_TOTAL_SEARCHES . '</span>', '<span class="infotext green bold">' . $totalSearches . '</span>'));
-
-$adminObject->displayNavigation('index.php');
-$adminObject->displayIndex();
+$adminObject->displayNavigation('about.php');
+$adminObject->setPaypal('xoopsfoundation@gmail.com');
+$adminObject->displayAbout(false);
 
 include __DIR__ . '/admin_footer.php';

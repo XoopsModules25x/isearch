@@ -22,10 +22,20 @@
 define('_MI_ISEARCH_NAME', 'iSearch');
 define('_MI_ISEARCH_DESC', 'With this module you can know what people are searching on your website.');
 
-define('_MI_ISEARCH_ADMMENU1', 'Statistics');
-define('_MI_ISEARCH_ADMMENU2', 'Prune');
-define('_MI_ISEARCH_ADMMENU3', 'Export');
-define('_MI_ISEARCH_ADMMENU4', 'Blacklist');
+define('_MI_ISEARCH_ADMENU0', 'Home');
+define('_MI_ISEARCH_ADMENU1', 'Statistics');
+define('_MI_ISEARCH_ADMENU2', 'Prune');
+define('_MI_ISEARCH_ADMENU3', 'Export');
+define('_MI_ISEARCH_ADMENU4', 'Blacklist');
+define('_MI_ISEARCH_ADMENU_ABOUT', 'About');
+
+define('_MI_ISEARCH_ADMIN_INDEX_DESC', 'Module administration home page');
+define('_MI_ISEARCH_ADMIN_STATS_DESC', 'Usage statistics');
+define('_MI_ISEARCH_ADMIN_PURGE_DESC', 'Delete old information');
+define('_MI_ISEARCH_ADMIN_EXPORT_DESC', 'Export a report');
+define('_MI_ISEARCH_ADMIN_BLACKLIST_DESC', 'Add/Remove words on the blacklist');
+define('_MI_ISEARCH_ADMIN_ABOUT_DESC', 'Info about this module');
+
 
 define('_MI_ISEARCH_OPT0', 'Count of searches to show on the module\'s index page');
 define('_MI_ISEARCH_OPT0_DSC', 'Select the number of searches users can see on the module\'s index page (0=show nothing)');

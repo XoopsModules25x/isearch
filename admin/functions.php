@@ -19,12 +19,16 @@
  * ****************************************************************************
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
-
+/**
+ * @deprecated
+ * @param number $currentoption
+ * @param string $breadcrumb
+ */
 function isearch_adminmenu($currentoption = 0, $breadcrumb = '')
 {
     include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
 
-    /* Nice buttons styles */
+    // Nice buttons styles
     echo "
         <style type='text/css'>
         #buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
@@ -72,8 +76,6 @@ function isearch_adminmenu($currentoption = 0, $breadcrumb = '')
     echo "</ul></div>";
     echo "<br><br><pre>&nbsp;</pre><pre>&nbsp;</pre><br>";
 }
-
-
 
 function isearch_collapsableBar($tablename = '', $iconname = '')
 {
