@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,21 +11,24 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author             Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\includes
+ * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
-if (!defined('XOOPS_ROOT_PATH')) {
-    die("XOOPS root path not defined");
-}
+use WideImage\Operation\AddNoise;
+
+defined('XOOPS_ROOT_PATH') || exit("Restricted access");
 
 /**
  * Returns a module's option
+ *
+ * @deprecated
+ * @param string $option
  */
+/*
 function isearch_getmoduleoption($option, $repmodule='isearch')
 {
     global $xoopsModuleConfig, $xoopsModule;
@@ -54,9 +57,13 @@ function isearch_getmoduleoption($option, $repmodule='isearch')
     $tbloptions[$option]=$retval;
     return $retval;
 }
-
+*/
 /**
  * Create (in a link) a javascript confirmation box
+ *
+ * @param string $msg confirmation message
+ *
+ * @return string HTML 'onclick'
  */
 function isearch_JavascriptLinkConfirm($msg)
 {
@@ -66,28 +73,39 @@ function isearch_JavascriptLinkConfirm($msg)
 /**
  * Verify that a field exists inside a mysql table
  *
- * @package iSearch
- * @author Instant Zero (http://instant-zero.com/xoops)
+ * @author    Instant Zero (http://instant-zero.com/xoops)
  * @copyright (c) Instant Zero
+ *
+ * @todo filter fieldname and table
+ *
+ * @param string $fieldname column to search for
+ * @param string $table dB table to use
+ *
+ * @return bool true if column exists in dB table
 */
-function isearch_FieldExists($fieldname,$table)
+function isearch_FieldExists($fieldname, $table)
 {
-    global $xoopsDB;
-    $result=$xoopsDB->queryF("SHOW COLUMNS FROM    $table LIKE '$fieldname'");
-    return($xoopsDB->getRowsNum($result) > 0);
+    /** @var XoopsDatabase $GLOBALS['xoopsDB'] */
+    $result = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM $table LIKE '$fieldname'");
+    return($GLOBALS['xoopsDB']->getRowsNum($result) > 0);
 }
 
 /**
  * Add a field to a mysql table
  *
- * @package iSearch
  * @author Instant Zero (http://instant-zero.com/xoops)
  * @copyright (c) Instant Zero
+ *
+ * @param string $field table column to add
+ * @param string $table dB table to use
+ *
+ * @return mysqli_result|bool query result or FALSE if successful
+ *                      or TRUE if successful and no result
 */
 function isearch_AddField($field, $table)
 {
-    global $xoopsDB;
-    $result=$xoopsDB->queryF("ALTER TABLE " . $table . " ADD $field;");
+    /** @var XoopsDatabase $GLOBALS['xoopsDB'] */
+    $result = $GLOBALS['xoopsDB']->queryF("ALTER TABLE " . $table . " ADD $field;");
     return $result;
 }
 

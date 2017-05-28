@@ -11,10 +11,10 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package         modules\isearch\language
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author          Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\language
+ * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * ****************************************************************************
  */

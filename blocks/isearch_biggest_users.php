@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,31 +11,38 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author             Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\blocks
+ * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
 function b_isearch_big_user_show()
 {
-    include_once XOOPS_ROOT_PATH."/modules/isearch/include/functions.php";
-    $isearch_handler = xoops_getmodulehandler('searches', 'isearch');
+    $moduleDirName = basename(dirname(__DIR__));
+    $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+
+    include_once $isHelper->path('include/functions.php');
+
+    $isearch_handler = $isHelper->getHandler('searches');
+
     $block = array();
-    $visiblekeywords = isearch_getmoduleoption('showindex');
+    $visiblekeywords = $isHelper->getConfig('showindex', 10);
     if($visiblekeywords > 0) {
         $tmpisearch = new searches();
-        $keywords_count=isearch_getmoduleoption('admincount');
+        $keywords_count = $isHelper->getConfig('admincount', 10);
 
         // Total keywords count
-        $block['total_keywords']=$isearch_handler->getCount();
+        $block['total_keywords'] = $isearch_handler->getCount();
 
         // Biggest users
-        $elements = $isearch_handler->getBiggestContributors(0,$keywords_count);
+        $elements = $isearch_handler->getBiggestContributors(0, $keywords_count);
         foreach($elements as $oneuser => $onecount) {
-            $block['biggesusers'][]=array('uid'=>$oneuser,'uname'=>$tmpisearch->uname($oneuser),'count'=>$onecount);
+            $block['biggesusers'][] = array('uid' => $oneuser,
+                                          'uname' => $tmpisearch->uname($oneuser),
+                                          'count' => $onecount
+            );
         }
     }
     return $block;

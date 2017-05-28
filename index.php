@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,28 +11,33 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author             Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\frontside
+ * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
 
-include "../../mainfile.php";
-$xoopsOption['template_main'] = 'isearch_index.tpl';
-include_once XOOPS_ROOT_PATH.'/header.php';
-include_once XOOPS_ROOT_PATH."/modules/isearch/include/functions.php";
-$isearch_handler = xoops_getmodulehandler('searches', 'isearch');
-$visiblekeywords=0;
-$visiblekeywords=isearch_getmoduleoption('showindex');
-$xoopsTpl->assign('visiblekeywords', $visiblekeywords);
+require '../../mainfile.php';
 
-if($visiblekeywords>0) {
-    $totalcount=$isearch_handler->getCount();
-    $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
-    $critere=new Criteria('keyword');
+$xoopsOption['template_main'] = 'isearch_index.tpl';
+include_once XOOPS_ROOT_PATH . '/header.php';
+
+$moduleDirName = basename(__DIR__);
+$isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+
+include_once $isHelper->path('include/functions.php');
+
+$isearch_handler = $isHelper->getHandler('searches');
+
+$visiblekeywords = $isHelper->getConfig('showindex', 10);
+$xoopsTpl->assign('visiblekeywords', (int)$visiblekeywords);
+
+if ((int)$visiblekeywords > 0) {
+    $totalcount = $isearch_handler->getCount();
+    $start      = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+    $critere    = new Criteria('keyword');
     $critere->setSort('datesearch');
     $critere->setLimit($visiblekeywords);
     $critere->setStart($start);
@@ -43,8 +48,10 @@ if($visiblekeywords>0) {
 
     $elements = $isearch_handler->getObjects($critere);
     foreach($elements as $oneelement) {
-        $xoopsTpl->append('keywords',array('keyword' => $oneelement->getVar('keyword'),'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch')))));
+        $xoopsTpl->append('keywords',array('keyword' => $oneelement->getVar('keyword'),
+                                              'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))))
+        );
     }
 }
 
-include_once(XOOPS_ROOT_PATH."/footer.php");
+include_once XOOPS_ROOT_PATH . '/footer.php';

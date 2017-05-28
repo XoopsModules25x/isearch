@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,37 +11,36 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author             Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\admin
+ * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
-
-include_once '../../../include/cp_header.php';
+require_once __DIR__ . '/admin_header.php';
 include_once XOOPS_ROOT_PATH.'/class/pagenav.php';
+include_once $isHelper->path('admin/functions.php');
+include_once $isHelper->path('include/functions.php');
+
+$myts = MyTextSanitizer::getInstance();
+/*
+require_once '../../../include/cp_header.php';
 include_once XOOPS_ROOT_PATH.'/modules/isearch/admin/functions.php';
 include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
-
 
 if (file_exists(XOOPS_ROOT_PATH.'/modules/isearch/language/' . $xoopsConfig['language'] . '/main.php')) {
     include_once XOOPS_ROOT_PATH.'/modules/isearch/language/' . $xoopsConfig['language'] . '/main.php';
 } else {
     include_once XOOPS_ROOT_PATH.'/modules/isearch/language/english/main.php';
 }
+*/
+// Module's parameters
+$keywords_count = $isHelper->getConfig('admincount', 10);
 
-/**
- * Module's parameters
- */
-$keywords_count = isearch_getmoduleoption('admincount');
-
-
-// **********************************************************************************************************************************************
-// **** Main
-// **********************************************************************************************************************************************
-$op = Xmf\Request::getCmd('op', 'stats');
+// ****************************************************************************
+// Main
+// ****************************************************************************
 /*
 $op = 'default';
 if(isset($_POST['op'])) {
@@ -49,14 +48,13 @@ if(isset($_POST['op'])) {
 } elseif(isset($_GET['op'])) {
     $op = $_GET['op'];
 }
-*/
 $isearch_handler = xoops_getmodulehandler('searches', 'isearch');
-$myts = MyTextSanitizer::getInstance();
+*/
+$op = Xmf\Request::getCmd('op', 'stats');
+$isearch_handler = $isHelper->getHandler('searches');
 
 switch ($op) {
-    /**
-      * Remove datas by keyword or by date
-      */
+    // Remove data by keyword or by date
     case 'purge':
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
         xoops_cp_header();
@@ -76,9 +74,7 @@ switch ($op) {
         break;
 
 
-    /**
-      * Ask a confirmation before to remove keywords
-      */
+    // Ask a confirmation before to remove keywords
     case 'ConfirmBeforeToPrune':
         if (!$xoopsSecurity->check()) {
             redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
@@ -120,9 +116,7 @@ switch ($op) {
         break;
 
 
-    /**
-      * Effectively delete keywords
-      */
+    // Effectively delete keywords
     case 'pruneKeywords':
         if (!$xoopsSecurity->check()) {
             redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
@@ -183,15 +177,15 @@ switch ($op) {
         isearch_adminmenu(2);
         echo '<br>';
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-        $min=$max='';
-        $mint=$maxt=0;
-        $isearch_handler->getMinMaxDate($min,$max);
+        $min = $max = '';
+        $mint = $maxt = 0;
+        $isearch_handler->getMinMaxDate($min, $max);
         $mint=strtotime($min);
         $maxt=strtotime($max);
 
         $sform = new XoopsThemeForm(_AM_ISEARCH_EXPORT, 'exportform', XOOPS_URL.'/modules/isearch/admin/index.php', 'post', true);
         $dates_tray = new XoopsFormElementTray(_AM_ISEARCH_EXPORT_BETWEEN);
-        $date1 = new XoopsFormTextDateSelect('', 'date1',15,$mint);
+        $date1 = new XoopsFormTextDateSelect('', 'date1', 15, $mint);
         $date2 = new XoopsFormTextDateSelect(_AM_ISEARCH_EXPORT_AND, 'date2',15,$maxt);
         $dates_tray->addElement($date1);
         $dates_tray->addElement($date2);
@@ -511,7 +505,7 @@ switch ($op) {
         $pagenav = new XoopsPageNav($isearch_handler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
         $elements = $isearch_handler->getMostSearched($start,$keywords_count);
         isearch_collapsableBar('mostsearch', 'mostsearchicon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src=" . XOOPS_URL . "/modules/assets/isearch/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
+        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
         echo "<div id='mostsearch'>";
         echo '<br>';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";

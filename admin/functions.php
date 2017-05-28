@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,17 +11,14 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author             Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\admin
+ * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
-if (!defined('XOOPS_ROOT_PATH')) {
-    die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 function isearch_adminmenu($currentoption = 0, $breadcrumb = '')
 {
@@ -46,23 +43,23 @@ function isearch_adminmenu($currentoption = 0, $breadcrumb = '')
         #buttonbar a:hover span { background-position:100% -150px; }
         </style>
     ";
-     global $xoopsModule, $xoopsConfig;
 
     $tblColors = array('','','','','');
     if($currentoption>=0) {
         $tblColors[$currentoption] = 'current';
     }
 
-    if (file_exists(XOOPS_ROOT_PATH . '/modules/isearch/language/' . $xoopsConfig['language'] . '/modinfo.php')) {
-        include_once XOOPS_ROOT_PATH. '/modules/isearch/language/' . $xoopsConfig['language'] . '/modinfo.php';
+    if (file_exists(XOOPS_ROOT_PATH . '/modules/isearch/language/' . $GLOBALS['xoopsConfig']['language'] . '/modinfo.php')) {
+        include_once XOOPS_ROOT_PATH. '/modules/isearch/language/' . $GLOBALS['xoopsConfig']['language'] . '/modinfo.php';
     } else {
         include_once XOOPS_ROOT_PATH . '/modules/isearch/language/english/modinfo.php';
     }
 
+    /* @var XoopsModule $GLOBALS['xoopsModule'] */
     echo "<div id='buttontop'>";
     echo "<table style=\"width: 100%; padding: 0; \" cellspacing=\"0\"><tr>";
-    echo "<td style=\"width: 60%; font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;\"><a class=\"nobutton\" href=\"../../system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$xoopsModule->getVar('mid')."\">" . _AM_ISEARCH_GENERALSET . "</a> | <a href=\"../index.php\">" . _AM_ISEARCH_GOTOMOD . "</a></td>";
-    echo "<td style=\"width: 40%; font-size: 10px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px;\"><b>" . $xoopsModule->name() . "  " . _AM_ISEARCH_MODULEADMIN . "</b> " . $breadcrumb . "</td>";
+    echo "<td style=\"width: 60%; font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;\"><a class=\"nobutton\" href=\"../../system/admin.php?fct=preferences&amp;op=showmod&amp;mod=" . $GLOBALS['xoopsModule']->getVar('mid') . "\">" . _AM_ISEARCH_GENERALSET . "</a> | <a href=\"../index.php\">" . _AM_ISEARCH_GOTOMOD . "</a></td>";
+    echo "<td style=\"width: 40%; font-size: 10px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px;\"><b>" . $GLOBALS['xoopsModule']->name() . "  " . _AM_ISEARCH_MODULEADMIN . "</b> " . $breadcrumb . "</td>";
     echo "</tr></table>";
     echo "</div>";
 
