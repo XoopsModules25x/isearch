@@ -1,7 +1,7 @@
 <{if $visiblekeywords>0}>
-<h2><{$smarty.const._ISEARCH_KEYWORD}></h2>
+<h2><{$smarty.const._MD_ISEARCH_KEYWORD}></h2>
 <br>
-<{if $pagenav}><div class="left marg10"><{$smarty.const._ISEARCH_PAGE}> <{$pagenav}></div><{/if}>
+<{if $pagenav}><div class="left marg10"><{$smarty.const._MD_ISEARCH_PAGE}> <{$pagenav}></div><{/if}>
 <table class="width100 bnone">
     <tr><th class="center"><{$smarty.const._MD_ISEARCH_DATE}></th><th class="center"><{$smarty.const._MD_ISEARCH_KEYWORD}></th></tr>
 <{foreach item=onekeyword from=$keywords}>

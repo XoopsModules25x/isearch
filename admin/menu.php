@@ -18,16 +18,6 @@
  *
  * ****************************************************************************
  */
-/*
-$adminmenu[0]['title']     = _MI_ISEARCH_ADMMENU1;
-$adminmenu[0]['link']     = "admin/index.php?op=stats";
-$adminmenu[1]['title']     = _MI_ISEARCH_ADMMENU2;
-$adminmenu[1]['link']     = "admin/index.php?op=purge";
-$adminmenu[2]['title']     = _MI_ISEARCH_ADMMENU3;
-$adminmenu[2]['link']     = "admin/index.php?op=export";
-$adminmenu[3]['title']     = _MI_ISEARCH_ADMMENU4;
-$adminmenu[3]['link']     = "admin/index.php?op=blacklist";
-*/
 use Xmf\Module\Admin;
 
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');

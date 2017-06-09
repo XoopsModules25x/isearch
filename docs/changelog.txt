@@ -12,7 +12,10 @@
 - removed remaining pass-by-reference instances
 - removed PHP ending file markers
 - removed closing HTML for void HTML elements
+- removed unused ./admin/functions.php file
+- removed unused dhtmlX javascript files
 - updated Admin GUI to XOOPS 2.5.x style
+- updated collapsable bar javascript (moved js to ./js directory)
 - updated module logo
 - updated PhpDoc DocBlock comments
 - updated minor PSRx cleanup
@@ -31,7 +34,6 @@
 - The module is now Xoops 2.3 compatible
 - Bugs corrections in class/blacklist.php
 - Minor change in the search
-
 
 1.6
 =============================

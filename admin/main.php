@@ -41,8 +41,6 @@ switch ($op) {
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=purge');
-        //isearch_adminmenu(1);
-        //echo '<br>';
         $sform = new XoopsThemeForm(_AM_ISEARCH_PRUNE, 'pruneform', XOOPS_URL.'/modules/isearch/admin/main.php', 'post', true);
         $sform->addElement(new XoopsFormTextDateSelect(_AM_ISEARCH_PRUNE_DATE, 'prune_date',15,time()), false);
         $sform->addElement(new XoopsFormText(_AM_ISEARCH_PRUNE_KEYONLY, 'keyword', 50, 255, ''), false);
@@ -56,7 +54,6 @@ switch ($op) {
         echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
-
     // Ask a confirmation before to remove keywords
     case 'ConfirmBeforeToPrune':
         if (!$xoopsSecurity->check()) {
@@ -65,8 +62,6 @@ switch ($op) {
 
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=purge');
-        //isearch_adminmenu(1);
-        //echo '<br>';
         $criteria = new CriteriaCompo();
 
         $date      = '';
@@ -98,7 +93,6 @@ switch ($op) {
         }
         echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
-
 
     // Effectively delete keywords
     case 'pruneKeywords':
@@ -132,7 +126,6 @@ switch ($op) {
         }
         break;
 
-
     /**
       * Remove a keyword from the database (directly called from the statistics part)
       *
@@ -152,15 +145,12 @@ switch ($op) {
         redirect_header('main.php', 2, _AM_ISEARCH_DBUPDATED);
         break;
 
-
     /**
       * Export datas to a pure text file
       */
     case 'export':
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=export');
-        //isearch_adminmenu(2);
-        //echo '<br>';
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
         $min = $max   = '';
         $mint = $maxt = 0;
@@ -189,7 +179,6 @@ switch ($op) {
         echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
-
     /**
       * Lauch the export
       */
@@ -200,8 +189,6 @@ switch ($op) {
 
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=export');
-        //isearch_adminmenu(2);
-
         $criteria = new CriteriaCompo();
         //$dateformat = isset($_POST['dateformat']) ? $_POST['dateformat'] : '';
         $delimiter = isset($_POST['delimiter']) ? $_POST['delimiter'] : ';';
@@ -263,14 +250,12 @@ switch ($op) {
         }
         break;
 
-
     /**
       * Blacklist manager
       */
     case 'blacklist':
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=blacklist');
-        //isearch_adminmenu(3);
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
         include_once XOOPS_ROOT_PATH.'/modules/isearch/class/blacklist.php';
         echo '<h3>'._AM_ISEARCH_BLACKLIST.'</h3>';
@@ -307,7 +292,6 @@ switch ($op) {
         echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
         break;
 
-
     /**
       * Add a word in the blacklist
       */
@@ -325,7 +309,6 @@ switch ($op) {
         }
         redirect_header('main.php?op=stats', 2, _AM_ISEARCH_DBUPDATED);
         break;
-
 
     /**
       * Actions on the blacklist (add or remove keyword(s))
@@ -359,7 +342,6 @@ switch ($op) {
         redirect_header('main.php?op=blacklist', 2, _AM_ISEARCH_DBUPDATED);
         break;
 
-
     /**
      * Remove content based on the IP
      *
@@ -378,15 +360,14 @@ switch ($op) {
         redirect_header('main.php', 2, _AM_ISEARCH_DBUPDATED);
         break;
 
-
     /**
       * Default action, show statistics about keywords, users and many other things
       */
     case 'stats':
     default:
         xoops_cp_header();
+        $GLOBALS['xoTheme']->addScript('browse.php?modules/' . $moduleDirName . '/assets/js/collapsablebar.js');
         $adminObject->displayNavigation(basename(__FILE__) . '?op=stats');
-        //isearch_adminmenu(0);
 
         // Last x words (according to the module's option 'admincount') ***************************************************************************************
         $start = 0;
@@ -462,8 +443,11 @@ switch ($op) {
 
         $pagenav = new XoopsPageNav( $totalcount, $keywords_count, $start, 'start1', $more_parameter);
         $elements = $isearch_handler->getObjects($critere);
-        isearch_collapsableBar('keywordscount', 'keywordscounticon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='keywordscounticon' name='keywordscounticon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_KEYWORDS."</h4>";
+//        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\"><a href='#' onclick=\"toggle('keywordscount'); toggleIcon('keywordscounticon');\">";
+//        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='keywordscounticon' name='keywordscounticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_KEYWORDS."</h4>";
+        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\">";
+        echo "<img id='keywordscounticon' name='keywordscounticon' onclick=\"toggle('keywordscount'); toggleIcon('keywordscounticon');\" src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''>&nbsp;" . _AM_ISEARCH_KEYWORDS . "</h4>";
+
         echo "<div id='keywordscount'>";
         echo '<br>';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -481,7 +465,6 @@ switch ($op) {
         echo "<tr><form method='post' action='main.php'><th align='center'>"._AM_ISEARCH_FILTER_BY."</th><th align='center'><input type='text' name='s_keyword' value='".$s_keyword."' size='10'></th><th align='center'></th><th align='center'><input type='text' name='s_uid' value='".$s_uid."' size='10'></th><th align='center'><input type='text' name='s_ip' value='".$s_ip."' size='10'></th><th align='center'><input type='submit' name='btngo_filter' value='"._GO."'></th></form></tr>";
         echo "</table><div align='right'>".$pagenav->renderNav().'</div></div><br>';
 
-
         // Most searched words ********************************************************************************************************************************
         $start = 0;
         if(isset($_GET['start2'])) {
@@ -493,8 +476,10 @@ switch ($op) {
 
         $pagenav = new XoopsPageNav($isearch_handler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
         $elements = $isearch_handler->getMostSearched($start,$keywords_count);
-        isearch_collapsableBar('mostsearch', 'mostsearchicon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
+//        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('mostsearch'); toggleIcon('mostsearchicon');\">";
+//        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
+        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\">";
+        echo "<img id='mostsearchicon' name='mostsearchicon' onclick=\"toggle('mostsearch'); toggleIcon('mostsearchicon');\" src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
         echo "<div id='mostsearch'>";
         echo '<br>';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -523,8 +508,10 @@ switch ($op) {
 
         $pagenav = new XoopsPageNav($isearch_handler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
         $elements = $isearch_handler->getBiggestContributors($start,$keywords_count);
-        isearch_collapsableBar('bigcontribut', 'bigcontributicon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='bigcontributicon' name='bigcontributicon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
+//        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('bigcontribut'); toggleIcon('bigcontributicon');\">";
+//        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='bigcontributicon' name='bigcontributicon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
+        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\">";
+        echo "<img id='bigcontributicon' name='bigcontributicon' onclick=\"toggle('bigcontribut'); toggleIcon('bigcontributicon');\" src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
         echo "<div id='bigcontribut'>";
         echo '<br>';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -547,8 +534,10 @@ switch ($op) {
         $_SESSION['start4']=$start;
         $pagenav = new XoopsPageNav($isearch_handler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements = $isearch_handler->GetCountPerDay($start,$keywords_count);
-        isearch_collapsableBar('daystat', 'daystaticon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='daystaticon' name='daystaticon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
+//        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('daystat'); toggleIcon('daystaticon');\">";
+//        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='daystaticon' name='daystaticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
+        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\">";
+        echo "<img id='daystaticon' name='daystaticon' onclick=\"toggle('daystat'); toggleIcon('daystaticon');\" src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
         echo "<div id='daystat'>";
         echo '<br>';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
@@ -572,8 +561,10 @@ switch ($op) {
 
         $pagenav = new XoopsPageNav($isearch_handler->getIPsCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements = $isearch_handler->getIPs($start,$keywords_count);
-        isearch_collapsableBar('ipcount', 'ipcounticon');
-        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='ipcounticon' name='ipcounticon' src=" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif alt=''></a>&nbsp;"._AM_ISEARCH_IP."</h4>";
+//        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('ipcount'); toggleIcon('ipcounticon');\">";
+//        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='ipcounticon' name='ipcounticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_IP."</h4>";
+        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\">";
+        echo "<img id='ipcounticon' name='ipcounticon' onclick=\"toggle('ipcount'); toggleIcon('ipcounticon');\" src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''>&nbsp;"._AM_ISEARCH_IP."</h4>";
         echo "<div id='ipcount'>";
         echo '<br>';
         echo "<table width='100%' cellspacing='1' cellpadding='3' border='0' class='outer'>";
