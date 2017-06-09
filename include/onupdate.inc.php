@@ -121,7 +121,11 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
     //-----------------------------------------------------------------------
     $oldFiles = array($isHelper->path('changelog.txt'),
                       $isHelper->path('licence.txt'),
-                      $isHelper->path('lang.diff')
+                      $isHelper->path('lang.diff'),
+                      $isHelper->path('admin/functions.php'),
+                      $isHelper->path('assets/js/dhtmlXCommon.js'),
+                      $isHelper->path('assets/js/dhtmlXTabbar.js'),
+                      $isHelper->path('assets/js/dhtmlXTabbar_start.js')
     );
     foreach($oldFiles as $file) {
         if (is_file($file)) {
