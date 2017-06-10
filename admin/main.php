@@ -20,7 +20,6 @@
  */
 require_once __DIR__ . '/admin_header.php';
 include_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-include_once $isHelper->path('admin/functions.php');
 include_once $isHelper->path('include/functions.php');
 
 $myts = MyTextSanitizer::getInstance();
