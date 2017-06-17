@@ -19,7 +19,6 @@
  * ****************************************************************************
  */
 
-//include_once XOOPS_ROOT_PATH."/class/xoopsobject.php";
 include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
 
 class searches extends XoopsObject
@@ -44,7 +43,7 @@ class searches extends XoopsObject
      *
      * @param int $uid return user uname for requested id, if null|0|false then for this user
      *
-     * @return
+     * @return string user|real name
      */
     public function uname($uid = 0)
     {
@@ -57,8 +56,10 @@ class searches extends XoopsObject
         if (is_array($tblusers) && array_key_exists($uid, $tblusers)) {
             return $tblusers[$uid];
         }
+        $isHelper     = Xmf\Module\Helper::getHelper(basename(dirname(__DIR__)));
+        $useUserName  = $isHelper->getConfig('useusername', 0);
         /** @var XoopsUser $GLOBALS['xoopsUser'] */
-        $tblusers[$uid] = $GLOBALS['xoopsUser']::getUnameFromId($uid);
+        $tblusers[$uid] = $GLOBALS['xoopsUser']::getUnameFromId($uid, $useUserName);
         return $tblusers[$uid];
     }
 }
@@ -70,6 +71,8 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
 {
     /**
      * @param XoopsDatabase $db
+     *
+     * @return void
      */
     public function __construct(XoopsDatabase $db)
     {

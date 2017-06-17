@@ -49,6 +49,12 @@ define('_MI_ISEARCH_OPT2_DSC', '');
 define('_MI_ISEARCH_OPT3', 'List of IPs you don\'t want to record searches');
 define('_MI_ISEARCH_OPT3_DSC', 'Type one IP per line and use the same conventions as the IPs ban in the general preferences of your site');
 
+define('_MI_ISEARCH_USE_UNAME', 'Field to search for User\'s name');
+define('_MI_ISEARCH_USE_UNAME_DSC', 'Allows searching user\'s real or login (user) name');
+
+define('_MI_ISEARCH_REALNAME', 'Real Name');
+define('_MI_ISEARCH_USERNAME', 'User Name');
+
 define('_MI_ISEARCH_BNAME1', 'Last search');
 define('_MI_ISEARCH_BNAME2', 'Biggest users of the search');
 define('_MI_ISEARCH_BNAME3', 'Statistics');

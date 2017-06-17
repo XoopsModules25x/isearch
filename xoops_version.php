@@ -22,7 +22,7 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 $modversion['version']       = 1.91;
 $modversion['module_status'] = 'ALPHA 1';
-$modversion['release_date']  = '2017/05/27';
+$modversion['release_date']  = '2017/06/17';
 
 $modversion['name']        = _MI_ISEARCH_NAME;
 $modversion['description'] = _MI_ISEARCH_DESC;
@@ -131,6 +131,15 @@ $modversion['config'][4]['description'] = '_MI_ISEARCH_OPT3_DSC';
 $modversion['config'][4]['formtype'] = 'textarea';
 $modversion['config'][4]['valuetype'] = 'text';
 $modversion['config'][4]['default'] = '';
+
+// Use username or realname in searches
+$modversion['config'][5]['name'] = 'useusername';
+$modversion['config'][5]['title'] = "_MI_ISEARCH_USE_UNAME";
+$modversion['config'][5]['description'] = "_MI_ISEARCH_USE_UNAME_DSC";
+$modversion['config'][5]['formtype'] = 'select';
+$modversion['config'][5]['valuetype'] = 'int';
+$modversion['config'][5]['default'] = 0;
+$modversion['config'][5]['options'] = array(_MI_ISEARCH_USERNAME =>0, _MI_ISEARCH_REALNAME=>1);
 
 // Notifications
 $modversion['hasNotification'] = 0;
