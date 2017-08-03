@@ -23,7 +23,7 @@
  */
 echo "<div class='adminfooter'>\n"
      . "<div class='center'>\n"
-     . "<a href='http://www.xoops.org' rel='external' target='_blank'>"
+     . "<a href='https://xoops.org' rel='external' target='_blank'>"
      . "<img src='"
      . Xmf\Module\Admin::iconUrl('xoopsmicrobutton.gif', '32')
      . "' "
