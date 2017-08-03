@@ -29,7 +29,7 @@ $isearch_handler = $isHelper->getHandler('searches');
 $totalSearches   = $isearch_handler->getCount();
 
 $adminObject->addInfoBox(_MD_ISEARCH_SEARCH_CONF);
-$adminObject->AddInfoBoxLine(sprintf('<span class="infolabel">' . _MD_ISEARCH_TOTAL_SEARCHES . '</span>', '<span class="infotext green bold">' . $totalSearches . '</span>'));
+$adminObject->addInfoBoxLine(sprintf('<span class="infolabel">' . _MD_ISEARCH_TOTAL_SEARCHES . '</span>', '<span class="infotext green bold">' . $totalSearches . '</span>'));
 
 $adminObject->displayNavigation('index.php');
 $adminObject->displayIndex();

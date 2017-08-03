@@ -408,7 +408,7 @@ switch ($op) {
 
         if($s_uid != '') {
             if(!is_numeric($s_uid)) {
-                $member_handler = xoops_gethandler('member');
+                $member_handler = xoops_getHandler('member');
                 $crituser = new Criteria('uname', $s_uid,'LIKE');
                 $tbl_users = array();
                 $tbl_users = $member_handler->getUsers($crituser);

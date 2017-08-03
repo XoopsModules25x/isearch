@@ -106,7 +106,7 @@ $modversion['config'][1]['valuetype'] = 'int';
 $modversion['config'][1]['default'] = 10;
 
 // Groups that should not be recorded
-$member_handler = xoops_gethandler('member');
+$member_handler = xoops_getHandler('member');
 
 $modversion['config'][2]['name'] = 'bannedgroups';
 $modversion['config'][2]['title'] = "_MI_ISEARCH_OPT1";
