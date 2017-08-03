@@ -86,7 +86,7 @@ class IsearchUtility
      *
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerPHP($module)
+    public static function checkVerPhp(XoopsModule $module)
     {
         xoops_loadLanguage('admin', $module->dirname());
         // Check for minimum PHP version
