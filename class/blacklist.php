@@ -20,7 +20,10 @@
  */
 use WideImage\Operation\AddNoise;
 
-class isearch_blacklist
+/**
+ * Class IsearchBlacklist
+ */
+class IsearchBlacklist
 {
     protected $keywords;    // Holds keywords
 
@@ -97,7 +100,7 @@ class isearch_blacklist
      * @param array $keywords
      * @return array
      */
-    public function remove_blacklisted($keywords)
+    public function removeBlacklisted($keywords)
     {
         $ret = array();
         $tmp_array = array_values($this->keywords);

@@ -21,7 +21,7 @@
 
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-function isearch_search($queryarray, $andor, $limit, $offset, $userid)
+function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
 {
     $moduleDirName = basename(dirname(__DIR__));
     $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
@@ -68,9 +68,9 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid)
         return array();
     }
 
-    $blacklist = new isearch_blacklist();
+    $blacklist = new IsearchBlacklist();
     $blacklist->getAllKeywords();    // Load keywords from blacklist
-    $queryarray = $blacklist->remove_blacklisted($queryarray);
+    $queryarray = $blacklist->removeBlacklisted($queryarray);
     $count = count($queryarray);
     if (0 == count(array_intersect($groups, $banned)) && 0 == $userid) {    // If it's not a banned user and if we are not viewing someone's profile
         if (is_array($queryarray) && $count >0) {

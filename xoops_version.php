@@ -92,7 +92,7 @@ $modversion['hasMain'] = 1;
 // Search
 $modversion['hasSearch'] = 1;
 $modversion['search']['file'] = 'include/search.inc.php';
-$modversion['search']['func'] = 'isearch_search';
+$modversion['search']['func'] = 'isearchSearch';
 
 // Comments
 $modversion['hasComments'] = 0;

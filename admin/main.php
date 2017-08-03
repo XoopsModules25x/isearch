@@ -266,7 +266,7 @@ switch ($op) {
         $remove_tray->setDescription(_AM_ISEARCH_BLACKLIST_DESC);
         $blacklist=new XoopsFormSelect('', 'blacklist','',5,true);
         $words=array();
-        $metablack = new isearch_blacklist();
+        $metablack = new IsearchBlacklist();
         $words=$metablack->getAllKeywords();
         if(is_array($words) && count($words)>0) {
             foreach ($words as $key => $value) {
@@ -300,7 +300,7 @@ switch ($op) {
             $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $keyword = $tmp_search->getVar('keyword');
-                $blacklist = new isearch_blacklist();
+                $blacklist = new IsearchBlacklist();
                 $keywords=$blacklist->getAllKeywords();
                 $blacklist->addkeywords($keyword);
                 $blacklist->store();
@@ -318,7 +318,7 @@ switch ($op) {
         }
 
         include_once XOOPS_ROOT_PATH.'/modules/isearch/class/blacklist.php';
-        $blacklist = new isearch_blacklist();
+        $blacklist = new IsearchBlacklist();
         $keywords=$blacklist->getAllKeywords();
 
         if(isset($_POST['go']) && $_POST['go']==_AM_ISEARCH_DELETE) {

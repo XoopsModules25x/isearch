@@ -21,7 +21,7 @@
 
 include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
 
-class searches extends XoopsObject
+class Searches extends XoopsObject
 {
     /**
      * Class constructor
@@ -120,7 +120,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      * {@inheritDoc}
      * @see XoopsObjectHandler::insert()
      *
-     * @param searches $searches
+     * @param Searches $searches
      * @param bool $force true to force write
      *
      * @return bool|int insert status or new ID if successful insert
@@ -225,7 +225,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     *
     * @return array() count of searches grouped by day
     */
-    public function GetCountPerDay($start, $limit)
+    public function getCountPerDay($start, $limit)
     {
         $ret    = array();
         $sql    ="SELECT COUNT(date_format(datesearch, '%X-%m-%d')) AS cpt, date_format(datesearch, '%X-%m-%d') AS shdate FROM ".$this->db->prefix('isearch_searches')." GROUP BY date_format(datesearch, '%X-%m-%d') ORDER BY date_format(datesearch, '%X-%m-%d') DESC";
