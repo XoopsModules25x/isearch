@@ -50,7 +50,7 @@ switch ($op) {
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
-        echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
+        include __DIR__ . '/admin_footer.php';
         break;
 
     // Ask a confirmation before to remove keywords
@@ -90,7 +90,7 @@ switch ($op) {
         } else {
             printf(_AM_ISEARCH_NOTHING_PRUNE);
         }
-        echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
+        include __DIR__ . '/admin_footer.php';
         break;
 
     // Effectively delete keywords
@@ -175,7 +175,7 @@ switch ($op) {
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
-        echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
+        include __DIR__ . '/admin_footer.php';
         break;
 
     /**
@@ -232,7 +232,7 @@ switch ($op) {
         } else {
             echo _AM_ISEARCH_NOTHING_TO_EXPORT;
         }
-        echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
+        include __DIR__ . '/admin_footer.php';
         break;
 
 
@@ -288,7 +288,7 @@ switch ($op) {
         $add_tray->addElement($add_btn,false);
         $sform->addElement($add_tray);
         $sform->display();
-        echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
+        include __DIR__ . '/admin_footer.php';
         break;
 
     /**
@@ -574,7 +574,7 @@ switch ($op) {
             echo "<tr class='".$class."'><td align='center'>" .$oneip."</td><td align='center'>" .$onecount . '</td></tr>';
         }
         echo "</table><div align='right'>".$pagenav->renderNav().'</div></div><br>';
-        echo "<br><div align='center'><a href='http://instant-zero.com/xoops' target='_blank'><img src='../assets/images/instantzero.gif'></a></div>";
+    include __DIR__ . '/admin_footer.php';
         break;
 }
 xoops_cp_footer();
