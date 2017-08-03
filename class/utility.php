@@ -118,7 +118,7 @@ class IsearchUtility
         $dirInfo = new SplFileInfo($src);
         // Validate is a directory
         if ($dirInfo->isDir()) {
-            $fileList = array_diff(scandir($src), array('..', '.'));
+            $fileList = array_diff(scandir($src, SCANDIR_SORT_NONE), array('..', '.'));
             foreach ($fileList as $k => $v) {
                 $fileInfo = new SplFileInfo($src . '/' . $v);
                 if ($fileInfo->isDir()) {
