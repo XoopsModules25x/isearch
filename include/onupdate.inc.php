@@ -24,8 +24,8 @@
 /* @internal {Make sure you PROTECT THIS FILE} */
 
 if ((!defined('XOOPS_ROOT_PATH'))
-   || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
-   || !($GLOBALS['xoopsUser']->isAdmin())) {
+    || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
+    || !($GLOBALS['xoopsUser']->isAdmin())) {
     exit('Restricted access' . PHP_EOL);
 }
 
@@ -33,7 +33,7 @@ if ((!defined('XOOPS_ROOT_PATH'))
  * Pre-installation checks before installation of iSearch
  *
  * @param XoopsModule $module
- * @param string $prev_version version * 100
+ * @param string      $prev_version version * 100
  *
  * @see IsearchUtility
  *
@@ -50,6 +50,7 @@ function xoops_module_pre_update_isearch(XoopsModule $module, $prev_version)
 
     $xoopsSuccess = $utilsClass::checkVerXoops($module);
     $phpSuccess   = $utilsClass::checkVerPHP($module);
+
     return $xoopsSuccess && $phpSuccess;
 }
 
@@ -57,7 +58,7 @@ function xoops_module_pre_update_isearch(XoopsModule $module, $prev_version)
  * Upgrade works to update iSearch from previous versions
  *
  * @param XoopsModule $module
- * @param string $prev_version version * 100
+ * @param string      $prev_version version * 100
  *
  * @see Xmf\Module\Admin
  * @see IsearchUtility
@@ -83,9 +84,10 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
     // Remove previous .css, .js and .images directories since they've
     // been relocated to ./assets
     //----------------------------------------------------------------
-    $old_directories = array($isHelper->path('css/'),
-                             $isHelper->path('js/'),
-                             $isHelper->path('images/')
+    $old_directories = array(
+        $isHelper->path('css/'),
+        $isHelper->path('js/'),
+        $isHelper->path('images/')
     );
     foreach ($old_directories as $old_dir) {
         $dirInfo = new SplFileInfo($old_dir);
@@ -93,6 +95,7 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
             // The directory exists so delete it
             if (false === $utilsClass::rrmdir($old_dir)) {
                 $module->setErrors(sprintf(_AM_ISEARCH_ERROR_BAD_DEL_PATH, $old_dir));
+
                 return false;
             }
         }
@@ -110,6 +113,7 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
         if (($fObj->isFile()) && ('index.html' !== $fObj->getFilename())) {
             if (false === ($success = unlink($fObj->getPathname()))) {
                 $module->setErrors(sprintf(_AM_ISEARCH_ERROR_BAD_REMOVE, $fObj->getPathname()));
+
                 return false;
             }
         }
@@ -118,13 +122,14 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
     //-----------------------------------------------------------------------
     // Now remove a some misc files that were renamed or deprecated
     //-----------------------------------------------------------------------
-    $oldFiles = array($isHelper->path('changelog.txt'),
-                      $isHelper->path('licence.txt'),
-                      $isHelper->path('lang.diff'),
-                      $isHelper->path('admin/functions.php'),
-                      $isHelper->path('assets/js/dhtmlXCommon.js'),
-                      $isHelper->path('assets/js/dhtmlXTabbar.js'),
-                      $isHelper->path('assets/js/dhtmlXTabbar_start.js')
+    $oldFiles = array(
+        $isHelper->path('changelog.txt'),
+        $isHelper->path('licence.txt'),
+        $isHelper->path('lang.diff'),
+        $isHelper->path('admin/functions.php'),
+        $isHelper->path('assets/js/dhtmlXCommon.js'),
+        $isHelper->path('assets/js/dhtmlXTabbar.js'),
+        $isHelper->path('assets/js/dhtmlXTabbar_start.js')
     );
     foreach ($oldFiles as $file) {
         if (is_file($file)) {

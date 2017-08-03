@@ -31,8 +31,8 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
 
     $isearchHandler = $isHelper->getHandler('searches');
 
-    $banned = $isHelper->getConfig('bannedgroups', array());
-    $uid = 0;
+    $banned     = $isHelper->getConfig('bannedgroups', array());
+    $uid        = 0;
     $datesearch = date('Y-m-d h:i:s');
 
     if ($GLOBALS['xoopsUser'] instanceof XoopsUser) {
@@ -71,9 +71,9 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
     $blacklist = new IsearchBlacklist();
     $blacklist->getAllKeywords();    // Load keywords from blacklist
     $queryarray = $blacklist->removeBlacklisted($queryarray);
-    $count = count($queryarray);
+    $count      = count($queryarray);
     if (0 == count(array_intersect($groups, $banned)) && 0 == $userid) {    // If it's not a banned user and if we are not viewing someone's profile
-        if (is_array($queryarray) && $count >0) {
+        if (is_array($queryarray) && $count > 0) {
             for ($i = 0; $i < $count; ++$i) {
                 $isearch = $isearchHandler->create(true);
                 $isearch->setVar('uid', $uid);
@@ -83,5 +83,6 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
             }
         }
     }
+
     return array();
 }

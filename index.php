@@ -42,15 +42,16 @@ if ((int)$visiblekeywords > 0) {
     $critere->setLimit($visiblekeywords);
     $critere->setStart($start);
     $critere->setOrder('DESC');
-    include_once XOOPS_ROOT_PATH.'/class/pagenav.php';
+    include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
     $pagenav = new XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
     $xoopsTpl->assign('pagenav', $pagenav->renderNav());
 
     $elements = $isearchHandler->getObjects($critere);
     foreach ($elements as $oneelement) {
-        $xoopsTpl->append('keywords', array('keyword' => $oneelement->getVar('keyword'),
-                                              'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))))
-        );
+        $xoopsTpl->append('keywords', array(
+            'keyword' => $oneelement->getVar('keyword'),
+            'date'    => formatTimestamp(strtotime($oneelement->getVar('datesearch')))
+        ));
     }
 }
 

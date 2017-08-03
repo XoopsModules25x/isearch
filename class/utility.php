@@ -22,12 +22,12 @@
  * @since     File available since version 1.91
  */
 
- /**
-  * IsearchUtility
-  *
-  * Static utility class to provide common functionality
-  *
-  */
+/**
+ * IsearchUtility
+ *
+ * Static utility class to provide common functionality
+ *
+ */
 class IsearchUtility
 {
     /**
@@ -36,14 +36,14 @@ class IsearchUtility
      * @static
      * @param XoopsModule $module
      *
-     * @param null|string        $requiredVer
+     * @param null|string $requiredVer
      * @return bool true if meets requirements, false if not
      */
     public static function checkVerXoops(XoopsModule $module = null, $requiredVer = null)
     {
         $moduleDirName = basename(dirname(__DIR__));
         if (null === $module) {
-            $module        = XoopsModule::getByDirname($moduleDirName);
+            $module = XoopsModule::getByDirname($moduleDirName);
         }
         xoops_loadLanguage('admin', $moduleDirName);
         //check for minimum XOOPS version
@@ -78,6 +78,7 @@ class IsearchUtility
 
         return $success;
     }
+
     /**
      *
      * Verifies PHP version meets minimum requirements for this module
@@ -99,8 +100,10 @@ class IsearchUtility
                 $success = false;
             }
         }
+
         return $success;
     }
+
     /**
      *
      * Remove files and (sub)directories
@@ -147,6 +150,7 @@ class IsearchUtility
             // Input is not a valid directory
             $success = false;
         }
+
         return $success;
     }
 
@@ -177,7 +181,7 @@ class IsearchUtility
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 $filename = $fObj->getPathname();
-                $fObj = null; // clear this iterator object to close the file
+                $fObj     = null; // clear this iterator object to close the file
                 if (!unlink($filename)) {
                     return false; // couldn't delete the file
                 }
@@ -187,13 +191,14 @@ class IsearchUtility
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
+
         return rmdir($src); // remove the directory & return results
     }
 
     /**
      * Recursively move files from one directory to another
      *
-     * @param String $src - Source of files being moved
+     * @param String $src  - Source of files being moved
      * @param String $dest - Destination of files being moved
      *
      * @return bool true on success
@@ -226,6 +231,7 @@ class IsearchUtility
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
+
         return rmdir($src); // remove the directory & return results
     }
 
@@ -263,9 +269,10 @@ class IsearchUtility
             if ($fObj->isFile()) {
                 copy($fObj->getPathname(), $dest . '/' . $fObj->getFilename());
             } elseif (!$fObj->isDot() && $fObj->isDir()) {
-                static::rcopy($fObj->getPathname(), $dest . '/' . $fObj-getFilename());
+                static::rcopy($fObj->getPathname(), $dest . '/' . $fObj - getFilename());
             }
         }
+
         return true;
     }
 }

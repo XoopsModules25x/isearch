@@ -36,7 +36,6 @@ define('_MI_ISEARCH_ADMIN_EXPORT_DESC', 'Export a report');
 define('_MI_ISEARCH_ADMIN_BLACKLIST_DESC', 'Add/Remove words on the blacklist');
 define('_MI_ISEARCH_ADMIN_ABOUT_DESC', 'Info about this module');
 
-
 define('_MI_ISEARCH_OPT0', 'Count of searches to show on the module\'s index page');
 define('_MI_ISEARCH_OPT0_DSC', 'Select the number of searches users can see on the module\'s index page (0=show nothing)');
 

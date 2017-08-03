@@ -27,10 +27,10 @@ function b_isearch_big_user_show()
 
     $isearchHandler = $isHelper->getHandler('searches');
 
-    $block = array();
+    $block           = array();
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
     if ($visiblekeywords > 0) {
-        $tmpisearch = new searches();
+        $tmpisearch     = new searches();
         $keywords_count = $isHelper->getConfig('admincount', 10);
 
         // Total keywords count
@@ -39,11 +39,13 @@ function b_isearch_big_user_show()
         // Biggest users
         $elements = $isearchHandler->getBiggestContributors(0, $keywords_count);
         foreach ($elements as $oneuser => $onecount) {
-            $block['biggesusers'][] = array('uid' => $oneuser,
-                                          'uname' => $tmpisearch->uname($oneuser),
-                                          'count' => $onecount
+            $block['biggesusers'][] = array(
+                'uid'   => $oneuser,
+                'uname' => $tmpisearch->uname($oneuser),
+                'count' => $onecount
             );
         }
     }
+
     return $block;
 }

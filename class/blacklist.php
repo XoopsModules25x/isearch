@@ -18,6 +18,7 @@
  *
  * ****************************************************************************
  */
+
 use WideImage\Operation\AddNoise;
 
 /**
@@ -28,16 +29,16 @@ class IsearchBlacklist
     protected $keywords;    // Holds keywords
 
     /**
-      * Get all the keywords
-      * @todo move black_list.php file to XOOPS_UPLOAD_PATH . '/isearch/' directory
-      *
-      * @return array
-      */
+     * Get all the keywords
+     * @todo move black_list.php file to XOOPS_UPLOAD_PATH . '/isearch/' directory
+     *
+     * @return array
+     */
     public function getAllKeywords()
     {
         $ret      = $tbl_black_list = array();
         $myts     = MyTextSanitizer::getInstance();
-        $filename = XOOPS_UPLOAD_PATH.'/isearch_black_list.php';
+        $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';
         if (file_exists($filename)) {
             include_once $filename;
             foreach ($tbl_black_list as $onekeyword) {
@@ -49,16 +50,17 @@ class IsearchBlacklist
         }
         asort($ret);
         $this->keywords = $ret;
+
         return $ret;
     }
 
     /**
-      * Remove one or more keywords from the list
-      *
-      * @param string|array $keyword is the keyword(s) to remove
-      *
-      * @return void
-      */
+     * Remove one or more keywords from the list
+     *
+     * @param string|array $keyword is the keyword(s) to remove
+     *
+     * @return void
+     */
     public function delete($keyword)
     {
         if (is_array($keyword)) {
@@ -75,12 +77,12 @@ class IsearchBlacklist
     }
 
     /**
-      * Add one or more keywords
-      *
-      * @param string|array $keyword is the keyword(s) to add
-      *
-      * @return void
-      */
+     * Add one or more keywords
+     *
+     * @param string|array $keyword is the keyword(s) to add
+     *
+     * @return void
+     */
     public function addkeywords($keyword)
     {
         $myts = MyTextSanitizer::getInstance();
@@ -101,7 +103,7 @@ class IsearchBlacklist
      */
     public function removeBlacklisted($keywords)
     {
-        $ret = array();
+        $ret       = array();
         $tmp_array = array_values($this->keywords);
         if (is_array($keywords) && count($keywords) > 0) {
             foreach ($keywords as $keyword) {
@@ -117,17 +119,17 @@ class IsearchBlacklist
                 }
             }
         }
+
         return $ret;
     }
 
-
     /**
-      * Save keywords to file system
-      *
-      * @todo move storage of this file to XOOPS_UPLOAD_PATH . '/isearch' directory
-      *
-      * @return void
-      */
+     * Save keywords to file system
+     *
+     * @todo move storage of this file to XOOPS_UPLOAD_PATH . '/isearch' directory
+     *
+     * @return void
+     */
     public function store()
     {
         $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';

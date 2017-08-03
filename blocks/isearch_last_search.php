@@ -27,14 +27,14 @@ function b_isearch_last_search_show()
 
     $isearchHandler = $isHelper->getHandler('searches');
 
-    $block = array();
+    $block           = array();
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
 
     if ($visiblekeywords > 0) {
         $block['visiblekeywords'] = $visiblekeywords;
-        $totalcount = $isearchHandler->getCount();
-        $start      = 0;
-        $critere    = new Criteria('isearchid', 0, '<>');
+        $totalcount               = $isearchHandler->getCount();
+        $start                    = 0;
+        $critere                  = new Criteria('isearchid', 0, '<>');
         $critere->setSort('datesearch');
         $critere->setLimit($visiblekeywords);
         $critere->setStart($start);
@@ -42,15 +42,17 @@ function b_isearch_last_search_show()
         $tmpisearch = new searches();
         $elements   = $isearchHandler->getObjects($critere);
         foreach ($elements as $oneelement) {
-            $search = array('keyword' => $oneelement->getVar('keyword'),
-                               'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),
-                                'uid' => $oneelement->getVar('keyword'),
-                              'uname' => $tmpisearch->uname($oneelement->getVar('uid')),
-                               'link' => "<a href='" . XOOPS_URL . '/search.php?query=' . $oneelement->getVar('keyword') . "&action=results' target='_blank'>"
+            $search              = array(
+                'keyword' => $oneelement->getVar('keyword'),
+                'date'    => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),
+                'uid'     => $oneelement->getVar('keyword'),
+                'uname'   => $tmpisearch->uname($oneelement->getVar('uid')),
+                'link'    => "<a href='" . XOOPS_URL . '/search.php?query=' . $oneelement->getVar('keyword') . "&action=results' target='_blank'>"
             );
             $block['searches'][] = $search;
             unset($search);
         }
     }
+
     return $block;
 }

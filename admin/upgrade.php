@@ -20,10 +20,10 @@
  */
 include_once __DIR__ . '/../../../include/cp_header.php';
 xoops_cp_header();
-include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
+include_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
 
-/* @var XoopsDatabase $GLOBALS['xoopsDB'] */
-/* @var XoopsUser $GLOBALS['xoopsUser'] */
+/* @var XoopsDatabase $GLOBALS ['xoopsDB'] */
+/* @var XoopsUser $GLOBALS ['xoopsUser'] */
 
 if (($GLOBALS['xoopsUser'] instanceof XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
     if (!isearch_FieldExists('ip', $GLOBALS['xoopsDB']->prefix('isearch_searches'))) {

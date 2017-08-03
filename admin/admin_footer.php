@@ -17,17 +17,20 @@
  * @author    XOOPS Module Development Team
  * @copyright Copyright (c) 2001-2017 {@link http://xoops.org XOOPS Project}
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
- * @since::   1.91
+ * @since     ::   1.91
  *
- * @see Xmf\Module\Admin
+ * @see       Xmf\Module\Admin
  */
 echo "<div class='adminfooter'>\n"
-    . "<div class='center'>\n"
-    . "<a href='http://www.xoops.org' rel='external' target='_blank'>"
-    . "<img src='" . Xmf\Module\Admin::iconUrl('xoopsmicrobutton.gif', '32') . "' "
-    . "alt='XOOPS' title='XOOPS'></a>\n"
-    . "</div>\n"
-    . _AM_MODULEADMIN_ADMIN_FOOTER . "\n"
-    . "</div>\n";
+     . "<div class='center'>\n"
+     . "<a href='http://www.xoops.org' rel='external' target='_blank'>"
+     . "<img src='"
+     . Xmf\Module\Admin::iconUrl('xoopsmicrobutton.gif', '32')
+     . "' "
+     . "alt='XOOPS' title='XOOPS'></a>\n"
+     . "</div>\n"
+     . _AM_MODULEADMIN_ADMIN_FOOTER
+     . "\n"
+     . "</div>\n";
 
 xoops_cp_footer();
