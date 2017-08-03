@@ -15,9 +15,9 @@
  * @package   module\isearch\includes
  * @author    Taiwen Jiang <phppp@users.sourceforge.net>
  * @author    ZySpec <owners@zyspec.com>
- * @copyright http://xoops.org 2001-2017 XOOPS Project
+ * @copyright https://xoops.org 2001-2017 XOOPS Project
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
- * @link      http://xoops.org XOOPS
+ * @link      https://xoops.org XOOPS
  * @since     1.91
  */
 

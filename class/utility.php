@@ -16,7 +16,7 @@
  *
  * @package   \module\isearch\class
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
- * @copyright http://xoops.org 2001-2017 &copy; XOOPS Project
+ * @copyright https://xoops.org 2001-2017 &copy; XOOPS Project
  * @author    zyspec
  * @author    Mamba
  * @since     File available since version 1.91

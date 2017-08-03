@@ -10,9 +10,9 @@
 [![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/isearch.svg?style=flat)](https://github.com/XoopsModules25x/isearch/tags/)
 [![Latest Version](https://img.shields.io/github/release/XoopsModules25x/isearch.svg?style=flat)](https://github.com/XoopsModules25x/isearch/releases/)
 
-**iSearch** is a [XOOPS](http://xoops.org) module to help the site administrator know what their users are  searching for on the site. This module records all the searches made on the site so the administrator can then see statistics and details for the user's searches.
+**iSearch** is a [XOOPS](https://xoops.org) module to help the site administrator know what their users are  searching for on the site. This module records all the searches made on the site so the administrator can then see statistics and details for the user's searches.
 
 
-[![Translations on Transifex](http://xoops.org/images/translations-transifex-blue.svg)](https://www.transifex.com/xoops)
+[![Translations on Transifex](https://xoops.org/images/translations-transifex-blue.svg)](https://www.transifex.com/xoops)
 
 Current and upcoming "next generation" versions of XOOPS CMS are being crafted on GitHub at: https://github.com/XOOPS

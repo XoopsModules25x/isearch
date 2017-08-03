@@ -38,7 +38,7 @@
 
     <h4 class="odd">SUPPORT</h4>
     <div class="even marg10 boxshadow1"><p>
-        If you have questions about this module and need help, you can visit our <a href="http://xoops.org/modules/newbb/index.php?cat=2" target="_blank">Support Forums on XOOPS Website</a>
+        If you have questions about this module and need help, you can visit our <a href="https://xoops.org/modules/newbb/index.php?cat=2" target="_blank">Support Forums on XOOPS Website</a>
     </p></div>
 
     <h4 class="odd">DEVELOPMENT</h4>
