@@ -10,28 +10,24 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 /**
- * Admin index file
+ * Admin page footer file
  *
  * @package   module\isearch\admin
- * @author    Raul Recio (aka UNFOR)
+ * @author    Magic.Shao <magic.shao@gmail.com>, Susheng Yang <ezskyyoung@gmail.com>
  * @author    XOOPS Module Development Team
  * @copyright Copyright (c) 2001-2017 {@link http://xoops.org XOOPS Project}
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @since::   1.91
  *
  * @see Xmf\Module\Admin
  */
+echo "<div class='adminfooter'>\n"
+    . "<div class='center'>\n"
+    . "<a href='http://www.xoops.org' rel='external' target='_blank'>"
+    . "<img src='" . Xmf\Module\Admin::iconUrl('xoopsmicrobutton.gif', '32') . "' "
+    . "alt='XOOPS' title='XOOPS'></a>\n"
+    . "</div>\n"
+    . _AM_MODULEADMIN_ADMIN_FOOTER . "\n"
+    . "</div>\n";
 
-include_once __DIR__ . '/admin_header.php';
-xoops_cp_header();
-
-/* @var Xmf\Module\Helper $isHelper */
-$isearch_handler = $isHelper->getHandler('searches');
-$totalSearches   = $isearch_handler->getCount();
-
-$adminObject->addInfoBox(_MD_ISEARCH_SEARCH_CONF);
-$adminObject->AddInfoBoxLine(sprintf('<span class="infolabel">' . _MD_ISEARCH_TOTAL_SEARCHES . '</span>', '<span class="infotext green bold">' . $totalSearches . '</span>'));
-
-$adminObject->displayNavigation('index.php');
-$adminObject->displayIndex();
-
-include __DIR__ . '/admin_footer.php';
+xoops_cp_footer();

@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,32 +11,37 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\blocks
+ * @copyright HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
 function b_isearch_stats_show()
 {
-	include_once XOOPS_ROOT_PATH."/modules/isearch/include/functions.php";
-	$isearch_handler =& xoops_getmodulehandler('searches', 'isearch');
-	$block = array();
-	$visiblekeywords = isearch_getmoduleoption('showindex');
-	if($visiblekeywords > 0) {
-		$keywords_count = isearch_getmoduleoption('admincount');
+    $moduleDirName = basename(dirname(__DIR__));
+    $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
 
-		// Total keywords count
-		$block['total_keywords'] = $isearch_handler->getCount();
+    include_once $isHelper->path('include/functions.php');
 
-		// Most searched elements
-		$elements = $isearch_handler->getMostSearched(0,$keywords_count);
-		foreach($elements as $keywordid => $datas) {
-			$block['mostsearched'][]=array('keyword'=>$datas['keyword'],'count'=>$datas['count']);
-		}
-	}
-	return $block;
+    $isearch_handler = $isHelper->getHandler('searches');
+
+    $block = array();
+    $visiblekeywords = $isHelper->getConfig('showindex', 10);
+    if($visiblekeywords > 0) {
+        $keywords_count = $isHelper->getConfig('admincount', 10);
+
+        // Total keywords count
+        $block['total_keywords'] = $isearch_handler->getCount();
+
+        // Most searched elements
+        $elements = $isearch_handler->getMostSearched(0,$keywords_count);
+        foreach($elements as $keywordid => $datas) {
+            $block['mostsearched'][] = array('keyword' => $datas['keyword'],
+                                               'count' => $datas['count']
+            );
+        }
+    }
+    return $block;
 }
-?>

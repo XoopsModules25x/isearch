@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,26 +11,26 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         isearch
- * @author 			Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @package   modules\isearch\admin
+ * @copyright HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
+ * @author    HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  *
- * Version : $Id:
  * ****************************************************************************
  */
 include_once '../../../include/cp_header.php';
 xoops_cp_header();
 include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
 
+/* @var XoopsDatabase $GLOBALS['xoopsDB'] */
+/* @var XoopsUser $GLOBALS['xoopsUser'] */
 
-if (is_object($xoopsUser) && $xoopsUser->isAdmin($xoopsModule->mid())) {
-	if (!isearch_FieldExists('ip',$xoopsDB->prefix('isearch_searches'))) {
-		isearch_AddField("ip varchar(32) NOT NULL default ''",$xoopsDB->prefix('isearch_searches'));
-	}
-	echo "<br>ok";
+if (($GLOBALS['xoopsUser'] instanceof XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
+    if (!isearch_FieldExists('ip', $GLOBALS['xoopsDB']->prefix('isearch_searches'))) {
+        isearch_AddField("ip varchar(32) NOT NULL default ''", $GLOBALS['xoopsDB']->prefix('isearch_searches'));
+    }
+    echo "<br>" . _OK;
 } else {
-	printf("<H2>%s</H2>\n",_ERRORS);
+    printf("<h2>%s</h2>\n", _ERRORS);
 }
 xoops_cp_footer();
-?>
