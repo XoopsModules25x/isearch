@@ -150,7 +150,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
             $format = "UPDATE %s SET keyword='%d', datesearch='%s', uid=%u, ip=%s WHERE isearchid = %u";
             $sql    = sprintf($format, $this->db->prefix('isearch_searches'), $keyword, $datesearch, $uid, $this->db->quoteString($ip), $isearchid);
         }
-        if (false != $force) {
+        if (false !== $force) {
             $result = $this->db->queryF($sql);
         } else {
             $result = $this->db->query($sql);
