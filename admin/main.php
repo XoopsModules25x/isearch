@@ -31,7 +31,7 @@ $keywords_count = $isHelper->getConfig('admincount', 10);
 // Main
 // ****************************************************************************
 
-$op = Xmf\Request::getCmd('op', 'stats');
+$op = Xmf\Request::getString('op', 'stats');
 $isearchHandler = $isHelper->getHandler('searches');
 
 switch ($op) {
