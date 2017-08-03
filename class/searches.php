@@ -120,12 +120,13 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      * {@inheritDoc}
      * @see XoopsObjectHandler::insert()
      *
-     * @param Searches $searches
+     * @param \XoopsObject $searches
      * @param bool $force true to force write
      *
      * @return bool|int insert status or new ID if successful insert
      */
-    public function insert($searches, $force = false)
+
+    public function insert(XoopsObject $searches, $force = true)
     {
         if ('searches' !== get_class($searches)) {
             return false;
@@ -144,11 +145,11 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         }
         if ($searches->isNew()) {
             $ip     = isearch_IP();
-            $format = "INSERT INTO %s (isearchid, keyword, datesearch, uid, ip) VALUES (%u, '%s', '%s', %u, %s)";
+            $format = "INSERT INTO '%s' (isearchid, keyword, datesearch, uid, ip) VALUES ('%u', '%s', '%s', '%u', '%s')";
             $sql    = sprintf($format, $this->db->prefix('isearch_searches'), $this->db->genId($this->db->prefix("isearch_searches")."_isearchid_seq"), $keyword, $datesearch, $uid, $this->db->quoteString($ip));
             $force  = true;
         } else {
-            $format = "UPDATE %s SET keyword='%d', datesearch='%s', uid=%u, ip=%s WHERE isearchid = %u";
+            $format = "UPDATE '%s' SET keyword='%d', datesearch='%s', uid='%u', ip='%s' WHERE isearchid = '%u'";
             $sql    = sprintf($format, $this->db->prefix('isearch_searches'), $keyword, $datesearch, $uid, $this->db->quoteString($ip), $isearchid);
         }
         if (false !== $force) {
