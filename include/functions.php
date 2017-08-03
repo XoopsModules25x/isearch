@@ -20,7 +20,7 @@
  */
 use WideImage\Operation\AddNoise;
 
-defined('XOOPS_ROOT_PATH') || exit("Restricted access");
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * Returns a module's option
@@ -67,7 +67,7 @@ function isearch_getmoduleoption($option, $repmodule='isearch')
  */
 function isearch_JavascriptLinkConfirm($msg)
 {
-    return "onclick=\"javascript:return confirm('".str_replace("'"," ",$msg)."')\"";
+    return "onclick=\"javascript:return confirm('".str_replace("'", ' ', $msg) . "')\"";
 }
 
 /**
@@ -105,7 +105,7 @@ function isearch_FieldExists($fieldname, $table)
 function isearch_AddField($field, $table)
 {
     /** @var XoopsDatabase $GLOBALS['xoopsDB'] */
-    $result = $GLOBALS['xoopsDB']->queryF("ALTER TABLE " . $table . " ADD $field;");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $table . " ADD $field;");
     return $result;
 }
 

@@ -104,7 +104,7 @@ class isearch_blacklist
             foreach ($keywords as $keyword) {
                 $add = true;
                 foreach($tmp_array as $onebanned) {
-                    if (!empty($onebanned) && preg_match("/".$onebanned."/i", $keyword)) {
+                    if (!empty($onebanned) && preg_match('/' . $onebanned . '/i', $keyword)) {
                         $add = false;
                         break;
                     }
@@ -135,7 +135,7 @@ class isearch_blacklist
         fputs($fd, "<?php\n");
         fputs($fd, '$tbl_black_list=array('."\n");
         foreach($this->keywords as $onekeyword) {
-            fputs($fd, "\"" . $onekeyword . "\",\n");
+            fputs($fd, '"' . $onekeyword . "\",\n");
         }
         fputs($fd, "'');\n");
         fputs($fd, "?>\n");

@@ -29,7 +29,7 @@ if (($GLOBALS['xoopsUser'] instanceof XoopsUser) && $GLOBALS['xoopsUser']->isAdm
     if (!isearch_FieldExists('ip', $GLOBALS['xoopsDB']->prefix('isearch_searches'))) {
         isearch_AddField("ip varchar(32) NOT NULL default ''", $GLOBALS['xoopsDB']->prefix('isearch_searches'));
     }
-    echo "<br>" . _OK;
+    echo '<br>' . _OK;
 } else {
     printf("<h2>%s</h2>\n", _ERRORS);
 }

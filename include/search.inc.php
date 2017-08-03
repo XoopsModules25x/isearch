@@ -58,7 +58,7 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid)
     if (count($badIps) > 0) {
         $userIp = isearch_IP();
         foreach ($badIps as $badIp) {
-            if (!empty($badIp) && preg_match("/".$badIp."/", $userIp)) {
+            if (!empty($badIp) && preg_match('/' . $badIp . '/', $userIp)) {
                 $add = false;
                 break;
             }

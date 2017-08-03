@@ -26,29 +26,29 @@ $modversion['release_date']  = '2017/06/17';
 
 $modversion['name']        = _MI_ISEARCH_NAME;
 $modversion['description'] = _MI_ISEARCH_DESC;
-$modversion['credits'] = "Christian, Marco";
+$modversion['credits'] = 'Christian, Marco';
 $modversion['author'] = 'Instant Zero - http://instant-zero.com/xoops';
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'Support site';
-$modversion['help'] = "page=help";
-$modversion['license'] = "GPL";
+$modversion['help'] = 'page=help';
+$modversion['license'] = 'GPL';
 $modversion['official'] = 0;
-$modversion['image'] = "assets/images/isearch_logo.png";
-$modversion['dirname'] = "isearch";
+$modversion['image'] = 'assets/images/isearch_logo.png';
+$modversion['dirname'] = 'isearch';
 
-$modversion['sqlfile']['mysql'] = "sql/mysql.sql";
+$modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Scripts to run upon installation or update
-$modversion['onInstall'] = "include/oninstall.inc.php";
-$modversion['onUpdate']  = "include/onupdate.inc.php";
+$modversion['onInstall'] = 'include/oninstall.inc.php';
+$modversion['onUpdate']  = 'include/onupdate.inc.php';
 
 
-$modversion['tables'][0] = "isearch_searches";
+$modversion['tables'][0] = 'isearch_searches';
 
 // Admin
 $modversion['hasAdmin']   = 1;
-$modversion['adminindex'] = "admin/index.php";
-$modversion['adminmenu']  = "admin/menu.php";
+$modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu']  = 'admin/menu.php';
 
 /*
  * Admin Menu
@@ -68,22 +68,22 @@ $modversion['templates'][1]['file'] = 'isearch_index.tpl';
 $modversion['templates'][1]['description'] = '';
 
 // Blocks
-$modversion['blocks'][1]['file'] = "isearch_last_search.php";
+$modversion['blocks'][1]['file'] = 'isearch_last_search.php';
 $modversion['blocks'][1]['name'] = _MI_ISEARCH_BNAME1;
-$modversion['blocks'][1]['description'] = "Show last searches";
-$modversion['blocks'][1]['show_func'] = "b_isearch_last_search_show";
+$modversion['blocks'][1]['description'] = 'Show last searches';
+$modversion['blocks'][1]['show_func'] = 'b_isearch_last_search_show';
 $modversion['blocks'][1]['template'] = 'isearch_block_last_search.tpl';
 
-$modversion['blocks'][2]['file'] = "isearch_biggest_users.php";
+$modversion['blocks'][2]['file'] = 'isearch_biggest_users.php';
 $modversion['blocks'][2]['name'] = _MI_ISEARCH_BNAME2;
-$modversion['blocks'][2]['description'] = "Show people who are the biggest users of the search";
-$modversion['blocks'][2]['show_func'] = "b_isearch_big_user_show";
+$modversion['blocks'][2]['description'] = 'Show people who are the biggest users of the search';
+$modversion['blocks'][2]['show_func'] = 'b_isearch_big_user_show';
 $modversion['blocks'][2]['template'] = 'isearch_block_big_user.tpl';
 
-$modversion['blocks'][3]['file'] = "isearch_stats.php";
+$modversion['blocks'][3]['file'] = 'isearch_stats.php';
 $modversion['blocks'][3]['name'] = _MI_ISEARCH_BNAME3;
-$modversion['blocks'][3]['description'] = "Show statistics";
-$modversion['blocks'][3]['show_func'] = "b_isearch_stats_show";
+$modversion['blocks'][3]['description'] = 'Show statistics';
+$modversion['blocks'][3]['show_func'] = 'b_isearch_stats_show';
 $modversion['blocks'][3]['template'] = 'isearch_block_stats.tpl';
 
 // Menu
@@ -91,8 +91,8 @@ $modversion['hasMain'] = 1;
 
 // Search
 $modversion['hasSearch'] = 1;
-$modversion['search']['file'] = "include/search.inc.php";
-$modversion['search']['func'] = "isearch_search";
+$modversion['search']['file'] = 'include/search.inc.php';
+$modversion['search']['func'] = 'isearch_search';
 
 // Comments
 $modversion['hasComments'] = 0;
@@ -109,8 +109,8 @@ $modversion['config'][1]['default'] = 10;
 $member_handler = xoops_getHandler('member');
 
 $modversion['config'][2]['name'] = 'bannedgroups';
-$modversion['config'][2]['title'] = "_MI_ISEARCH_OPT1";
-$modversion['config'][2]['description'] = "_MI_ISEARCH_OPT1_DSC";
+$modversion['config'][2]['title'] = '_MI_ISEARCH_OPT1';
+$modversion['config'][2]['description'] = '_MI_ISEARCH_OPT1_DSC';
 $modversion['config'][2]['formtype'] = 'select_multi';
 $modversion['config'][2]['valuetype'] = 'array';
 $modversion['config'][2]['default'] = array();
@@ -134,8 +134,8 @@ $modversion['config'][4]['default'] = '';
 
 // Use username or realname in searches
 $modversion['config'][5]['name'] = 'useusername';
-$modversion['config'][5]['title'] = "_MI_ISEARCH_USE_UNAME";
-$modversion['config'][5]['description'] = "_MI_ISEARCH_USE_UNAME_DSC";
+$modversion['config'][5]['title'] = '_MI_ISEARCH_USE_UNAME';
+$modversion['config'][5]['description'] = '_MI_ISEARCH_USE_UNAME_DSC';
 $modversion['config'][5]['formtype'] = 'select';
 $modversion['config'][5]['valuetype'] = 'int';
 $modversion['config'][5]['default'] = 0;
