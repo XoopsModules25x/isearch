@@ -139,7 +139,7 @@ function isearch_IP()
                                 $proxy_ip = $_SERVER['HTTP_COMING_FROM'];
                             }
     $regs = array();
-    if (! empty($proxy_ip) && $is_ip = preg_match('/^([0-9]{1,3}\.){3,3}[0-9]{1,3}/', $proxy_ip, $regs) && count($regs) > 0) {
+    if (! empty($proxy_ip) && ($is_ip = preg_match('/^([0-9]{1,3}\.){3,3}[0-9]{1,3}/', $proxy_ip, $regs)) && count($regs) > 0) {
         $the_IP = $regs[0];
     } else {
         $the_IP = $_SERVER['REMOTE_ADDR'];
