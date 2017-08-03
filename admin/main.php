@@ -68,17 +68,17 @@ switch ($op) {
         $keyword   = '';
         $ip        = '';
 
-        if(isset($_POST['prune_date']) && xoops_trim($_POST['prune_date'])!='') {
+        if(isset($_POST['prune_date']) && xoops_trim($_POST['prune_date']) !== '') {
             $date=$_POST['prune_date'];
             $timestamp=mktime(0, 0, 0, (int)substr($date,5,2), (int)substr($date,8,2), (int)substr($date,0,4));
             $date=date('Y-m-d',$timestamp);
             $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $date,'<='));
         }
-        if(isset($_POST['keyword']) && xoops_trim($_POST['keyword'])!='') {
+        if(isset($_POST['keyword']) && xoops_trim($_POST['keyword']) !== '') {
             $keyword = $_POST['keyword'];
             $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']),'='));
         }
-        if(isset($_POST['ip']) && xoops_trim($_POST['ip'])!='') {
+        if(isset($_POST['ip']) && xoops_trim($_POST['ip']) !== '') {
             $ip = isset($_POST['ip']) ? $_POST['ip'] : '';
             $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']),'='));
         }
@@ -109,11 +109,11 @@ switch ($op) {
             $date=date('Y-m-d',(int)$timestamp);
             $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $date,'<='));
         }
-        if(isset($_POST['keyword']) && xoops_trim($_POST['keyword'])!='') {
+        if(isset($_POST['keyword']) && xoops_trim($_POST['keyword']) !== '') {
             $keyword = $_POST['keyword'];
             $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']),'='));
         }
-        if(isset($_POST['ip']) && xoops_trim($_POST['ip'])!='') {
+        if(isset($_POST['ip']) && xoops_trim($_POST['ip']) !== '') {
             $ip = isset($_POST['ip']) ? $_POST['ip'] : '';
             $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']),'='));
         }
@@ -203,14 +203,14 @@ switch ($op) {
                 $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $enddate,'<='));
             }
         }
-        if(isset($_POST['user']) && xoops_trim($_POST['user'])!='' && is_array($_POST['user'])) {
+        if(isset($_POST['user']) && xoops_trim($_POST['user']) !== '' && is_array($_POST['user'])) {
             $userarray = array_map('intval', $_POST['user']);
             $criteria->add(new Criteria('uid', '('.implode(',', $userarray).')','IN'));
         }
-        if(isset($_POST['keyword']) && xoops_trim($_POST['keyword'])!='') {
+        if(isset($_POST['keyword']) && xoops_trim($_POST['keyword']) !== '') {
             $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']),'='));
         }
-        if(isset($_POST['ip']) && xoops_trim($_POST['ip'])!='') {
+        if(isset($_POST['ip']) && xoops_trim($_POST['ip']) !== '') {
             $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']),'='));
         }
         $criteria->setSort('datesearch');
@@ -331,7 +331,7 @@ switch ($op) {
                 $p_keywords = $_POST['keywords'];
                 $keywords = explode("\n",$p_keywords);
                 foreach($keywords as $keyword) {
-                    if(xoops_trim($keyword)!='') {
+                    if(xoops_trim($keyword) !== '') {
                         $blacklist->addkeywords(xoops_trim($keyword));
                     }
                 }
@@ -401,12 +401,12 @@ switch ($op) {
         }
         */
         $critere = new CriteriaCompo();
-        if($s_keyword != '') {
+        if($s_keyword !== '') {
             $critere->add(new Criteria('keyword', $s_keyword,'LIKE'));
             $more_parameter .= '&s_keyword='.$s_keyword;
         }
 
-        if($s_uid != '') {
+        if($s_uid !== '') {
             if(!is_numeric($s_uid)) {
                 $member_handler = xoops_getHandler('member');
                 $crituser = new Criteria('uname', $s_uid,'LIKE');
@@ -427,7 +427,7 @@ switch ($op) {
             $more_parameter .= '&s_uid='.$s_uid;
         }
 
-        if($s_ip != '') {
+        if($s_ip !== '') {
             $critere->add(new Criteria('ip', $s_ip,'LIKE'));
             $more_parameter .= '&s_ip='.$s_ip;
         }
@@ -453,7 +453,7 @@ switch ($op) {
         echo "<tr><th align='center'>"._AM_ISEARCH_ID."</th><th align='center'>"._AM_ISEARCH_KEYWORD."</th><th align='center'>"._AM_ISEARCH_DATE."</th><th align='center'>"._AM_ISEARCH_USER."</th><th align='center'>"._AM_ISEARCH_IP."</th><th align='center'>"._AM_ISEARCH_ACTION . '</th></tr>';
         $class='';
         foreach($elements as $oneelement) {
-            $class = ($class == 'even') ? 'odd' : 'even';
+            $class = ($class === 'even') ? 'odd' : 'even';
             $link1 = "<a href='".XOOPS_URL.'/search.php?query='.$oneelement->getVar('keyword')."&action=results' target='_blank'>".$oneelement->getVar('keyword') . '</a>';
             $link2 = "<a href='".XOOPS_URL . '/userinfo.php?uid=' . $oneelement->getVar('uid') . "'>" . $oneelement->uname() . '</a>';
             $action_del = '<a ' . isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE) . " href='main.php?op=removekeyword&id=" . $oneelement->getVar('isearchid') . "' title='" . _AM_ISEARCH_DELETE . "'><img src='../assets/images/delete.png' border='0' alt='" . _AM_ISEARCH_DELETE . "'></a>";
@@ -487,7 +487,7 @@ switch ($op) {
         foreach($elements as $onekeyword_id => $onekeyword_datas) {
             $onekeyword = $onekeyword_datas['keyword'];
             $onekeywordcount = $onekeyword_datas['count'];
-            $class = ($class == 'even') ? 'odd' : 'even';
+            $class = ($class === 'even') ? 'odd' : 'even';
             $link1 = "<a href='".XOOPS_URL.'/search.php?query='.$onekeyword."&action=results' target='_blank'>".$onekeyword . '</a>';
             $action_del = '<a ' . isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE) . " href='main.php?op=removekeyword&id=" . $onekeyword_id . "' title='" . _AM_ISEARCH_DELETE . "'><img src='../assets/images/delete.png' border='0' alt='" . _AM_ISEARCH_DELETE . "'></a>";
             $action_black = '<a ' . isearch_JavascriptLinkConfirm(_AM_ISEARCH_AREYOUSURE) . " href='main.php?op=addblacklist&id=" . $onekeyword_id . "' title='" . _AM_ISEARCH_BLACKLIST . "'><img src='../assets/images/list.png' border='0' alt='" . _AM_ISEARCH_BLACKLIST . "'></a>";
@@ -517,7 +517,7 @@ switch ($op) {
         echo "<tr><th align='center'>"._AM_ISEARCH_USER."</th><th align='center'>"._AM_ISEARCH_HITS . '</th></tr>';
         $class='';
         foreach($elements as $oneuser => $onecount) {
-            $class = ($class == 'even') ? 'odd' : 'even';
+            $class = ($class === 'even') ? 'odd' : 'even';
             $link1 = "<a href='".XOOPS_URL . '/userinfo.php?uid=' . $oneuser . "'>" . $tmpisearch->uname($oneuser) . '</a>';
             echo "<tr class='".$class."'><td align='center'>" . $link1."</td><td align='center'>" .$onecount . '</td></tr>';
         }
@@ -543,7 +543,7 @@ switch ($op) {
         echo "<tr><th align='center'>"._AM_ISEARCH_DATE."</th><th align='center'>"._AM_ISEARCH_USE . '</th></tr>';
         $class='';
         foreach($elements as $onedate => $onecount) {
-            $class = ($class == 'even') ? 'odd' : 'even';
+            $class = ($class === 'even') ? 'odd' : 'even';
             $datefordisplay=formatTimestamp(strtotime($onedate),'s');
             echo "<tr class='".$class."'><td align='center'>" . $datefordisplay."</td><td align='center'>" .$onecount . '</td></tr>';
         }
@@ -570,7 +570,7 @@ switch ($op) {
         echo "<tr><th align='center'>"._AM_ISEARCH_IP."</th><th align='center'>"._AM_ISEARCH_HITS . '</th></tr>';
         $class='';
         foreach($elements as $oneip => $onecount) {
-            $class = ($class == 'even') ? 'odd' : 'even';
+            $class = ($class === 'even') ? 'odd' : 'even';
             echo "<tr class='".$class."'><td align='center'>" .$oneip."</td><td align='center'>" .$onecount . '</td></tr>';
         }
         echo "</table><div align='right'>".$pagenav->renderNav().'</div></div><br>';
