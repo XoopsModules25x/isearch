@@ -84,14 +84,13 @@ class IsearchBlacklist
     public function addkeywords($keyword)
     {
         $myts = MyTextSanitizer::getInstance();
-        if(is_array($keyword)) {
-            foreach($keyword as $onekeyword) {
+        if (is_array($keyword)) {
+            foreach ($keyword as $onekeyword) {
                 $this->keywords[$onekeyword] = xoops_trim($myts->htmlSpecialChars($onekeyword));
             }
         } else {
             $this->keywords[$keyword] = xoops_trim($myts->htmlSpecialChars($keyword));
         }
-
     }
 
     /**
@@ -107,7 +106,7 @@ class IsearchBlacklist
         if (is_array($keywords) && count($keywords) > 0) {
             foreach ($keywords as $keyword) {
                 $add = true;
-                foreach($tmp_array as $onebanned) {
+                foreach ($tmp_array as $onebanned) {
                     if (!empty($onebanned) && preg_match('/' . $onebanned . '/i', $keyword)) {
                         $add = false;
                         break;
@@ -138,7 +137,7 @@ class IsearchBlacklist
         $fd = fopen($filename, 'w') || exit('Error unable to create blacklist file');
         fwrite($fd, "<?php\n");
         fwrite($fd, '$tbl_black_list=array(' . "\n");
-        foreach($this->keywords as $onekeyword) {
+        foreach ($this->keywords as $onekeyword) {
             fwrite($fd, '"' . $onekeyword . "\",\n");
         }
         fwrite($fd, "'');\n");

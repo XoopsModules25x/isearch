@@ -25,9 +25,8 @@
 
 if ((!defined('XOOPS_ROOT_PATH'))
    || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
-   || !($GLOBALS['xoopsUser']->isAdmin()))
-{
-     exit('Restricted access' . PHP_EOL);
+   || !($GLOBALS['xoopsUser']->isAdmin())) {
+    exit('Restricted access' . PHP_EOL);
 }
 
 /**
@@ -127,7 +126,7 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
                       $isHelper->path('assets/js/dhtmlXTabbar.js'),
                       $isHelper->path('assets/js/dhtmlXTabbar_start.js')
     );
-    foreach($oldFiles as $file) {
+    foreach ($oldFiles as $file) {
         if (is_file($file)) {
             if (false === ($delOk = unlink($file))) {
                 $module->setErrors(sprintf(_AM_ISEARCH_ERROR_BAD_REMOVE, $file));

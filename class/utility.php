@@ -259,10 +259,10 @@ class IsearchUtility
 
         // Open the source directory to read in files
         $iterator = new DirectoryIterator($src);
-        foreach($iterator as $fObj) {
-            if($fObj->isFile()) {
+        foreach ($iterator as $fObj) {
+            if ($fObj->isFile()) {
                 copy($fObj->getPathname(), $dest . '/' . $fObj->getFilename());
-            } else if(!$fObj->isDot() && $fObj->isDir()) {
+            } elseif (!$fObj->isDot() && $fObj->isDir()) {
                 static::rcopy($fObj->getPathname(), $dest . '/' . $fObj-getFilename());
             }
         }

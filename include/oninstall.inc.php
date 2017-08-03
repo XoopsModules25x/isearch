@@ -27,9 +27,8 @@
 
 if ((!defined('XOOPS_ROOT_PATH'))
    || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
-   || !($GLOBALS['xoopsUser']->isAdmin()))
-{
-     exit('Restricted access' . PHP_EOL);
+   || !($GLOBALS['xoopsUser']->isAdmin())) {
+    exit('Restricted access' . PHP_EOL);
 }
 
 /**
@@ -61,6 +60,7 @@ function xoops_module_pre_install_isearch(XoopsModule $module)
  *
  * @return bool true if installation successful, false if not
  */
-function xoops_module_install_isearch($module) {
+function xoops_module_install_isearch($module)
+{
     return true;
 }

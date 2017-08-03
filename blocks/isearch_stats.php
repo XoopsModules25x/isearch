@@ -29,15 +29,15 @@ function b_isearch_stats_show()
 
     $block = array();
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
-    if($visiblekeywords > 0) {
+    if ($visiblekeywords > 0) {
         $keywords_count = $isHelper->getConfig('admincount', 10);
 
         // Total keywords count
         $block['total_keywords'] = $isearchHandler->getCount();
 
         // Most searched elements
-        $elements = $isearchHandler->getMostSearched(0,$keywords_count);
-        foreach($elements as $keywordid => $datas) {
+        $elements = $isearchHandler->getMostSearched(0, $keywords_count);
+        foreach ($elements as $keywordid => $datas) {
             $block['mostsearched'][] = array('keyword' => $datas['keyword'],
                                                'count' => $datas['count']
             );

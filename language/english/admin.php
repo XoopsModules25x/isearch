@@ -42,7 +42,7 @@ define('_AM_ISEARCH_PRUNE_DESC', 'If you don\'t enter a word the script will pru
 define('_AM_ISEARCH_PRUNE_CONFIRM', 'Do you confirm the deletion of %u elements?');
 define('_AM_ISEARCH_NOTHING_PRUNE', 'Nothing to delete');
 define('_AM_ISEARCH_EXPORT', 'Export');
-define('_AM_ISEARCH_EXPORT_BETWEEN','Export searches made between ');
+define('_AM_ISEARCH_EXPORT_BETWEEN', 'Export searches made between ');
 define('_AM_ISEARCH_EXPORT_AND', ' and ');
 define('_AM_ISEARCH_DATE_FORMAT', 'Date\'s format (in PHP format)');
 define('_AM_ISEARCH_DELIMITER', 'Fields delimiter');

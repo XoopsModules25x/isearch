@@ -125,7 +125,8 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      *
      * @return bool|int insert status or new ID if successful insert
      */
-    public function insert($searches, $force = false) {
+    public function insert($searches, $force = false)
+    {
         if ('searches' !== get_class($searches)) {
             return false;
         }
@@ -139,7 +140,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
             return false;
         }
         foreach ($searches->cleanVars as $k => $v) {
-                ${$k} = $v;
+            ${$k} = $v;
         }
         if ($searches->isNew()) {
             $ip     = isearch_IP();

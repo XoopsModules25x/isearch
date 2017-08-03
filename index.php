@@ -47,8 +47,8 @@ if ((int)$visiblekeywords > 0) {
     $xoopsTpl->assign('pagenav', $pagenav->renderNav());
 
     $elements = $isearchHandler->getObjects($critere);
-    foreach($elements as $oneelement) {
-        $xoopsTpl->append('keywords',array('keyword' => $oneelement->getVar('keyword'),
+    foreach ($elements as $oneelement) {
+        $xoopsTpl->append('keywords', array('keyword' => $oneelement->getVar('keyword'),
                                               'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))))
         );
     }

@@ -35,7 +35,7 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
     $uid = 0;
     $datesearch = date('Y-m-d h:i:s');
 
-    if ($GLOBALS['xoopsUser'] instanceof XoopsUser ) {
+    if ($GLOBALS['xoopsUser'] instanceof XoopsUser) {
         $groups =& $GLOBALS['xoopsUser']->getGroups();
         $uid    = $GLOBALS['xoopsUser']->getVar('uid');
     } else {
@@ -76,9 +76,9 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
         if (is_array($queryarray) && $count >0) {
             for ($i = 0; $i < $count; ++$i) {
                 $isearch = $isearchHandler->create(true);
-                $isearch->setVar('uid',$uid);
-                $isearch->setVar('datesearch',$datesearch);
-                $isearch->setVar('keyword',$queryarray[$i]);
+                $isearch->setVar('uid', $uid);
+                $isearch->setVar('datesearch', $datesearch);
+                $isearch->setVar('keyword', $queryarray[$i]);
                 $isearchHandler->insert($isearch);
             }
         }

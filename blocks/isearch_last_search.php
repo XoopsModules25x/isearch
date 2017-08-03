@@ -41,7 +41,7 @@ function b_isearch_last_search_show()
         $critere->setOrder('DESC');
         $tmpisearch = new searches();
         $elements   = $isearchHandler->getObjects($critere);
-        foreach($elements as $oneelement) {
+        foreach ($elements as $oneelement) {
             $search = array('keyword' => $oneelement->getVar('keyword'),
                                'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),
                                 'uid' => $oneelement->getVar('keyword'),
