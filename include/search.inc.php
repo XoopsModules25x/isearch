@@ -48,7 +48,7 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid)
     $badIpsList  = $isHelper->getConfig('remove_ip', '');
     $countBadIps = 0;
     if ('' !== $badIps) {
-        if (false !== strstr($badIpsList, "\n")) {
+        if (false !== strpos($badIpsList, "\n")) {
             $badIps = implode("\n", $badIpsList);
         } else {
             $badIps[0] = $badIpsList;
