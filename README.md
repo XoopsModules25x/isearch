@@ -3,9 +3,6 @@
 [![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 
-
-[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
-[![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](http://xoops.org)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/XoopsModules25x/isearch.svg?style=flat)](https://scrutinizer-ci.com/g/XoopsModules25x/isearch/?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2c1ce57c3e6f4d5b9b55198b4305cd14)](https://www.codacy.com/app/XoopsModules25x/isearch_2)
 [![Code Climate](https://img.shields.io/codeclimate/github/XoopsModules25x/isearch.svg?style=flat)](https://codeclimate.com/github/XoopsModules25x/isearch)
