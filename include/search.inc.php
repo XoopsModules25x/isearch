@@ -29,14 +29,14 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid)
     include_once $isHelper->path('include/functions.php');
     include_once $isHelper->path('class/blacklist.php');
 
-    $isearch_handler = $isHelper->getHandler('searches');
+    $isearchHandler = $isHelper->getHandler('searches');
 
     $banned = $isHelper->getConfig('bannedgroups', array());
     $uid = 0;
     $datesearch = date('Y-m-d h:i:s');
 
     if ($GLOBALS['xoopsUser'] instanceof XoopsUser ) {
-        $groups = $GLOBALS['xoopsUser']->getGroups();
+        $groups =& $GLOBALS['xoopsUser']->getGroups();
         $uid    = $GLOBALS['xoopsUser']->getVar('uid');
     } else {
         $groups = array(XOOPS_GROUP_ANONYMOUS);
@@ -75,11 +75,11 @@ function isearch_search($queryarray, $andor, $limit, $offset, $userid)
     if (0 == count(array_intersect($groups, $banned)) && 0 == $userid) {    // If it's not a banned user and if we are not viewing someone's profile
         if (is_array($queryarray) && $count >0) {
             for ($i = 0; $i < $count; ++$i) {
-                $isearch = $isearch_handler->create(true);
+                $isearch = $isearchHandler->create(true);
                 $isearch->setVar('uid',$uid);
                 $isearch->setVar('datesearch',$datesearch);
                 $isearch->setVar('keyword',$queryarray[$i]);
-                $isearch_handler->insert($isearch);
+                $isearchHandler->insert($isearch);
             }
         }
     }

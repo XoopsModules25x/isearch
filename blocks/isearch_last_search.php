@@ -25,14 +25,14 @@ function b_isearch_last_search_show()
 
     include_once $isHelper->path('include/functions.php');
 
-    $isearch_handler = $isHelper->getHandler('searches');
+    $isearchHandler = $isHelper->getHandler('searches');
 
     $block = array();
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
 
     if ($visiblekeywords > 0) {
         $block['visiblekeywords'] = $visiblekeywords;
-        $totalcount = $isearch_handler->getCount();
+        $totalcount = $isearchHandler->getCount();
         $start      = 0;
         $critere    = new Criteria('isearchid', 0, '<>');
         $critere->setSort('datesearch');
@@ -40,7 +40,7 @@ function b_isearch_last_search_show()
         $critere->setStart($start);
         $critere->setOrder('DESC');
         $tmpisearch = new searches();
-        $elements   = $isearch_handler->getObjects($critere);
+        $elements   = $isearchHandler->getObjects($critere);
         foreach($elements as $oneelement) {
             $search = array('keyword' => $oneelement->getVar('keyword'),
                                'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),

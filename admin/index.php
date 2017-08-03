@@ -25,8 +25,8 @@ include_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 /* @var Xmf\Module\Helper $isHelper */
-$isearch_handler = $isHelper->getHandler('searches');
-$totalSearches   = $isearch_handler->getCount();
+$isearchHandler = $isHelper->getHandler('searches');
+$totalSearches   = $isearchHandler->getCount();
 
 $adminObject->addInfoBox(_MD_ISEARCH_SEARCH_CONF);
 $adminObject->addInfoBoxLine(sprintf('<span class="infolabel">' . _MD_ISEARCH_TOTAL_SEARCHES . '</span>', '<span class="infotext green bold">' . $totalSearches . '</span>'));

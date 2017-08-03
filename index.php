@@ -19,9 +19,9 @@
  * ****************************************************************************
  */
 
-require '../../mainfile.php';
+require __DIR__ . '/../../mainfile.php';
 
-$xoopsOption['template_main'] = 'isearch_index.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'isearch_index.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
 $moduleDirName = basename(__DIR__);
@@ -29,13 +29,13 @@ $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
 
 include_once $isHelper->path('include/functions.php');
 
-$isearch_handler = $isHelper->getHandler('searches');
+$isearchHandler = $isHelper->getHandler('searches');
 
 $visiblekeywords = $isHelper->getConfig('showindex', 10);
 $xoopsTpl->assign('visiblekeywords', (int)$visiblekeywords);
 
 if ((int)$visiblekeywords > 0) {
-    $totalcount = $isearch_handler->getCount();
+    $totalcount = $isearchHandler->getCount();
     $start      = isset($_GET['start']) ? (int)$_GET['start'] : 0;
     $critere    = new Criteria('keyword');
     $critere->setSort('datesearch');
@@ -46,7 +46,7 @@ if ((int)$visiblekeywords > 0) {
     $pagenav = new XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
     $xoopsTpl->assign('pagenav', $pagenav->renderNav());
 
-    $elements = $isearch_handler->getObjects($critere);
+    $elements = $isearchHandler->getObjects($critere);
     foreach($elements as $oneelement) {
         $xoopsTpl->append('keywords',array('keyword' => $oneelement->getVar('keyword'),
                                               'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))))

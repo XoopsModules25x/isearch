@@ -44,11 +44,11 @@ function isearch_getmoduleoption($option, $repmodule='isearch')
         }
 
     } else {
-        $module_handler = xoops_gethandler('module');
-        $module = $module_handler->getByDirname($repmodule);
-        $config_handler = xoops_gethandler('config');
+        $moduleHandler = xoops_getHandler('module');
+        $module = $moduleHandler->getByDirname($repmodule);
+        $configHandler = xoops_getHandler('config');
         if ($module) {
-            $moduleConfig = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+            $moduleConfig = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
             if(isset($moduleConfig[$option])) {
                 $retval= $moduleConfig[$option];
             }

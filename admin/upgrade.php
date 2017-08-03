@@ -18,7 +18,7 @@
  *
  * ****************************************************************************
  */
-include_once '../../../include/cp_header.php';
+include_once __DIR__ . '/../../../include/cp_header.php';
 xoops_cp_header();
 include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
 

@@ -106,7 +106,7 @@ $modversion['config'][1]['valuetype'] = 'int';
 $modversion['config'][1]['default'] = 10;
 
 // Groups that should not be recorded
-$member_handler = xoops_getHandler('member');
+$memberHandler = xoops_getHandler('member');
 
 $modversion['config'][2]['name'] = 'bannedgroups';
 $modversion['config'][2]['title'] = '_MI_ISEARCH_OPT1';
@@ -114,7 +114,7 @@ $modversion['config'][2]['description'] = '_MI_ISEARCH_OPT1_DSC';
 $modversion['config'][2]['formtype'] = 'select_multi';
 $modversion['config'][2]['valuetype'] = 'array';
 $modversion['config'][2]['default'] = array();
-$modversion['config'][2]['options'] = array_flip($member_handler->getGroupList());
+$modversion['config'][2]['options'] = array_flip($memberHandler->getGroupList());
 
 // How many keywords to see at a time in the admin's part of the module ?
 $modversion['config'][3]['name'] = 'admincount';

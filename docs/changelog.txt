@@ -32,6 +32,7 @@
 - 'str(i)str(...)' could be replaced with 'str(i)pos(...)' (mamba)
 - PhpDocs Missing @return tag (mamba)
 - update readme.md (mamba)
+- changed _handler to Handler (mamba)
 
 <h5>1.9</h5>
    <hr>

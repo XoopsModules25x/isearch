@@ -32,7 +32,7 @@ $keywords_count = $isHelper->getConfig('admincount', 10);
 // ****************************************************************************
 
 $op = Xmf\Request::getCmd('op', 'stats');
-$isearch_handler = $isHelper->getHandler('searches');
+$isearchHandler = $isHelper->getHandler('searches');
 
 switch ($op) {
     // Remove data by keyword or by date
@@ -83,7 +83,7 @@ switch ($op) {
             $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']),'='));
         }
         $count=0;
-        $count=$isearch_handler->getCount($criteria);
+        $count=$isearchHandler->getCount($criteria);
         if($count>0) {
             $msg=sprintf(_AM_ISEARCH_PRUNE_CONFIRM,$count);
             xoops_confirm(array( 'op' => 'pruneKeywords', 'keyword' => $keyword, 'prune_date' => $timestamp, 'ip' => $ip,'ok' => 1), 'main.php', $msg);
@@ -120,7 +120,7 @@ switch ($op) {
 
         if(1 === (int)$_POST['ok']) {
             xoops_cp_header();
-            $isearch_handler->deleteAll($criteria);
+            $isearchHandler->deleteAll($criteria);
             redirect_header('main.php?op=purge', 2, _AM_ISEARCH_DBUPDATED);
         }
         break;
@@ -134,10 +134,10 @@ switch ($op) {
     case 'removekeyword':
         xoops_cp_header();
         if(0 !== (int)$_GET['id']) {
-            $tmp_search = $isearch_handler->get((int)$_GET['id']);
+            $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $critere = new Criteria('keyword', $tmp_search->getVar('keyword'),'=');
-                $isearch_handler->deleteAll($critere);
+                $isearchHandler->deleteAll($critere);
             }
             unset($tmp_search);
         }
@@ -153,7 +153,7 @@ switch ($op) {
         include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
         $min = $max   = '';
         $mint = $maxt = 0;
-        $isearch_handler->getMinMaxDate($min, $max);
+        $isearchHandler->getMinMaxDate($min, $max);
         $mint = strtotime($min);
         $maxt = strtotime($max);
 
@@ -216,7 +216,7 @@ switch ($op) {
         $criteria->setSort('datesearch');
         $criteria->setOrder('desc');
 
-        $tbl=$isearch_handler->getObjects($criteria);
+        $tbl=$isearchHandler->getObjects($criteria);
         if(count($tbl)>0) {
             $fp = fopen($searchfile,'w');
             if(!$fp) {
@@ -297,7 +297,7 @@ switch ($op) {
     case 'addblacklist':
         include_once XOOPS_ROOT_PATH.'/modules/isearch/class/blacklist.php';
         if(0 !== (int)$_GET['id']) {
-            $tmp_search = $isearch_handler->get((int)$_GET['id']);
+            $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $keyword = $tmp_search->getVar('keyword');
                 $blacklist = new isearch_blacklist();
@@ -349,10 +349,10 @@ switch ($op) {
      case 'removeip':
         xoops_cp_header();
         if(is_numeric($_GET['id']) && 0 !== (int)$_GET['id']) {
-            $tmp_search = $isearch_handler->get((int)$_GET['id']);
+            $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if(is_object($tmp_search)) {
                 $critere = new Criteria('ip', $tmp_search->getVar('ip'),'=');
-                $isearch_handler->deleteAll($critere);
+                $isearchHandler->deleteAll($critere);
             }
             unset($tmp_search);
         }
@@ -408,10 +408,10 @@ switch ($op) {
 
         if($s_uid !== '') {
             if(!is_numeric($s_uid)) {
-                $member_handler = xoops_getHandler('member');
+                $memberHandler = xoops_getHandler('member');
                 $crituser = new Criteria('uname', $s_uid,'LIKE');
                 $tbl_users = array();
-                $tbl_users = $member_handler->getUsers($crituser);
+                $tbl_users = $memberHandler->getUsers($crituser);
                 if(count($tbl_users)>0) {
                     $tbl_users2 = array();
                     foreach($tbl_users as $one_user) {
@@ -437,11 +437,11 @@ switch ($op) {
         $critere->setOrder('DESC');
 
         // Total count of keywords
-        $totalcount=$isearch_handler->getCount($critere);
+        $totalcount=$isearchHandler->getCount($critere);
         echo '<h3>'.sprintf(_AM_ISEARCH_STATS,$totalcount).'</h3>';
 
         $pagenav = new XoopsPageNav( $totalcount, $keywords_count, $start, 'start1', $more_parameter);
-        $elements = $isearch_handler->getObjects($critere);
+        $elements = $isearchHandler->getObjects($critere);
 //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\"><a href='#' onclick=\"toggle('keywordscount'); toggleIcon('keywordscounticon');\">";
 //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='keywordscounticon' name='keywordscounticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_KEYWORDS."</h4>";
         echo '<h4 style="color: #2F5376; margin: 6px 0 0 0;">';
@@ -473,8 +473,8 @@ switch ($op) {
         }
         $_SESSION['start2']=$start;
 
-        $pagenav = new XoopsPageNav($isearch_handler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
-        $elements = $isearch_handler->getMostSearched($start,$keywords_count);
+        $pagenav = new XoopsPageNav($isearchHandler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
+        $elements = $isearchHandler->getMostSearched($start,$keywords_count);
 //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('mostsearch'); toggleIcon('mostsearchicon');\">";
 //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
         echo '<h4 style="color: #2F5376; margin: 6px 0 0 0;">';
@@ -505,8 +505,8 @@ switch ($op) {
         }
         $_SESSION['start3']=$start;
 
-        $pagenav = new XoopsPageNav($isearch_handler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
-        $elements = $isearch_handler->getBiggestContributors($start,$keywords_count);
+        $pagenav = new XoopsPageNav($isearchHandler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
+        $elements = $isearchHandler->getBiggestContributors($start,$keywords_count);
 //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('bigcontribut'); toggleIcon('bigcontributicon');\">";
 //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='bigcontributicon' name='bigcontributicon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
         echo '<h4 style="color: #2F5376; margin: 6px 0 0 0;">';
@@ -531,8 +531,8 @@ switch ($op) {
             $start = (int)$_SESSION['start4'];
         }
         $_SESSION['start4']=$start;
-        $pagenav = new XoopsPageNav($isearch_handler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
-        $elements = $isearch_handler->GetCountPerDay($start,$keywords_count);
+        $pagenav = new XoopsPageNav($isearchHandler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
+        $elements = $isearchHandler->GetCountPerDay($start,$keywords_count);
 //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('daystat'); toggleIcon('daystaticon');\">";
 //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='daystaticon' name='daystaticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
         echo '<h4 style="color: #2F5376; margin: 6px 0 0 0;">';
@@ -558,8 +558,8 @@ switch ($op) {
         }
         $_SESSION['start4']=$start;
 
-        $pagenav = new XoopsPageNav($isearch_handler->getIPsCount(), $keywords_count, $start, 'start4', 'op=stats');
-        $elements = $isearch_handler->getIPs($start,$keywords_count);
+        $pagenav = new XoopsPageNav($isearchHandler->getIPsCount(), $keywords_count, $start, 'start4', 'op=stats');
+        $elements = $isearchHandler->getIPs($start,$keywords_count);
 //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('ipcount'); toggleIcon('ipcounticon');\">";
 //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='ipcounticon' name='ipcounticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_IP."</h4>";
         echo '<h4 style="color: #2F5376; margin: 6px 0 0 0;">';
