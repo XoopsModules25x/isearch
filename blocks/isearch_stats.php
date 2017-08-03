@@ -23,7 +23,7 @@ function b_isearch_stats_show()
     $moduleDirName = basename(dirname(__DIR__));
     $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
 
-    include_once $isHelper->path('include/functions.php');
+    require_once $isHelper->path('include/functions.php');
 
     $isearchHandler = $isHelper->getHandler('searches');
 

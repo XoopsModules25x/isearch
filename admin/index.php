@@ -21,7 +21,7 @@
  * @see       Xmf\Module\Admin
  */
 
-include_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 /* @var Xmf\Module\Helper $isHelper */
@@ -34,4 +34,4 @@ $adminObject->addInfoBoxLine(sprintf('<span class="infolabel">' . _MD_ISEARCH_TO
 $adminObject->displayNavigation('index.php');
 $adminObject->displayIndex();
 
-include __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

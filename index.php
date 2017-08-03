@@ -22,12 +22,12 @@
 require __DIR__ . '/../../mainfile.php';
 
 $GLOBALS['xoopsOption']['template_main'] = 'isearch_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 $moduleDirName = basename(__DIR__);
 $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
 
-include_once $isHelper->path('include/functions.php');
+require_once $isHelper->path('include/functions.php');
 
 $isearchHandler = $isHelper->getHandler('searches');
 
@@ -42,7 +42,7 @@ if ((int)$visiblekeywords > 0) {
     $critere->setLimit($visiblekeywords);
     $critere->setStart($start);
     $critere->setOrder('DESC');
-    include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+    require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
     $pagenav = new XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
     $xoopsTpl->assign('pagenav', $pagenav->renderNav());
 
@@ -55,4 +55,4 @@ if ((int)$visiblekeywords > 0) {
     }
 }
 
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

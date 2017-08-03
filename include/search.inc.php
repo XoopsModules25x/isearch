@@ -26,8 +26,8 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
     $moduleDirName = basename(dirname(__DIR__));
     $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
 
-    include_once $isHelper->path('include/functions.php');
-    include_once $isHelper->path('class/blacklist.php');
+    require_once $isHelper->path('include/functions.php');
+    require_once $isHelper->path('class/blacklist.php');
 
     $isearchHandler = $isHelper->getHandler('searches');
 

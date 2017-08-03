@@ -19,8 +19,8 @@
  * ****************************************************************************
  */
 require_once __DIR__ . '/admin_header.php';
-include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-include_once $isHelper->path('include/functions.php');
+require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+require_once $isHelper->path('include/functions.php');
 
 $myts = MyTextSanitizer::getInstance();
 
@@ -37,7 +37,7 @@ $isearchHandler = $isHelper->getHandler('searches');
 switch ($op) {
     // Remove data by keyword or by date
     case 'purge':
-        include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+        require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=purge');
         $sform = new XoopsThemeForm(_AM_ISEARCH_PRUNE, 'pruneform', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
@@ -50,7 +50,7 @@ switch ($op) {
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
-        include __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 
     // Ask a confirmation before to remove keywords
@@ -90,7 +90,7 @@ switch ($op) {
         } else {
             printf(_AM_ISEARCH_NOTHING_PRUNE);
         }
-        include __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 
     // Effectively delete keywords
@@ -150,7 +150,7 @@ switch ($op) {
     case 'export':
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=export');
-        include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+        require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         $min  = $max = '';
         $mint = $maxt = 0;
         $isearchHandler->getMinMaxDate($min, $max);
@@ -175,7 +175,7 @@ switch ($op) {
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
-        include __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 
     /**
@@ -243,7 +243,7 @@ switch ($op) {
         } else {
             echo _AM_ISEARCH_NOTHING_TO_EXPORT;
         }
-        include __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 
     /**
@@ -265,8 +265,8 @@ switch ($op) {
     case 'blacklist':
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=blacklist');
-        include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        include_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
+        require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+        require_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
         echo '<h3>' . _AM_ISEARCH_BLACKLIST . '</h3>';
         $sform = new XoopsThemeForm(_AM_ISEARCH_BLACKLIST, 'MetagenBlackList', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
         $sform->addElement(new XoopsFormHidden('op', 'MetagenBlackList'), false);
@@ -298,14 +298,14 @@ switch ($op) {
         $add_tray->addElement($add_btn, false);
         $sform->addElement($add_tray);
         $sform->display();
-        include __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 
     /**
      * Add a word in the blacklist
      */
     case 'addblacklist':
-        include_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
+        require_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
         if (0 !== (int)$_GET['id']) {
             $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if (is_object($tmp_search)) {
@@ -327,7 +327,7 @@ switch ($op) {
             redirect_header($_SERVER['PHP_SELF'], 3, implode('<br>', $xoopsSecurity->getErrors()));
         }
 
-        include_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
+        require_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
         $blacklist = new IsearchBlacklist();
         $keywords  = $blacklist->getAllKeywords();
 
@@ -632,7 +632,7 @@ switch ($op) {
             echo "<tr class='" . $class . "'><td align='center'>" . $oneip . "</td><td align='center'>" . $onecount . '</td></tr>';
         }
         echo "</table><div align='right'>" . $pagenav->renderNav() . '</div></div><br>';
-        include __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 }
 xoops_cp_footer();

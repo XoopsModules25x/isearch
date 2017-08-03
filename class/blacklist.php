@@ -40,7 +40,7 @@ class IsearchBlacklist
         $myts     = MyTextSanitizer::getInstance();
         $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';
         if (file_exists($filename)) {
-            include_once $filename;
+            require_once $filename;
             foreach ($tbl_black_list as $onekeyword) {
                 if ('' !== xoops_trim($onekeyword)) {
                     $onekeyword       = $myts->htmlSpecialChars($onekeyword);

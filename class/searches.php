@@ -19,7 +19,7 @@
  * ****************************************************************************
  */
 
-include_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
+require_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
 
 class Searches extends XoopsObject
 {

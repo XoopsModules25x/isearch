@@ -23,7 +23,7 @@
  * @see       Xmf\Module\Admin
  */
 
-include_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 
 xoops_cp_header();
 
@@ -31,4 +31,4 @@ $adminObject->displayNavigation('about.php');
 $adminObject->setPaypal('xoopsfoundation@gmail.com');
 $adminObject->displayAbout(false);
 
-include __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';
