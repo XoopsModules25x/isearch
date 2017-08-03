@@ -92,10 +92,11 @@ class isearch_blacklist
     }
 
     /**
-      * Remove, from a list, all the blacklisted words
-      *
-      * @param array $keywords
-      */
+     * Remove, from a list, all the blacklisted words
+     *
+     * @param array $keywords
+     * @return array
+     */
     public function remove_blacklisted($keywords)
     {
         $ret = array();
