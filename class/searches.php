@@ -47,7 +47,7 @@ class Searches extends XoopsObject
      */
     public function uname($uid = 0)
     {
-        static $tblusers = array();
+        static $tblusers = [];
         $option = -1;
         if (empty($uid)) {
             $uid = $this->getVar('uid');
@@ -233,7 +233,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getCountPerDay($start, $limit)
     {
-        $ret    = array();
+        $ret    = [];
         $sql    = "SELECT COUNT(date_format(datesearch, '%X-%m-%d')) AS cpt, date_format(datesearch, '%X-%m-%d') AS shdate FROM " . $this->db->prefix('isearch_searches') . " GROUP BY date_format(datesearch, '%X-%m-%d') ORDER BY date_format(datesearch, '%X-%m-%d') DESC";
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
@@ -268,7 +268,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getIPs($start, $limit, $id_as_key = false)
     {
-        $ret    = array();
+        $ret    = [];
         $sql    = "SELECT COUNT(*) AS cpt, ip FROM " . $this->db->prefix('isearch_searches') . " GROUP BY ip ORDER BY cpt DESC";
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
@@ -305,7 +305,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getBiggestContributors($start, $limit, $id_as_key = false)
     {
-        $ret    = array();
+        $ret    = [];
         $sql    = "SELECT COUNT(*) AS cpt, uid FROM " . $this->db->prefix('isearch_searches') . " GROUP BY uid ORDER BY cpt DESC";
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
@@ -343,11 +343,11 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     public function getMostSearched($start, $limit, $id_as_key = false)
     {
         $ts     = MyTextSanitizer::getInstance();
-        $ret    = array();
+        $ret    = [];
         $sql    = "SELECT COUNT(keyword) AS cpt, keyword, isearchid FROM " . $this->db->prefix('isearch_searches') . ' GROUP BY keyword ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
-            $ret[$myrow['isearchid']] = array('keyword' => $ts->htmlSpecialChars($myrow['keyword']), 'count' => (int)$myrow['cpt']);
+            $ret[$myrow['isearchid']] = ['keyword' => $ts->htmlSpecialChars($myrow['keyword']), 'count' => (int)$myrow['cpt']];
         }
 
         return $ret;

@@ -86,7 +86,7 @@ switch ($op) {
         $count = $isearchHandler->getCount($criteria);
         if ($count > 0) {
             $msg = sprintf(_AM_ISEARCH_PRUNE_CONFIRM, $count);
-            xoops_confirm(array('op' => 'pruneKeywords', 'keyword' => $keyword, 'prune_date' => $timestamp, 'ip' => $ip, 'ok' => 1), 'main.php', $msg);
+            xoops_confirm(['op' => 'pruneKeywords', 'keyword' => $keyword, 'prune_date' => $timestamp, 'ip' => $ip, 'ok' => 1], 'main.php', $msg);
         } else {
             printf(_AM_ISEARCH_NOTHING_PRUNE);
         }
@@ -193,7 +193,7 @@ switch ($op) {
         $delimiter   = isset($_POST['delimiter']) ? $_POST['delimiter'] : ';';
         $searchfile  = XOOPS_ROOT_PATH . '/uploads/isearch_keywords.txt';
         $searchfile2 = XOOPS_URL . '/uploads/isearch_keywords.txt';
-        $tbl         = array();
+        $tbl         = [];
 
         if (isset($_POST['date1']) && isset($_POST['date2'])) {
             $startdate = date('Y-m-d', strtotime($_POST['date1']));
@@ -275,7 +275,7 @@ switch ($op) {
         $remove_tray = new XoopsFormElementTray(_AM_ISEARCH_BLACKLIST);
         $remove_tray->setDescription(_AM_ISEARCH_BLACKLIST_DESC);
         $blacklist = new XoopsFormSelect('', 'blacklist', '', 5, true);
-        $words     = array();
+        $words     = [];
         $metablack = new IsearchBlacklist();
         $words     = $metablack->getAllKeywords();
         if (is_array($words) && count($words) > 0) {
@@ -420,10 +420,10 @@ switch ($op) {
             if (!is_numeric($s_uid)) {
                 $memberHandler = xoops_getHandler('member');
                 $crituser      = new Criteria('uname', $s_uid, 'LIKE');
-                $tbl_users     = array();
+                $tbl_users     = [];
                 $tbl_users     = $memberHandler->getUsers($crituser);
                 if (count($tbl_users) > 0) {
-                    $tbl_users2 = array();
+                    $tbl_users2 = [];
                     foreach ($tbl_users as $one_user) {
                         $tbl_users2[] = $one_user->getvar('uid');
                     }

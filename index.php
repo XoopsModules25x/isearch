@@ -48,10 +48,10 @@ if ((int)$visiblekeywords > 0) {
 
     $elements = $isearchHandler->getObjects($critere);
     foreach ($elements as $oneelement) {
-        $xoopsTpl->append('keywords', array(
+        $xoopsTpl->append('keywords', [
             'keyword' => $oneelement->getVar('keyword'),
             'date'    => formatTimestamp(strtotime($oneelement->getVar('datesearch')))
-        ));
+        ]);
     }
 }
 

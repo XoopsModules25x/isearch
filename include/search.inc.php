@@ -19,7 +19,7 @@
  * ****************************************************************************
  */
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
 {
@@ -31,7 +31,7 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
 
     $isearchHandler = $isHelper->getHandler('searches');
 
-    $banned     = $isHelper->getConfig('bannedgroups', array());
+    $banned     = $isHelper->getConfig('bannedgroups', []);
     $uid        = 0;
     $datesearch = date('Y-m-d h:i:s');
 
@@ -39,12 +39,12 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
         $groups =& $GLOBALS['xoopsUser']->getGroups();
         $uid    = $GLOBALS['xoopsUser']->getVar('uid');
     } else {
-        $groups = array(XOOPS_GROUP_ANONYMOUS);
+        $groups = [XOOPS_GROUP_ANONYMOUS];
     }
 
     // Check bad IPs
     $add         = true;
-    $badIps      = array();
+    $badIps      = [];
     $badIpsList  = $isHelper->getConfig('remove_ip', '');
     $countBadIps = 0;
     if ('' !== $badIps) {
@@ -65,7 +65,7 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
         }
     }
     if (!$add) {
-        return array();
+        return [];
     }
 
     $blacklist = new IsearchBlacklist();
@@ -84,5 +84,5 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
         }
     }
 
-    return array();
+    return [];
 }

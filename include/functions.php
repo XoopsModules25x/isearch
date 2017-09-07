@@ -21,7 +21,7 @@
 
 use WideImage\Operation\AddNoise;
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * Returns a module's option
@@ -135,7 +135,7 @@ function isearch_IP()
     } elseif (!empty($_SERVER['HTTP_COMING_FROM'])) {
         $proxy_ip = $_SERVER['HTTP_COMING_FROM'];
     }
-    $regs = array();
+    $regs = [];
     if (!empty($proxy_ip) && ($is_ip = preg_match('/^([0-9]{1,3}\.){3,3}[0-9]{1,3}/', $proxy_ip, $regs)) && count($regs) > 0) {
         $the_IP = $regs[0];
     } else {

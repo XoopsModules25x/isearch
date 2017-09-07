@@ -36,7 +36,7 @@ class IsearchBlacklist
      */
     public function getAllKeywords()
     {
-        $ret      = $tbl_black_list = array();
+        $ret      = $tbl_black_list = [];
         $myts     = MyTextSanitizer::getInstance();
         $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';
         if (file_exists($filename)) {
@@ -103,7 +103,7 @@ class IsearchBlacklist
      */
     public function removeBlacklisted($keywords)
     {
-        $ret       = array();
+        $ret       = [];
         $tmp_array = array_values($this->keywords);
         if (is_array($keywords) && count($keywords) > 0) {
             foreach ($keywords as $keyword) {

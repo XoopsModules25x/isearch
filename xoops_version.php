@@ -18,7 +18,7 @@
  *
  * ****************************************************************************
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 $modversion['version']       = 1.91;
 $modversion['module_status'] = 'ALPHA 1';
@@ -59,7 +59,7 @@ $modversion['system_menu'] = 1;
 
 $modversion['min_php']   = '5.3.7';
 $modversion['min_xoops'] = '2.5.8';
-$modversion['min_db']    = array('mysql' => '5.0.7', 'mysqli' => '5.0.7');
+$modversion['min_db']    = ['mysql' => '5.0.7', 'mysqli' => '5.0.7'];
 $modversion['min_admin'] = '1.2';
 
 // Templates
@@ -112,7 +112,7 @@ $modversion['config'][2]['title']       = '_MI_ISEARCH_OPT1';
 $modversion['config'][2]['description'] = '_MI_ISEARCH_OPT1_DSC';
 $modversion['config'][2]['formtype']    = 'select_multi';
 $modversion['config'][2]['valuetype']   = 'array';
-$modversion['config'][2]['default']     = array();
+$modversion['config'][2]['default']     = [];
 $modversion['config'][2]['options']     = array_flip($memberHandler->getGroupList());
 
 // How many keywords to see at a time in the admin's part of the module ?
@@ -138,7 +138,7 @@ $modversion['config'][5]['description'] = '_MI_ISEARCH_USE_UNAME_DSC';
 $modversion['config'][5]['formtype']    = 'select';
 $modversion['config'][5]['valuetype']   = 'int';
 $modversion['config'][5]['default']     = 0;
-$modversion['config'][5]['options']     = array(_MI_ISEARCH_USERNAME => 0, _MI_ISEARCH_REALNAME => 1);
+$modversion['config'][5]['options']     = [_MI_ISEARCH_USERNAME => 0, _MI_ISEARCH_REALNAME => 1];
 
 // Notifications
 $modversion['hasNotification'] = 0;

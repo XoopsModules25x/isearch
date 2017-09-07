@@ -27,7 +27,7 @@ function b_isearch_last_search_show()
 
     $isearchHandler = $isHelper->getHandler('searches');
 
-    $block           = array();
+    $block           = [];
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
 
     if ($visiblekeywords > 0) {
@@ -42,13 +42,13 @@ function b_isearch_last_search_show()
         $tmpisearch = new searches();
         $elements   = $isearchHandler->getObjects($critere);
         foreach ($elements as $oneelement) {
-            $search              = array(
+            $search              = [
                 'keyword' => $oneelement->getVar('keyword'),
                 'date'    => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),
                 'uid'     => $oneelement->getVar('keyword'),
                 'uname'   => $tmpisearch->uname($oneelement->getVar('uid')),
                 'link'    => "<a href='" . XOOPS_URL . '/search.php?query=' . $oneelement->getVar('keyword') . "&action=results' target='_blank'>"
-            );
+            ];
             $block['searches'][] = $search;
             unset($search);
         }
