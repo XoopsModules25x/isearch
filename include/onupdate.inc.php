@@ -12,7 +12,7 @@
 /**
  * Module: iSearch
  *
- * @package   module\isearch\include
+ * @package   module\Isearch\include
  * @author    Richard Griffith <richard@geekwright.com>
  * @author    trabis <lusopoemas@gmail.com>
  * @author    XOOPS Module Development Team
@@ -42,15 +42,14 @@ if ((!defined('XOOPS_ROOT_PATH'))
  */
 function xoops_module_pre_update_isearch(XoopsModule $module, $prev_version)
 {
-    /** @var IsearchUtility $utilityClass */
-    $utilityClass = ucfirst($module->dirname()) . 'Utility';
-    if (!class_exists($utilityClass)) {
-        xoops_load('utility', $module->dirname());
-    }
+    /** @var Isearch\Helper $helper */
+    /** @var Isearch\Utility $utility */
+    $moduleDirName = basename(dirname(__DIR__));
+    $helper       = Isearch\Helper::getInstance();
+    $utility      = new Isearch\Utility();
 
-    $xoopsSuccess = $utilityClass::checkVerXoops($module);
-    $phpSuccess   = $utilityClass::checkVerPHP($module);
-
+    $xoopsSuccess = $utility::checkVerXoops($module);
+    $phpSuccess   = $utility::checkVerPhp($module);
     return $xoopsSuccess && $phpSuccess;
 }
 
@@ -68,17 +67,21 @@ function xoops_module_pre_update_isearch(XoopsModule $module, $prev_version)
  */
 function xoops_module_update_isearch(XoopsModule $module, $prev_version)
 {
-    $isHelper = Xmf\Module\Helper::getHelper($module->dirname());
+    $moduleDirName = basename(dirname(__DIR__));
+    $capsDirName   = strtoupper($moduleDirName);
 
-    $utilityClass = ucfirst($module->dirname()) . 'Utility';
-    if (!class_exists($utilityClass)) {
-        xoops_load('utility', $moduleDirName);
-    }
+    /** @var Isearch\Helper $helper */
+    /** @var Isearch\Utility $utility */
+    /** @var Isearch\Configurator $configurator */
+    $helper  = Isearch\Helper::getInstance();
+    $utility = new Isearch\Utility();
+    $configurator = new Isearch\Configurator();
+
 
     $success = true;
 
-    $isHelper->loadLanguage('modinfo');
-    $isHelper->loadLanguage('admin');
+    $helper->loadLanguage('modinfo');
+    $helper->loadLanguage('admin');
 
     //----------------------------------------------------------------
     // Remove previous .css, .js and .images directories since they've

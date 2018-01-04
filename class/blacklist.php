@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\class
+ * @package   modules\Isearch\class
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -37,7 +37,7 @@ class IsearchBlacklist
     public function getAllKeywords()
     {
         $ret      = $tbl_black_list = [];
-        $myts     = MyTextSanitizer::getInstance();
+        $myts     = \MyTextSanitizer::getInstance();
         $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';
         if (file_exists($filename)) {
             require_once $filename;
@@ -85,7 +85,7 @@ class IsearchBlacklist
      */
     public function addkeywords($keyword)
     {
-        $myts = MyTextSanitizer::getInstance();
+        $myts = \MyTextSanitizer::getInstance();
         if (is_array($keyword)) {
             foreach ($keyword as $onekeyword) {
                 $this->keywords[$onekeyword] = xoops_trim($myts->htmlSpecialChars($onekeyword));

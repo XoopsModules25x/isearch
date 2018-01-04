@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\class
+ * @package   modules\Isearch\class
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -31,11 +31,11 @@ class Searches extends XoopsObject
     public function __construct()
     {
         parent::__construct();
-        $this->initVar("isearchid", XOBJ_DTYPE_INT, null, false, 10);
-        $this->initVar("keyword", XOBJ_DTYPE_TXTBOX, null, false, 100);
-        $this->initVar("datesearch", XOBJ_DTYPE_TXTBOX, null, false, 19);
-        $this->initVar("uid", XOBJ_DTYPE_INT, null, false, 10);
-        $this->initVar("ip", XOBJ_DTYPE_TXTBOX, null, false, 32);
+        $this->initVar('isearchid', XOBJ_DTYPE_INT, null, false, 10);
+        $this->initVar('keyword', XOBJ_DTYPE_TXTBOX, null, false, 100);
+        $this->initVar('datesearch', XOBJ_DTYPE_TXTBOX, null, false, 19);
+        $this->initVar('uid', XOBJ_DTYPE_INT, null, false, 10);
+        $this->initVar('ip', XOBJ_DTYPE_TXTBOX, null, false, 32);
     }
 
     /**
@@ -148,7 +148,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         if ($searches->isNew()) {
             $ip     = isearch_IP();
             $format = "INSERT INTO '%s' (isearchid, keyword, datesearch, uid, ip) VALUES ('%u', '%s', '%s', '%u', '%s')";
-            $sql    = sprintf($format, $this->db->prefix('isearch_searches'), $this->db->genId($this->db->prefix("isearch_searches") . "_isearchid_seq"), $keyword, $datesearch, $uid, $this->db->quoteString($ip));
+            $sql    = sprintf($format, $this->db->prefix('isearch_searches'), $this->db->genId($this->db->prefix('isearch_searches') . '_isearchid_seq'), $keyword, $datesearch, $uid, $this->db->quoteString($ip));
             $force  = true;
         } else {
             $format = "UPDATE '%s' SET keyword='%d', datesearch='%s', uid='%u', ip='%s' WHERE isearchid = '%u'";
@@ -250,7 +250,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getIPsCount()
     {
-        $sql    = "SELECT COUNT(DISTINCT(ip)) AS cpt FROM " . $this->db->prefix('isearch_searches');
+        $sql    = 'SELECT COUNT(DISTINCT(ip)) AS cpt FROM ' . $this->db->prefix('isearch_searches');
         $result = $this->db->query($sql);
         $myrow  = $this->db->fetchArray($result);
 
@@ -269,7 +269,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     public function getIPs($start, $limit, $id_as_key = false)
     {
         $ret    = [];
-        $sql    = "SELECT COUNT(*) AS cpt, ip FROM " . $this->db->prefix('isearch_searches') . " GROUP BY ip ORDER BY cpt DESC";
+        $sql    = 'SELECT COUNT(*) AS cpt, ip FROM ' . $this->db->prefix('isearch_searches') . ' GROUP BY ip ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
             $ret[$myrow['ip']] = $myrow['cpt'];
@@ -285,7 +285,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getBiggestContributorsCount()
     {
-        $sql    = "SELECT COUNT(DISTINCT(uid)) AS cpt FROM " . $this->db->prefix('isearch_searches');
+        $sql    = 'SELECT COUNT(DISTINCT(uid)) AS cpt FROM ' . $this->db->prefix('isearch_searches');
         $result = $this->db->query($sql);
         $myrow  = $this->db->fetchArray($result);
 
@@ -306,7 +306,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     public function getBiggestContributors($start, $limit, $id_as_key = false)
     {
         $ret    = [];
-        $sql    = "SELECT COUNT(*) AS cpt, uid FROM " . $this->db->prefix('isearch_searches') . " GROUP BY uid ORDER BY cpt DESC";
+        $sql    = 'SELECT COUNT(*) AS cpt, uid FROM ' . $this->db->prefix('isearch_searches') . ' GROUP BY uid ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
             $ret[$myrow['uid']] = (int)$myrow['cpt'];
@@ -322,7 +322,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getMostSearchedCount()
     {
-        $sql    = "SELECT COUNT(DISTINCT(keyword)) AS cpt FROM " . $this->db->prefix('isearch_searches');
+        $sql    = 'SELECT COUNT(DISTINCT(keyword)) AS cpt FROM ' . $this->db->prefix('isearch_searches');
         $result = $this->db->query($sql);
         $myrow  = $this->db->fetchArray($result);
 
@@ -342,9 +342,9 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      */
     public function getMostSearched($start, $limit, $id_as_key = false)
     {
-        $ts     = MyTextSanitizer::getInstance();
+        $ts     = \MyTextSanitizer::getInstance();
         $ret    = [];
-        $sql    = "SELECT COUNT(keyword) AS cpt, keyword, isearchid FROM " . $this->db->prefix('isearch_searches') . ' GROUP BY keyword ORDER BY cpt DESC';
+        $sql    = 'SELECT COUNT(keyword) AS cpt, keyword, isearchid FROM ' . $this->db->prefix('isearch_searches') . ' GROUP BY keyword ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
         while ($myrow = $this->db->fetchArray($result)) {
             $ret[$myrow['isearchid']] = ['keyword' => $ts->htmlSpecialChars($myrow['keyword']), 'count' => (int)$myrow['cpt']];
@@ -366,7 +366,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         $ret = array();
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('isearch_searches');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' '.$criteria->renderWhere();
         if ($criteria->getSort() != '') {
             $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
@@ -399,7 +399,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('isearch_searches');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $this->db->query($sql);
@@ -419,7 +419,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('isearch_searches');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->queryF($sql)) {

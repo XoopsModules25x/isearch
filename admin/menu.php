@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\admin
+ * @package   modules\Isearch\admin
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -22,6 +22,7 @@
 use Xmf\Module\Admin;
 
 defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+
 
 $adminmenu = [
     [

@@ -12,7 +12,7 @@
 /**
  * Admin page footer file
  *
- * @package   module\isearch\admin
+ * @package   module\Isearch\admin
  * @author    Magic.Shao <magic.shao@gmail.com>, Susheng Yang <ezskyyoung@gmail.com>
  * @author    XOOPS Module Development Team
  * @copyright Copyright (c) 2001-2017 {@link https://xoops.org XOOPS Project}

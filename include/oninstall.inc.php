@@ -12,7 +12,7 @@
 /**
  * iSearch installation scripts
  *
- * @package   module\isearch\includes
+ * @package   module\Isearch\includes
  * @author    Taiwen Jiang <phppp@users.sourceforge.net>
  * @author    ZySpec <owners@zyspec.com>
  * @copyright https://xoops.org 2001-2017 XOOPS Project

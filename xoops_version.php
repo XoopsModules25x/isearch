@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\config
+ * @package   modules\Isearch\config
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -19,6 +19,8 @@
  * ****************************************************************************
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+
+include __DIR__ . '/preloads/autoloader.php';
 
 $modversion['version']       = 1.91;
 $modversion['module_status'] = 'ALPHA 1';

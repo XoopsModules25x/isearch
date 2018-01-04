@@ -12,7 +12,7 @@
 /**
  * Admin display header file
  *
- * @package   module\isearch\admin
+ * @package   module\Isearch\admin
  * @author    XOOPS Module Development Team
  * @copyright Copyright (c) 2001-2017 {@link https://xoops.org XOOPS Project}
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License

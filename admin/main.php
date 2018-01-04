@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\admin
+ * @package   modules\Isearch\admin
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -22,7 +22,7 @@ require_once __DIR__ . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 require_once $isHelper->path('include/functions.php');
 
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 
 // Module's parameters
 $keywords_count = $isHelper->getConfig('admincount', 10);
@@ -612,7 +612,7 @@ switch ($op) {
         if (isset($_GET['start4'])) {
             $start = (int)$_GET['start4'];
         } elseif (isset($_SESSION['start4'])) {
-            $start = (int)$_SESSION['start4'];
+            $start = $_SESSION['start4'];
         }
         $_SESSION['start4'] = $start;
 
