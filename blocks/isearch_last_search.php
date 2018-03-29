@@ -34,7 +34,7 @@ function b_isearch_last_search_show()
         $block['visiblekeywords'] = $visiblekeywords;
         $totalcount               = $isearchHandler->getCount();
         $start                    = 0;
-        $critere                  = new Criteria('isearchid', 0, '<>');
+        $critere                  = new \Criteria('isearchid', 0, '<>');
         $critere->setSort('datesearch');
         $critere->setLimit($visiblekeywords);
         $critere->setStart($start);

@@ -75,7 +75,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      *
      * @return void
      */
-    public function __construct(XoopsDatabase $db)
+    public function __construct(\XoopsDatabase $db)
     {
         parent::__construct($db, 'isearch_searches', 'searches', 'isearchid');
     }
@@ -127,7 +127,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
      * @return bool|int insert status or new ID if successful insert
      */
 
-    public function insert(XoopsObject $searches, $force = true)
+    public function insert(\XoopsObject $searches, $force = true)
     {
         if ('searches' !== get_class($searches)) {
             return false;
@@ -236,7 +236,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         $ret    = [];
         $sql    = "SELECT COUNT(date_format(datesearch, '%X-%m-%d')) AS cpt, date_format(datesearch, '%X-%m-%d') AS shdate FROM " . $this->db->prefix('isearch_searches') . " GROUP BY date_format(datesearch, '%X-%m-%d') ORDER BY date_format(datesearch, '%X-%m-%d') DESC";
         $result = $this->db->query($sql, $limit, $start);
-        while ($myrow = $this->db->fetchArray($result)) {
+        while (false !== ($myrow = $this->db->fetchArray($result))) {
             $ret[$myrow['shdate']] = $myrow['cpt'];
         }
 
@@ -271,7 +271,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         $ret    = [];
         $sql    = 'SELECT COUNT(*) AS cpt, ip FROM ' . $this->db->prefix('isearch_searches') . ' GROUP BY ip ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
-        while ($myrow = $this->db->fetchArray($result)) {
+        while (false !== ($myrow = $this->db->fetchArray($result))) {
             $ret[$myrow['ip']] = $myrow['cpt'];
         }
 
@@ -308,7 +308,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         $ret    = [];
         $sql    = 'SELECT COUNT(*) AS cpt, uid FROM ' . $this->db->prefix('isearch_searches') . ' GROUP BY uid ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
-        while ($myrow = $this->db->fetchArray($result)) {
+        while (false !== ($myrow = $this->db->fetchArray($result))) {
             $ret[$myrow['uid']] = (int)$myrow['cpt'];
         }
 
@@ -346,7 +346,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         $ret    = [];
         $sql    = 'SELECT COUNT(keyword) AS cpt, keyword, isearchid FROM ' . $this->db->prefix('isearch_searches') . ' GROUP BY keyword ORDER BY cpt DESC';
         $result = $this->db->query($sql, $limit, $start);
-        while ($myrow = $this->db->fetchArray($result)) {
+        while (false !== ($myrow = $this->db->fetchArray($result))) {
             $ret[$myrow['isearchid']] = ['keyword' => $ts->htmlSpecialChars($myrow['keyword']), 'count' => (int)$myrow['cpt']];
         }
 
@@ -378,7 +378,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         if (!$result) {
             return $ret;
         }
-        while ($myrow = $this->db->fetchArray($result)) {
+       while (false !== ($myrow = $this->db->fetchArray($result))) {
             $searches = new searches();
             $searches->assignVars($myrow);
             if (!$id_as_key) {

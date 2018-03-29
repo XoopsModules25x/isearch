@@ -40,13 +40,13 @@ switch ($op) {
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=purge');
-        $sform = new XoopsThemeForm(_AM_ISEARCH_PRUNE, 'pruneform', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
-        $sform->addElement(new XoopsFormTextDateSelect(_AM_ISEARCH_PRUNE_DATE, 'prune_date', 15, time()), false);
-        $sform->addElement(new XoopsFormText(_AM_ISEARCH_PRUNE_KEYONLY, 'keyword', 50, 255, ''), false);
-        $sform->addElement(new XoopsFormText(_AM_ISEARCH_IP, 'ip', 20, 255, ''), false);
-        $sform->addElement(new XoopsFormHidden('op', 'ConfirmBeforeToPrune'), false);
-        $button_tray = new XoopsFormElementTray(_AM_ISEARCH_PRUNE_DESC, '');
-        $submit_btn  = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
+        $sform = new \XoopsThemeForm(_AM_ISEARCH_PRUNE, 'pruneform', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
+        $sform->addElement(new \XoopsFormTextDateSelect(_AM_ISEARCH_PRUNE_DATE, 'prune_date', 15, time()), false);
+        $sform->addElement(new \XoopsFormText(_AM_ISEARCH_PRUNE_KEYONLY, 'keyword', 50, 255, ''), false);
+        $sform->addElement(new \XoopsFormText(_AM_ISEARCH_IP, 'ip', 20, 255, ''), false);
+        $sform->addElement(new \XoopsFormHidden('op', 'ConfirmBeforeToPrune'), false);
+        $button_tray = new \XoopsFormElementTray(_AM_ISEARCH_PRUNE_DESC, '');
+        $submit_btn  = new \XoopsFormButton('', 'post', _SUBMIT, 'submit');
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
@@ -61,7 +61,7 @@ switch ($op) {
 
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=purge');
-        $criteria = new CriteriaCompo();
+        $criteria = new \CriteriaCompo();
 
         $date      = '';
         $timestamp = 0;
@@ -72,15 +72,15 @@ switch ($op) {
             $date      = $_POST['prune_date'];
             $timestamp = mktime(0, 0, 0, (int)substr($date, 5, 2), (int)substr($date, 8, 2), (int)substr($date, 0, 4));
             $date      = date('Y-m-d', $timestamp);
-            $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $date, '<='));
+            $criteria->add(new \Criteria("date_format(datesearch,'%X-%m-%d')", $date, '<='));
         }
         if (isset($_POST['keyword']) && '' !== xoops_trim($_POST['keyword'])) {
             $keyword = $_POST['keyword'];
-            $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
+            $criteria->add(new \Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
         }
         if (isset($_POST['ip']) && '' !== xoops_trim($_POST['ip'])) {
             $ip = isset($_POST['ip']) ? $_POST['ip'] : '';
-            $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
+            $criteria->add(new \Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
         }
         $count = 0;
         $count = $isearchHandler->getCount($criteria);
@@ -102,20 +102,20 @@ switch ($op) {
         $timestamp = 0;
         $keyword   = '';
         $ip        = '';
-        $criteria  = new CriteriaCompo();
+        $criteria  = new \CriteriaCompo();
 
         if (isset($_POST['prune_date']) && 0 !== (int)$_POST['prune_date']) {
             $timestamp = $_POST['prune_date'];
             $date      = date('Y-m-d', (int)$timestamp);
-            $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $date, '<='));
+            $criteria->add(new \Criteria("date_format(datesearch,'%X-%m-%d')", $date, '<='));
         }
         if (isset($_POST['keyword']) && '' !== xoops_trim($_POST['keyword'])) {
             $keyword = $_POST['keyword'];
-            $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
+            $criteria->add(new \Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
         }
         if (isset($_POST['ip']) && '' !== xoops_trim($_POST['ip'])) {
             $ip = isset($_POST['ip']) ? $_POST['ip'] : '';
-            $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
+            $criteria->add(new \Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
         }
 
         if (1 === (int)$_POST['ok']) {
@@ -136,7 +136,7 @@ switch ($op) {
         if (0 !== (int)$_GET['id']) {
             $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if (is_object($tmp_search)) {
-                $critere = new Criteria('keyword', $tmp_search->getVar('keyword'), '=');
+                $critere = new \Criteria('keyword', $tmp_search->getVar('keyword'), '=');
                 $isearchHandler->deleteAll($critere);
             }
             unset($tmp_search);
@@ -157,21 +157,21 @@ switch ($op) {
         $mint = strtotime($min);
         $maxt = strtotime($max);
 
-        $sform      = new XoopsThemeForm(_AM_ISEARCH_EXPORT, 'exportform', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
-        $dates_tray = new XoopsFormElementTray(_AM_ISEARCH_EXPORT_BETWEEN);
-        $date1      = new XoopsFormTextDateSelect('', 'date1', 15, $mint);
-        $date2      = new XoopsFormTextDateSelect(_AM_ISEARCH_EXPORT_AND, 'date2', 15, $maxt);
+        $sform      = new \XoopsThemeForm(_AM_ISEARCH_EXPORT, 'exportform', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
+        $dates_tray = new \XoopsFormElementTray(_AM_ISEARCH_EXPORT_BETWEEN);
+        $date1      = new \XoopsFormTextDateSelect('', 'date1', 15, $mint);
+        $date2      = new \XoopsFormTextDateSelect(_AM_ISEARCH_EXPORT_AND, 'date2', 15, $maxt);
         $dates_tray->addElement($date1);
         $dates_tray->addElement($date2);
         $sform->addElement($dates_tray, false);
-        $sform->addElement(new XoopsFormSelectUser(_AM_ISEARCH_USER, 'user', true, '', 5, true), false);
-        $sform->addElement(new XoopsFormText(_AM_ISEARCH_KEYWORD, 'keyword', 50, 255, ''), false);
-        $sform->addElement(new XoopsFormText(_AM_ISEARCH_IP, 'ip', 10, 32, ''), false);
-        $sform->addElement(new XoopsFormText(_AM_ISEARCH_DATE_FORMAT, 'dateformat', 15, 255, _SHORTDATESTRING), true);
-        $sform->addElement(new XoopsFormText(_AM_ISEARCH_DELIMITER, 'delimiter', 2, 255, ';'), true);
-        $sform->addElement(new XoopsFormHidden('op', 'SearchExport'), false);
-        $button_tray = new XoopsFormElementTray('', '');
-        $submit_btn  = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
+        $sform->addElement(new \XoopsFormSelectUser(_AM_ISEARCH_USER, 'user', true, '', 5, true), false);
+        $sform->addElement(new \XoopsFormText(_AM_ISEARCH_KEYWORD, 'keyword', 50, 255, ''), false);
+        $sform->addElement(new \XoopsFormText(_AM_ISEARCH_IP, 'ip', 10, 32, ''), false);
+        $sform->addElement(new \XoopsFormText(_AM_ISEARCH_DATE_FORMAT, 'dateformat', 15, 255, _SHORTDATESTRING), true);
+        $sform->addElement(new \XoopsFormText(_AM_ISEARCH_DELIMITER, 'delimiter', 2, 255, ';'), true);
+        $sform->addElement(new \XoopsFormHidden('op', 'SearchExport'), false);
+        $button_tray = new \XoopsFormElementTray('', '');
+        $submit_btn  = new \XoopsFormButton('', 'post', _SUBMIT, 'submit');
         $button_tray->addElement($submit_btn);
         $sform->addElement($button_tray);
         $sform->display();
@@ -188,7 +188,7 @@ switch ($op) {
 
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__) . '?op=export');
-        $criteria = new CriteriaCompo();
+        $criteria = new \CriteriaCompo();
         //$dateformat = isset($_POST['dateformat']) ? $_POST['dateformat'] : '';
         $delimiter   = isset($_POST['delimiter']) ? $_POST['delimiter'] : ';';
         $searchfile  = XOOPS_ROOT_PATH . '/uploads/isearch_keywords.txt';
@@ -199,19 +199,19 @@ switch ($op) {
             $startdate = date('Y-m-d', strtotime($_POST['date1']));
             $enddate   = date('Y-m-d', strtotime($_POST['date2']));
             if (false !== $startdate && $false !== $enddate) {
-                $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $startdate, '>='));
-                $criteria->add(new Criteria("date_format(datesearch,'%X-%m-%d')", $enddate, '<='));
+                $criteria->add(new \Criteria("date_format(datesearch,'%X-%m-%d')", $startdate, '>='));
+                $criteria->add(new \Criteria("date_format(datesearch,'%X-%m-%d')", $enddate, '<='));
             }
         }
         if (isset($_POST['user']) && '' !== xoops_trim($_POST['user']) && is_array($_POST['user'])) {
             $userarray = array_map('intval', $_POST['user']);
-            $criteria->add(new Criteria('uid', '(' . implode(',', $userarray) . ')', 'IN'));
+            $criteria->add(new \Criteria('uid', '(' . implode(',', $userarray) . ')', 'IN'));
         }
         if (isset($_POST['keyword']) && '' !== xoops_trim($_POST['keyword'])) {
-            $criteria->add(new Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
+            $criteria->add(new \Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
         }
         if (isset($_POST['ip']) && '' !== xoops_trim($_POST['ip'])) {
-            $criteria->add(new Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
+            $criteria->add(new \Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
         }
         $criteria->setSort('datesearch');
         $criteria->setOrder('desc');
@@ -268,13 +268,13 @@ switch ($op) {
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         require_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
         echo '<h3>' . _AM_ISEARCH_BLACKLIST . '</h3>';
-        $sform = new XoopsThemeForm(_AM_ISEARCH_BLACKLIST, 'MetagenBlackList', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
-        $sform->addElement(new XoopsFormHidden('op', 'MetagenBlackList'), false);
+        $sform = new \XoopsThemeForm(_AM_ISEARCH_BLACKLIST, 'MetagenBlackList', XOOPS_URL . '/modules/isearch/admin/main.php', 'post', true);
+        $sform->addElement(new \XoopsFormHidden('op', 'MetagenBlackList'), false);
 
         // Remove words
-        $remove_tray = new XoopsFormElementTray(_AM_ISEARCH_BLACKLIST);
+        $remove_tray = new \XoopsFormElementTray(_AM_ISEARCH_BLACKLIST);
         $remove_tray->setDescription(_AM_ISEARCH_BLACKLIST_DESC);
-        $blacklist = new XoopsFormSelect('', 'blacklist', '', 5, true);
+        $blacklist = new \XoopsFormSelect('', 'blacklist', '', 5, true);
         $words     = [];
         $metablack = new IsearchBlacklist();
         $words     = $metablack->getAllKeywords();
@@ -285,16 +285,16 @@ switch ($op) {
         }
         $blacklist->setDescription(_AM_ISEARCH_BLACKLIST_DESC);
         $remove_tray->addElement($blacklist, false);
-        $remove_btn = new XoopsFormButton('', 'go', _AM_ISEARCH_DELETE, 'submit');
+        $remove_btn = new \XoopsFormButton('', 'go', _AM_ISEARCH_DELETE, 'submit');
         $remove_tray->addElement($remove_btn, false);
         $sform->addElement($remove_tray);
 
         // Add some words
-        $add_tray = new XoopsFormElementTray(_AM_ISEARCH_BLACKLIST_ADD);
+        $add_tray = new \XoopsFormElementTray(_AM_ISEARCH_BLACKLIST_ADD);
         $add_tray->setDescription(_AM_ISEARCH_BLACKLIST_ADD_DSC);
-        $add_field = new XoopsFormTextArea('', 'keywords', '', 5, 70);
+        $add_field = new \XoopsFormTextArea('', 'keywords', '', 5, 70);
         $add_tray->addElement($add_field, false);
-        $add_btn = new XoopsFormButton('', 'go', _AM_ISEARCH_BLACKLIST_ADD, 'submit');
+        $add_btn = new \XoopsFormButton('', 'go', _AM_ISEARCH_BLACKLIST_ADD, 'submit');
         $add_tray->addElement($add_btn, false);
         $sform->addElement($add_tray);
         $sform->display();
@@ -361,7 +361,7 @@ switch ($op) {
         if (is_numeric($_GET['id']) && 0 !== (int)$_GET['id']) {
             $tmp_search = $isearchHandler->get((int)$_GET['id']);
             if (is_object($tmp_search)) {
-                $critere = new Criteria('ip', $tmp_search->getVar('ip'), '=');
+                $critere = new \Criteria('ip', $tmp_search->getVar('ip'), '=');
                 $isearchHandler->deleteAll($critere);
             }
             unset($tmp_search);
@@ -410,16 +410,16 @@ switch ($op) {
             $s_ip = $_GET['s_ip'];
         }
         */
-        $critere = new CriteriaCompo();
+        $critere = new \CriteriaCompo();
         if ('' !== $s_keyword) {
-            $critere->add(new Criteria('keyword', $s_keyword, 'LIKE'));
+            $critere->add(new \Criteria('keyword', $s_keyword, 'LIKE'));
             $more_parameter .= '&s_keyword=' . $s_keyword;
         }
 
         if ('' !== $s_uid) {
             if (!is_numeric($s_uid)) {
                 $memberHandler = xoops_getHandler('member');
-                $crituser      = new Criteria('uname', $s_uid, 'LIKE');
+                $crituser      = new \Criteria('uname', $s_uid, 'LIKE');
                 $tbl_users     = [];
                 $tbl_users     = $memberHandler->getUsers($crituser);
                 if (count($tbl_users) > 0) {
@@ -429,16 +429,16 @@ switch ($op) {
                     }
                 }
                 $users_list = '(' . implode(',', $tbl_users2) . ')';
-                $critere->add(new Criteria('uid', $users_list, 'IN'));
+                $critere->add(new \Criteria('uid', $users_list, 'IN'));
             } else {
                 $s_uid = (int)$s_uid;
-                $critere->add(new Criteria('uid', $s_uid, '='));
+                $critere->add(new \Criteria('uid', $s_uid, '='));
             }
             $more_parameter .= '&s_uid=' . $s_uid;
         }
 
         if ('' !== $s_ip) {
-            $critere->add(new Criteria('ip', $s_ip, 'LIKE'));
+            $critere->add(new \Criteria('ip', $s_ip, 'LIKE'));
             $more_parameter .= '&s_ip=' . $s_ip;
         }
         $critere->setSort('datesearch');
@@ -450,7 +450,7 @@ switch ($op) {
         $totalcount = $isearchHandler->getCount($critere);
         echo '<h3>' . sprintf(_AM_ISEARCH_STATS, $totalcount) . '</h3>';
 
-        $pagenav  = new XoopsPageNav($totalcount, $keywords_count, $start, 'start1', $more_parameter);
+        $pagenav  = new \XoopsPageNav($totalcount, $keywords_count, $start, 'start1', $more_parameter);
         $elements = $isearchHandler->getObjects($critere);
         //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0;\"><a href='#' onclick=\"toggle('keywordscount'); toggleIcon('keywordscounticon');\">";
         //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='keywordscounticon' name='keywordscounticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_KEYWORDS."</h4>";
@@ -531,7 +531,7 @@ switch ($op) {
         }
         $_SESSION['start2'] = $start;
 
-        $pagenav  = new XoopsPageNav($isearchHandler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
+        $pagenav  = new \XoopsPageNav($isearchHandler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
         $elements = $isearchHandler->getMostSearched($start, $keywords_count);
         //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('mostsearch'); toggleIcon('mostsearchicon');\">";
         //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='mostsearchicon' name='mostsearchicon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_MOST_SEARCH."</h4>";
@@ -563,7 +563,7 @@ switch ($op) {
         }
         $_SESSION['start3'] = $start;
 
-        $pagenav  = new XoopsPageNav($isearchHandler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
+        $pagenav  = new \XoopsPageNav($isearchHandler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
         $elements = $isearchHandler->getBiggestContributors($start, $keywords_count);
         //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('bigcontribut'); toggleIcon('bigcontributicon');\">";
         //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='bigcontributicon' name='bigcontributicon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_BIGGEST_USERS."</h4>";
@@ -589,7 +589,7 @@ switch ($op) {
             $start = (int)$_SESSION['start4'];
         }
         $_SESSION['start4'] = $start;
-        $pagenav            = new XoopsPageNav($isearchHandler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
+        $pagenav            = new \XoopsPageNav($isearchHandler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements           = $isearchHandler->GetCountPerDay($start, $keywords_count);
         //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('daystat'); toggleIcon('daystaticon');\">";
         //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='daystaticon' name='daystaticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_DAY_STATS."</h4>";
@@ -616,7 +616,7 @@ switch ($op) {
         }
         $_SESSION['start4'] = $start;
 
-        $pagenav  = new XoopsPageNav($isearchHandler->getIPsCount(), $keywords_count, $start, 'start4', 'op=stats');
+        $pagenav  = new \XoopsPageNav($isearchHandler->getIPsCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements = $isearchHandler->getIPs($start, $keywords_count);
         //        echo "<h4 style=\"color: #2F5376; margin: 6px 0 0 0; \"><a href='#' onClick=\"toggle('ipcount'); toggleIcon('ipcounticon');\">";
         //        echo "<img onclick=\"toggle('toptable'); toggleIcon('toptableicon');\" id='ipcounticon' name='ipcounticon' src='" . XOOPS_URL . "/modules/isearch/assets/images/close12.gif' alt=''></a>&nbsp;"._AM_ISEARCH_IP."</h4>";

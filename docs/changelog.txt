@@ -1,4 +1,4 @@
-<h5>1.91 ALPHA 1 [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.0
+<h5>1.91 ALPHA 1 [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.3
                          <hr>
 - added filtering to most input user vars
 - added visibility (public, private, etc) to class methods and vars

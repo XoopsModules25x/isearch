@@ -19,7 +19,7 @@
  * ****************************************************************************
  */
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
 {
@@ -35,7 +35,7 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
     $uid        = 0;
     $datesearch = date('Y-m-d h:i:s');
 
-    if ($GLOBALS['xoopsUser'] instanceof XoopsUser) {
+    if ($GLOBALS['xoopsUser'] instanceof \XoopsUser) {
         $groups =& $GLOBALS['xoopsUser']->getGroups();
         $uid    = $GLOBALS['xoopsUser']->getVar('uid');
     } else {

@@ -40,7 +40,7 @@ class IsearchUtility
      * @param null|string $requiredVer
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerXoops(XoopsModule $module = null, $requiredVer = null)
+    public static function checkVerXoops(\XoopsModule $module = null, $requiredVer = null)
     {
         $moduleDirName = basename(dirname(__DIR__));
         if (null === $module) {
@@ -71,7 +71,7 @@ class IsearchUtility
      *
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerPhp(XoopsModule $module)
+    public static function checkVerPhp(\XoopsModule $module)
     {
         xoops_loadLanguage('admin', $module->dirname());
         // Check for minimum PHP version
@@ -102,18 +102,18 @@ class IsearchUtility
     public static function deleteDirectory($src)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
         $success = true;
         // Remove old files
-        $dirInfo = new SplFileInfo($src);
+        $dirInfo = new \SplFileInfo($src);
         // Validate is a directory
         if ($dirInfo->isDir()) {
             $fileList = array_diff(scandir($src, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($fileList as $k => $v) {
-                $fileInfo = new SplFileInfo($src . '/' . $v);
+                $fileInfo = new \SplFileInfo($src . '/' . $v);
                 if ($fileInfo->isDir()) {
                     // Recursively handle subdirectories
                     if (!$success = static::deleteDirectory($fileInfo->getRealPath())) {
@@ -151,7 +151,7 @@ class IsearchUtility
     public static function rrmdir($src)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
@@ -161,7 +161,7 @@ class IsearchUtility
         }
 
         // Open the source directory to read in files
-        $iterator = new DirectoryIterator($src);
+        $iterator = new \DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 $filename = $fObj->getPathname();
@@ -190,7 +190,7 @@ class IsearchUtility
     public static function rmove($src, $dest)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
@@ -200,12 +200,12 @@ class IsearchUtility
         }
 
         // If the destination directory does not exist and could not be created stop processing
-        if (!is_dir($dest) && !mkdir($dest, 0755)) {
+        if (!is_dir($dest) && !mkdir($dest) && !is_dir($dest)) {
             return false;
         }
 
         // Open the source directory to read in files
-        $iterator = new DirectoryIterator($src);
+        $iterator = new \DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 rename($fObj->getPathname(), $dest . '/' . $fObj->getFilename());
@@ -233,7 +233,7 @@ class IsearchUtility
     public static function rcopy($src, $dest)
     {
         // Only continue if user is a 'global' Admin
-        if (!($GLOBALS['xoopsUser'] instanceof XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
+        if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
             return false;
         }
 
@@ -243,12 +243,12 @@ class IsearchUtility
         }
 
         // If the destination directory does not exist and could not be created stop processing
-        if (!is_dir($dest) && !mkdir($dest, 0755)) {
+        if (!is_dir($dest) && !mkdir($dest) && !is_dir($dest)) {
             return false;
         }
 
         // Open the source directory to read in files
-        $iterator = new DirectoryIterator($src);
+        $iterator = new \DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
                 copy($fObj->getPathname(), $dest . '/' . $fObj->getFilename());

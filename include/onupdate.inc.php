@@ -24,7 +24,7 @@
 /* @internal {Make sure you PROTECT THIS FILE} */
 
 if ((!defined('XOOPS_ROOT_PATH'))
-    || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
+    || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !($GLOBALS['xoopsUser']->isAdmin())) {
     exit('Restricted access' . PHP_EOL);
 }
@@ -40,7 +40,7 @@ if ((!defined('XOOPS_ROOT_PATH'))
  * @return bool success ok to install
  *
  */
-function xoops_module_pre_update_isearch(XoopsModule $module, $prev_version)
+function xoops_module_pre_update_isearch(\XoopsModule $module, $prev_version)
 {
     /** @var Isearch\Helper $helper */
     /** @var Isearch\Utility $utility */
@@ -65,7 +65,7 @@ function xoops_module_pre_update_isearch(XoopsModule $module, $prev_version)
  * @return bool
  *
  */
-function xoops_module_update_isearch(XoopsModule $module, $prev_version)
+function xoops_module_update_isearch(\XoopsModule $module, $prev_version)
 {
     $moduleDirName = basename(dirname(__DIR__));
     $capsDirName   = strtoupper($moduleDirName);
@@ -93,7 +93,7 @@ function xoops_module_update_isearch(XoopsModule $module, $prev_version)
         $isHelper->path('images/')
     ];
     foreach ($old_directories as $old_dir) {
-        $dirInfo = new SplFileInfo($old_dir);
+        $dirInfo = new \SplFileInfo($old_dir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
             if (false === $utilityClass::rrmdir($old_dir)) {

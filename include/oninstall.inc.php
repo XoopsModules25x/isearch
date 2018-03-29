@@ -26,7 +26,7 @@
  */
 
 if ((!defined('XOOPS_ROOT_PATH'))
-    || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
+    || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !($GLOBALS['xoopsUser']->isAdmin())) {
     exit('Restricted access' . PHP_EOL);
 }
@@ -39,7 +39,7 @@ if ((!defined('XOOPS_ROOT_PATH'))
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_install_isearch(XoopsModule $module)
+function xoops_module_pre_install_isearch(\XoopsModule $module)
 {
     /** @var IsearchUtility $utilityClass */
     $utilityClass = ucfirst($module->dirname()) . 'Utility';

@@ -25,7 +25,7 @@ require_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
 /* @var XoopsDatabase $GLOBALS ['xoopsDB'] */
 /* @var XoopsUser $GLOBALS ['xoopsUser'] */
 
-if (($GLOBALS['xoopsUser'] instanceof XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
+if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
     if (!isearch_FieldExists('ip', $GLOBALS['xoopsDB']->prefix('isearch_searches'))) {
         isearch_AddField("ip varchar(32) NOT NULL default ''", $GLOBALS['xoopsDB']->prefix('isearch_searches'));
     }

@@ -21,7 +21,7 @@
 
 use WideImage\Operation\AddNoise;
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Returns a module's option

@@ -37,13 +37,13 @@ $xoopsTpl->assign('visiblekeywords', (int)$visiblekeywords);
 if ((int)$visiblekeywords > 0) {
     $totalcount = $isearchHandler->getCount();
     $start      = isset($_GET['start']) ? (int)$_GET['start'] : 0;
-    $critere    = new Criteria('keyword');
+    $critere    = new \Criteria('keyword');
     $critere->setSort('datesearch');
     $critere->setLimit($visiblekeywords);
     $critere->setStart($start);
     $critere->setOrder('DESC');
     require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-    $pagenav = new XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
+    $pagenav = new \XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
     $xoopsTpl->assign('pagenav', $pagenav->renderNav());
 
     $elements = $isearchHandler->getObjects($critere);
