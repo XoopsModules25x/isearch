@@ -36,7 +36,7 @@ $xoopsTpl->assign('visiblekeywords', (int)$visiblekeywords);
 
 if ((int)$visiblekeywords > 0) {
     $totalcount = $isearchHandler->getCount();
-    $start      = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+    $start      = \Xmf\Request::getInt('start', 0, 'GET');
     $critere    = new \Criteria('keyword');
     $critere->setSort('datesearch');
     $critere->setLimit($visiblekeywords);

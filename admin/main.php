@@ -79,7 +79,7 @@ switch ($op) {
             $criteria->add(new \Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
         }
         if (isset($_POST['ip']) && '' !== xoops_trim($_POST['ip'])) {
-            $ip = isset($_POST['ip']) ? $_POST['ip'] : '';
+            $ip = \Xmf\Request::getString('ip', '', 'POST');
             $criteria->add(new \Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
         }
         $count = 0;
@@ -114,7 +114,7 @@ switch ($op) {
             $criteria->add(new \Criteria('keyword', $myts->addSlashes($_POST['keyword']), '='));
         }
         if (isset($_POST['ip']) && '' !== xoops_trim($_POST['ip'])) {
-            $ip = isset($_POST['ip']) ? $_POST['ip'] : '';
+            $ip = \Xmf\Request::getString('ip', '', 'POST');
             $criteria->add(new \Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
         }
 
