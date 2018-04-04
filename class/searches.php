@@ -129,7 +129,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
 
     public function insert(\XoopsObject $searches, $force = true)
     {
-        if (!$searches instanceof \searches) {
+        if (!$searches instanceof \Searches) {
             return false;
         }
         if (!$searches->isDirty()) {
