@@ -96,7 +96,7 @@ function xoops_module_update_isearch(\XoopsModule $module, $prev_version)
         $dirInfo = new \SplFileInfo($old_dir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
-            if (false === $utilityClass::rrmdir($old_dir)) {
+            if (false === $utility::rrmdir($old_dir)) {
                 $module->setErrors(sprintf(_AM_ISEARCH_ERROR_BAD_DEL_PATH, $old_dir));
 
                 return false;

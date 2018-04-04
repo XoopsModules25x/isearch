@@ -41,14 +41,14 @@ if ((!defined('XOOPS_ROOT_PATH'))
  */
 function xoops_module_pre_install_isearch(\XoopsModule $module)
 {
-    /** @var IsearchUtility $utilityClass */
-    $utilityClass = ucfirst($module->dirname()) . 'Utility';
-    if (!class_exists($utilityClass)) {
+    /** @var IsearchUtility $utility */
+    $utility = ucfirst($module->dirname()) . 'Utility';
+    if (!class_exists($utility)) {
         xoops_load('utility', $module->dirname());
     }
 
-    $xoopsSuccess = $utilityClass::checkVerXoops($module);
-    $phpSuccess   = $utilityClass::checkVerPHP($module);
+    $xoopsSuccess = $utility::checkVerXoops($module);
+    $phpSuccess   = $utility::checkVerPHP($module);
 
     return $xoopsSuccess && $phpSuccess;
 }

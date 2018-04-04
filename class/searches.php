@@ -129,7 +129,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
 
     public function insert(\XoopsObject $searches, $force = true)
     {
-        if ('searches' !== get_class($searches)) {
+        if (!$searches instanceof \searches) {
             return false;
         }
         if (!$searches->isDirty()) {
@@ -182,7 +182,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
         if (get_class($searches) != 'searches') {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE isearchid = %u", $this->db->prefix('isearch_searches'), $searches->getVar('isearchid'));
+        $sql = sprintf("DELETE FROM `%s` WHERE isearchid = %u", $this->db->prefix('isearch_searches'), $searches->getVar('isearchid'));
         if (false != $force) {
             $result = $this->db->queryF($sql);
         } else {
@@ -198,8 +198,9 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
     /**
      *  Returns the lowest date and the higher date
      *
+     * @param $min
+     * @param $max
      * @return string &$min returns minimum date
-     * @return string &$max returns maximum date
      */
     public function getMinMaxDate(&$min, &$max)
     {
