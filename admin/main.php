@@ -104,7 +104,7 @@ switch ($op) {
         $ip        = '';
         $criteria  = new \CriteriaCompo();
 
-        if (isset($_POST['prune_date']) && 0 !== (int)$_POST['prune_date']) {
+        if (isset($_POST['prune_date']) && 0 !== \Xmf\Request::getInt('prune_date', 0, 'POST')) {
             $timestamp = $_POST['prune_date'];
             $date      = date('Y-m-d', (int)$timestamp);
             $criteria->add(new \Criteria("date_format(datesearch,'%X-%m-%d')", $date, '<='));
@@ -118,7 +118,7 @@ switch ($op) {
             $criteria->add(new \Criteria('ip', $myts->addSlashes($_POST['ip']), '='));
         }
 
-        if (1 === (int)$_POST['ok']) {
+        if (1 === \Xmf\Request::getInt('ok', 0, 'POST')) {
             xoops_cp_header();
             $isearchHandler->deleteAll($criteria);
             redirect_header('main.php?op=purge', 2, _AM_ISEARCH_DBUPDATED);
@@ -133,8 +133,8 @@ switch ($op) {
      */
     case 'removekeyword':
         xoops_cp_header();
-        if (0 !== (int)$_GET['id']) {
-            $tmp_search = $isearchHandler->get((int)$_GET['id']);
+        if (0 !== \Xmf\Request::getInt('id', 0, 'GET')) {
+            $tmp_search = $isearchHandler->get(\Xmf\Request::getInt('id', 0, 'GET'));
             if (is_object($tmp_search)) {
                 $critere = new \Criteria('keyword', $tmp_search->getVar('keyword'), '=');
                 $isearchHandler->deleteAll($critere);
@@ -306,8 +306,8 @@ switch ($op) {
      */
     case 'addblacklist':
         require_once XOOPS_ROOT_PATH . '/modules/isearch/class/blacklist.php';
-        if (0 !== (int)$_GET['id']) {
-            $tmp_search = $isearchHandler->get((int)$_GET['id']);
+        if (0 !== \Xmf\Request::getInt('id', 0, 'GET')) {
+            $tmp_search = $isearchHandler->get(\Xmf\Request::getInt('id', 0, 'GET'));
             if (is_object($tmp_search)) {
                 $keyword   = $tmp_search->getVar('keyword');
                 $blacklist = new IsearchBlacklist();
@@ -358,8 +358,8 @@ switch ($op) {
      */
     case 'removeip':
         xoops_cp_header();
-        if (is_numeric($_GET['id']) && 0 !== (int)$_GET['id']) {
-            $tmp_search = $isearchHandler->get((int)$_GET['id']);
+        if (is_numeric($_GET['id']) && 0 !== \Xmf\Request::getInt('id', 0, 'GET')) {
+            $tmp_search = $isearchHandler->get(\Xmf\Request::getInt('id', 0, 'GET'));
             if (is_object($tmp_search)) {
                 $critere = new \Criteria('ip', $tmp_search->getVar('ip'), '=');
                 $isearchHandler->deleteAll($critere);
@@ -381,11 +381,11 @@ switch ($op) {
         // Last x words (according to the module's option 'admincount') ***************************************************************************************
         $start          = 0;
         $more_parameter = 'op=stats';
-        if (isset($_GET['start1'])) {
-            $start = (int)$_GET['start1'];
-        } elseif (isset($_SESSION['start1'])) {
-            $start = (int)$_SESSION['start1'];
-        }
+        if (\Xmf\Request::hasVar('start1', 'GET')) {
+            $start = \Xmf\Request::getInt('start1', 0, 'GET');
+        } elseif (\Xmf\Request::hasVar('start1', 'SESSION')) {
+ $start = \Xmf\Request::getInt('start1', 0, 'SESSION');
+}
         $_SESSION['start1'] = $start;
         $s_keyword          = Xmf\Request::getString('s_keyword', '');
         $s_uid              = Xmf\Request::getInt('s_uid', '');
@@ -524,11 +524,11 @@ switch ($op) {
 
         // Most searched words ********************************************************************************************************************************
         $start = 0;
-        if (isset($_GET['start2'])) {
-            $start = (int)$_GET['start2'];
-        } elseif (isset($_SESSION['start2'])) {
-            $start = (int)$_SESSION['start2'];
-        }
+        if (\Xmf\Request::hasVar('start2', 'GET')) {
+            $start = \Xmf\Request::getInt('start2', 0, 'GET');
+        } elseif (\Xmf\Request::hasVar('start2', 'SESSION')) {
+ $start = \Xmf\Request::getInt('start2', 0, 'SESSION');
+}
         $_SESSION['start2'] = $start;
 
         $pagenav  = new \XoopsPageNav($isearchHandler->getMostSearchedCount(), $keywords_count, $start, 'start2', 'op=stats');
@@ -556,11 +556,11 @@ switch ($op) {
         // Biggest users of the search ************************************************************************************************************************
         $tmpisearch = new searches();
         $start      = 0;
-        if (isset($_GET['start3'])) {
-            $start = (int)$_GET['start3'];
-        } elseif (isset($_SESSION['start3'])) {
-            $start = (int)$_SESSION['start3'];
-        }
+        if (\Xmf\Request::hasVar('start3', 'GET')) {
+            $start = \Xmf\Request::getInt('start3', 0, 'GET');
+        } elseif (\Xmf\Request::hasVar('start3', 'SESSION')) {
+ $start = \Xmf\Request::getInt('start3', 0, 'SESSION');
+}
         $_SESSION['start3'] = $start;
 
         $pagenav  = new \XoopsPageNav($isearchHandler->getBiggestContributorsCount(), $keywords_count, $start, 'start3', 'op=stats');
@@ -583,11 +583,11 @@ switch ($op) {
 
         // daily stats ****************************************************************************************************************************************
         $start = 0;
-        if (isset($_GET['start4'])) {
-            $start = (int)$_GET['start4'];
-        } elseif (isset($_SESSION['start4'])) {
-            $start = (int)$_SESSION['start4'];
-        }
+        if (\Xmf\Request::hasVar('start4', 'GET')) {
+            $start = \Xmf\Request::getInt('start4', 0, 'GET');
+        } elseif (\Xmf\Request::hasVar('start4', 'SESSION')) {
+ $start = \Xmf\Request::getInt('start4', 0, 'SESSION');
+}
         $_SESSION['start4'] = $start;
         $pagenav            = new \XoopsPageNav($isearchHandler->getUniqueDaysCount(), $keywords_count, $start, 'start4', 'op=stats');
         $elements           = $isearchHandler->GetCountPerDay($start, $keywords_count);
@@ -609,8 +609,8 @@ switch ($op) {
 
         // IP stats *******************************************************************************************************************************************
         $start = 0;
-        if (isset($_GET['start4'])) {
-            $start = (int)$_GET['start4'];
+        if (\Xmf\Request::hasVar('start4', 'GET')) {
+            $start = \Xmf\Request::getInt('start4', 0, 'GET');
         } elseif (isset($_SESSION['start4'])) {
             $start = $_SESSION['start4'];
         }
