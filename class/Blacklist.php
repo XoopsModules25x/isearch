@@ -1,4 +1,5 @@
-<?php
+<?php namespace XoopsModules\Isearch;
+
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
@@ -24,7 +25,7 @@ use WideImage\Operation\AddNoise;
 /**
  * Class IsearchBlacklist
  */
-class IsearchBlacklist
+class Blacklist
 {
     protected $keywords;    // Holds keywords
 
