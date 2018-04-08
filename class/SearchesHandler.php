@@ -141,7 +141,7 @@ class IsearchSearchesHandler extends XoopsPersistableObjectHandler
             return false;
         }
         $sql = sprintf("DELETE FROM `%s` WHERE isearchid = %u", $this->db->prefix('isearch_searches'), $searches->getVar('isearchid'));
-        if (false != $force) {
+        if (false !== $force) {
             $result = $this->db->queryF($sql);
         } else {
             $result = $this->db->query($sql);
