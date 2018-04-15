@@ -22,12 +22,14 @@
  * @see       Xmf\Module\Helper
  */
 
+use XoopsModules\Isearch;
+
 $moduleDirName = basename(dirname(__DIR__));
 // leave the following line until XOOPS core ./include/cp_header.php REQUIRES ./mainfile.php
 require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 require_once $GLOBALS['xoops']->path('include/cp_header.php');
 
-$isHelper    = Xmf\Module\Helper::getHelper($moduleDirName);
+$isHelper    = \XoopsModules\Isearch\Helper::getInstance();
 $adminObject = Xmf\Module\Admin::getInstance();
 
 // Load language files

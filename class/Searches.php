@@ -22,7 +22,7 @@
 
 require_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
 
-class Searches extends XoopsObject
+class Searches extends \XoopsObject
 {
     /**
      * Class constructor
@@ -57,7 +57,8 @@ class Searches extends XoopsObject
         if (is_array($tblusers) && array_key_exists($uid, $tblusers)) {
             return $tblusers[$uid];
         }
-        $isHelper    = Xmf\Module\Helper::getHelper(basename(dirname(__DIR__)));
+//        $isHelper    = Xmf\Module\Helper::getHelper(basename(dirname(__DIR__)));
+        $isHelper    = \XoopsModules\Isearch\Helper::getInstance();
         $useUserName = $isHelper->getConfig('useusername', 0);
         /** @var XoopsUser $GLOBALS ['xoopsUser'] */
         $tblusers[$uid] = $GLOBALS['xoopsUser']::getUnameFromId($uid, $useUserName);

@@ -32,7 +32,7 @@ $keywords_count = $isHelper->getConfig('admincount', 10);
 // ****************************************************************************
 
 $op             = Xmf\Request::getString('op', 'stats');
-$isearchHandler = $isHelper->getHandler('searches');
+$isearchHandler = $isHelper->getHandler('Searches');
 
 switch ($op) {
     // Remove data by keyword or by date

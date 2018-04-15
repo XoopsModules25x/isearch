@@ -26,10 +26,10 @@ require_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
 /**
  * isearch Searches Handler
  */
-class IsearchSearchesHandler extends XoopsPersistableObjectHandler
+class SearchesHandler extends \XoopsPersistableObjectHandler
 {
     /**
-     * @param XoopsDatabase $db
+     * @param \XoopsDatabase $db
      *
      * @return void
      */

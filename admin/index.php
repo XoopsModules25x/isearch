@@ -25,7 +25,7 @@ require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 /* @var Xmf\Module\Helper $isHelper */
-$isearchHandler = $isHelper->getHandler('searches');
+$isearchHandler = $isHelper->getHandler('Searches');
 $totalSearches  = $isearchHandler->getCount();
 
 $adminObject->addInfoBox(_MD_ISEARCH_SEARCH_CONF);

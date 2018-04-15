@@ -24,12 +24,12 @@
  */
 
 /**
- * IsearchUtility
+ * Utility
  *
  * Static utility class to provide common functionality
  *
  */
-class IsearchUtility
+class Utility
 {
     /**
      *
@@ -44,7 +44,7 @@ class IsearchUtility
     {
         $moduleDirName = basename(dirname(__DIR__));
         if (null === $module) {
-            $module = XoopsModule::getByDirname($moduleDirName);
+            $module = \XoopsModule::getByDirname($moduleDirName);
         }
         xoops_loadLanguage('admin', $moduleDirName);
 
@@ -94,8 +94,8 @@ class IsearchUtility
      *
      * @param string $src source directory to delete
      *
-     * @see Xmf\Module\Helper::getHelper()
-     * @see Xmf\Module\Helper::isUserAdmin()
+     * @see \Xmf\Module\Helper::getHelper()
+     * @see \Xmf\Module\Helper::isUserAdmin()
      *
      * @return bool true on success
      */

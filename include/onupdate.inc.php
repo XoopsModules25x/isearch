@@ -21,6 +21,8 @@
  * @since     File available since version 1.91
  */
 
+use XoopsModules\Isearch;
+
 /* @internal {Make sure you PROTECT THIS FILE} */
 
 if ((!defined('XOOPS_ROOT_PATH'))
@@ -35,15 +37,15 @@ if ((!defined('XOOPS_ROOT_PATH'))
  * @param XoopsModule $module
  * @param string      $prev_version version * 100
  *
- * @see IsearchUtility
+ * @see Utility
  *
  * @return bool success ok to install
  *
  */
 function xoops_module_pre_update_isearch(\XoopsModule $module, $prev_version)
 {
-    /** @var Isearch\Helper $helper */
-    /** @var Isearch\Utility $utility */
+    /** @var \XoopsModules\Isearch\Helper $helper */
+    /** @var \XoopsModules\Isearch\Utility $utility */
     $moduleDirName = basename(dirname(__DIR__));
     $helper       = Isearch\Helper::getInstance();
     $utility      = new Isearch\Utility();
@@ -60,7 +62,7 @@ function xoops_module_pre_update_isearch(\XoopsModule $module, $prev_version)
  * @param string      $prev_version version * 100
  *
  * @see Xmf\Module\Admin
- * @see IsearchUtility
+ * @see Utility
  *
  * @return bool
  *

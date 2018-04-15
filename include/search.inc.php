@@ -19,17 +19,19 @@
  * ****************************************************************************
  */
 
+use XoopsModules\Isearch;
+
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+    $isHelper      = \XoopsModules\Isearch\Helper::getInstance();
 
     require_once $isHelper->path('include/functions.php');
     require_once $isHelper->path('class/blacklist.php');
 
-    $isearchHandler = $isHelper->getHandler('searches');
+    $isearchHandler = $isHelper->getHandler('Searches');
 
     $banned     = $isHelper->getConfig('bannedgroups', []);
     $uid        = 0;
@@ -68,7 +70,7 @@ function isearchSearch($queryarray, $andor, $limit, $offset, $userid)
         return [];
     }
 
-    $blacklist = new IsearchBlacklist();
+    $blacklist = new Isearch\Blacklist();
     $blacklist->getAllKeywords();    // Load keywords from blacklist
     $queryarray = $blacklist->removeBlacklisted($queryarray);
     $count      = count($queryarray);

@@ -18,14 +18,17 @@
  *
  * ****************************************************************************
  */
+
+use XoopsModules\Isearch;
+
 function b_isearch_big_user_show()
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+    $isHelper      = \XoopsModules\Isearch\Helper::getInstance();
 
     require_once $isHelper->path('include/functions.php');
 
-    $isearchHandler = $isHelper->getHandler('searches');
+    $isearchHandler = $isHelper->getHandler('Searches');
 
     $block           = [];
     $visiblekeywords = $isHelper->getConfig('showindex', 10);

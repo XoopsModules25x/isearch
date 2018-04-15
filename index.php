@@ -19,17 +19,19 @@
  * ****************************************************************************
  */
 
-require __DIR__ . '/../../mainfile.php';
+use XoopsModules\Isearch;
+
+require  dirname(dirname(__DIR__)) . '/mainfile.php';
 
 $GLOBALS['xoopsOption']['template_main'] = 'isearch_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
 $moduleDirName = basename(__DIR__);
-$isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+$isHelper      = \XoopsModules\Isearch\Helper::getInstance();
 
 require_once $isHelper->path('include/functions.php');
 
-$isearchHandler = $isHelper->getHandler('searches');
+$isearchHandler = $isHelper->getHandler('Searches');
 
 $visiblekeywords = $isHelper->getConfig('showindex', 10);
 $xoopsTpl->assign('visiblekeywords', (int)$visiblekeywords);
