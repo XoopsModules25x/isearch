@@ -20,7 +20,7 @@
  */
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-include __DIR__ . '/preloads/autoloader.php';
+require_once __DIR__ . '/preloads/autoloader.php';
 
 $modversion['version']       = 1.91;
 $modversion['module_status'] = 'ALPHA 1';
@@ -59,9 +59,9 @@ $modversion['adminmenu']  = 'admin/menu.php';
  */
 $modversion['system_menu'] = 1;
 
-$modversion['min_php']   = '5.3.7';
-$modversion['min_xoops'] = '2.5.8';
-$modversion['min_db']    = ['mysql' => '5.0.7', 'mysqli' => '5.0.7'];
+$modversion['min_php']   = '5.5';
+$modversion['min_xoops'] = '2.5.9';
+$modversion['min_db']    = ['mysql' => '5.5'];
 $modversion['min_admin'] = '1.2';
 
 // Templates
