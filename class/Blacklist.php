@@ -1,4 +1,5 @@
-<?php
+<?php namespace XoopsModules\Isearch;
+
 /**
  * ****************************************************************************
  * isearch - MODULE FOR XOOPS
@@ -11,32 +12,36 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\class
+ * @package   modules\Isearch\class
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * ****************************************************************************
  */
+
 use WideImage\Operation\AddNoise;
 
-class isearch_blacklist
+/**
+ * Class IsearchBlacklist
+ */
+class Blacklist
 {
     protected $keywords;    // Holds keywords
 
     /**
-      * Get all the keywords
-      * @todo move black_list.php file to XOOPS_UPLOAD_PATH . '/isearch/' directory
-      *
-      * @return array
-      */
+     * Get all the keywords
+     * @todo move black_list.php file to XOOPS_UPLOAD_PATH . '/isearch/' directory
+     *
+     * @return array
+     */
     public function getAllKeywords()
     {
-        $ret      = $tbl_black_list = array();
-        $myts     = MyTextSanitizer::getInstance();
-        $filename = XOOPS_UPLOAD_PATH.'/isearch_black_list.php';
+        $ret      = $tbl_black_list = [];
+        $myts     = \MyTextSanitizer::getInstance();
+        $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';
         if (file_exists($filename)) {
-            include_once $filename;
+            require_once $filename;
             foreach ($tbl_black_list as $onekeyword) {
                 if ('' !== xoops_trim($onekeyword)) {
                     $onekeyword       = $myts->htmlSpecialChars($onekeyword);
@@ -46,16 +51,17 @@ class isearch_blacklist
         }
         asort($ret);
         $this->keywords = $ret;
+
         return $ret;
     }
 
     /**
-      * Remove one or more keywords from the list
-      *
-      * @param string|array $keyword is the keyword(s) to remove
-      *
-      * @return void
-      */
+     * Remove one or more keywords from the list
+     *
+     * @param string|array $keyword is the keyword(s) to remove
+     *
+     * @return void
+     */
     public function delete($keyword)
     {
         if (is_array($keyword)) {
@@ -72,39 +78,39 @@ class isearch_blacklist
     }
 
     /**
-      * Add one or more keywords
-      *
-      * @param string|array $keyword is the keyword(s) to add
-      *
-      * @return void
-      */
+     * Add one or more keywords
+     *
+     * @param string|array $keyword is the keyword(s) to add
+     *
+     * @return void
+     */
     public function addkeywords($keyword)
     {
-        $myts = MyTextSanitizer::getInstance();
-        if(is_array($keyword)) {
-            foreach($keyword as $onekeyword) {
+        $myts = \MyTextSanitizer::getInstance();
+        if (is_array($keyword)) {
+            foreach ($keyword as $onekeyword) {
                 $this->keywords[$onekeyword] = xoops_trim($myts->htmlSpecialChars($onekeyword));
             }
         } else {
             $this->keywords[$keyword] = xoops_trim($myts->htmlSpecialChars($keyword));
         }
-
     }
 
     /**
-      * Remove, from a list, all the blacklisted words
-      *
-      * @param array $keywords
-      */
-    public function remove_blacklisted($keywords)
+     * Remove, from a list, all the blacklisted words
+     *
+     * @param array $keywords
+     * @return array
+     */
+    public function removeBlacklisted($keywords)
     {
-        $ret = array();
+        $ret       = [];
         $tmp_array = array_values($this->keywords);
         if (is_array($keywords) && count($keywords) > 0) {
             foreach ($keywords as $keyword) {
                 $add = true;
-                foreach($tmp_array as $onebanned) {
-                    if (!empty($onebanned) && preg_match("/".$onebanned."/i", $keyword)) {
+                foreach ($tmp_array as $onebanned) {
+                    if (!empty($onebanned) && preg_match('/' . $onebanned . '/i', $keyword)) {
                         $add = false;
                         break;
                     }
@@ -114,17 +120,17 @@ class isearch_blacklist
                 }
             }
         }
+
         return $ret;
     }
 
-
     /**
-      * Save keywords to file system
-      *
-      * @todo move storage of this file to XOOPS_UPLOAD_PATH . '/isearch' directory
-      *
-      * @return void
-      */
+     * Save keywords to file system
+     *
+     * @todo move storage of this file to XOOPS_UPLOAD_PATH . '/isearch' directory
+     *
+     * @return void
+     */
     public function store()
     {
         $filename = XOOPS_UPLOAD_PATH . '/isearch_black_list.php';
@@ -132,13 +138,13 @@ class isearch_blacklist
             unlink($filename);
         }
         $fd = fopen($filename, 'w') || exit('Error unable to create blacklist file');
-        fputs($fd, "<?php\n");
-        fputs($fd, '$tbl_black_list=array('."\n");
-        foreach($this->keywords as $onekeyword) {
-            fputs($fd, "\"" . $onekeyword . "\",\n");
+        fwrite($fd, "<?php\n");
+        fwrite($fd, '$tbl_black_list=array(' . "\n");
+        foreach ($this->keywords as $onekeyword) {
+            fwrite($fd, '"' . $onekeyword . "\",\n");
         }
-        fputs($fd, "'');\n");
-        fputs($fd, "?>\n");
+        fwrite($fd, "'');\n");
+        fwrite($fd, "?>\n");
         fclose($fd);
     }
 }

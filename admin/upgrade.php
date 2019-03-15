@@ -11,25 +11,25 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\admin
+ * @package   modules\Isearch\admin
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * ****************************************************************************
  */
-include_once '../../../include/cp_header.php';
+require_once  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 xoops_cp_header();
-include_once XOOPS_ROOT_PATH.'/modules/isearch/include/functions.php';
+require_once XOOPS_ROOT_PATH . '/modules/isearch/include/functions.php';
 
-/* @var XoopsDatabase $GLOBALS['xoopsDB'] */
-/* @var XoopsUser $GLOBALS['xoopsUser'] */
+/* @var XoopsDatabase $GLOBALS ['xoopsDB'] */
+/* @var XoopsUser $GLOBALS ['xoopsUser'] */
 
-if (($GLOBALS['xoopsUser'] instanceof XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
+if (($GLOBALS['xoopsUser'] instanceof \XoopsUser) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
     if (!isearch_FieldExists('ip', $GLOBALS['xoopsDB']->prefix('isearch_searches'))) {
         isearch_AddField("ip varchar(32) NOT NULL default ''", $GLOBALS['xoopsDB']->prefix('isearch_searches'));
     }
-    echo "<br>" . _OK;
+    echo '<br>' . _OK;
 } else {
     printf("<h2>%s</h2>\n", _ERRORS);
 }

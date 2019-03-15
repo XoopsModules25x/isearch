@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\blocks
+ * @package   modules\Isearch\blocks
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -21,36 +21,38 @@
 function b_isearch_last_search_show()
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+    $isHelper      = \XoopsModules\Isearch\Helper::getInstance();
 
-    include_once $isHelper->path('include/functions.php');
+    require_once $isHelper->path('include/functions.php');
 
-    $isearch_handler = $isHelper->getHandler('searches');
+    $isearchHandler = $isHelper->getHandler('Searches');
 
-    $block = array();
+    $block           = [];
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
 
     if ($visiblekeywords > 0) {
         $block['visiblekeywords'] = $visiblekeywords;
-        $totalcount = $isearch_handler->getCount();
-        $start      = 0;
-        $critere    = new Criteria('isearchid', 0, '<>');
+        $totalcount               = $isearchHandler->getCount();
+        $start                    = 0;
+        $critere                  = new \Criteria('isearchid', 0, '<>');
         $critere->setSort('datesearch');
         $critere->setLimit($visiblekeywords);
         $critere->setStart($start);
         $critere->setOrder('DESC');
         $tmpisearch = new searches();
-        $elements   = $isearch_handler->getObjects($critere);
-        foreach($elements as $oneelement) {
-            $search = array('keyword' => $oneelement->getVar('keyword'),
-                               'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),
-                                'uid' => $oneelement->getVar('keyword'),
-                              'uname' => $tmpisearch->uname($oneelement->getVar('uid')),
-                               'link' => "<a href='" . XOOPS_URL . '/search.php?query=' . $oneelement->getVar('keyword') . "&action=results' target='_blank'>"
-            );
+        $elements   = $isearchHandler->getObjects($critere);
+        foreach ($elements as $oneelement) {
+            $search              = [
+                'keyword' => $oneelement->getVar('keyword'),
+                'date'    => formatTimestamp(strtotime($oneelement->getVar('datesearch'))),
+                'uid'     => $oneelement->getVar('keyword'),
+                'uname'   => $tmpisearch->uname($oneelement->getVar('uid')),
+                'link'    => "<a href='" . XOOPS_URL . '/search.php?query=' . $oneelement->getVar('keyword') . "&action=results' target='_blank'>"
+            ];
             $block['searches'][] = $search;
             unset($search);
         }
     }
+
     return $block;
 }

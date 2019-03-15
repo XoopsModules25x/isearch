@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\frontside
+ * @package   modules\Isearch\frontside
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -19,39 +19,42 @@
  * ****************************************************************************
  */
 
-require '../../mainfile.php';
+use XoopsModules\Isearch;
 
-$xoopsOption['template_main'] = 'isearch_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require  dirname(dirname(__DIR__)) . '/mainfile.php';
+
+$GLOBALS['xoopsOption']['template_main'] = 'isearch_index.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 $moduleDirName = basename(__DIR__);
-$isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+$isHelper      = \XoopsModules\Isearch\Helper::getInstance();
 
-include_once $isHelper->path('include/functions.php');
+require_once $isHelper->path('include/functions.php');
 
-$isearch_handler = $isHelper->getHandler('searches');
+$isearchHandler = $isHelper->getHandler('Searches');
 
 $visiblekeywords = $isHelper->getConfig('showindex', 10);
 $xoopsTpl->assign('visiblekeywords', (int)$visiblekeywords);
 
 if ((int)$visiblekeywords > 0) {
-    $totalcount = $isearch_handler->getCount();
-    $start      = isset($_GET['start']) ? (int)$_GET['start'] : 0;
-    $critere    = new Criteria('keyword');
+    $totalcount = $isearchHandler->getCount();
+    $start      = \Xmf\Request::getInt('start', 0, 'GET');
+    $critere    = new \Criteria('keyword');
     $critere->setSort('datesearch');
     $critere->setLimit($visiblekeywords);
     $critere->setStart($start);
     $critere->setOrder('DESC');
-    include_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-    $pagenav = new XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
+    require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+    $pagenav = new \XoopsPageNav($totalcount, $visiblekeywords, $start, 'start', '');
     $xoopsTpl->assign('pagenav', $pagenav->renderNav());
 
-    $elements = $isearch_handler->getObjects($critere);
-    foreach($elements as $oneelement) {
-        $xoopsTpl->append('keywords',array('keyword' => $oneelement->getVar('keyword'),
-                                              'date' => formatTimestamp(strtotime($oneelement->getVar('datesearch'))))
-        );
+    $elements = $isearchHandler->getObjects($critere);
+    foreach ($elements as $oneelement) {
+        $xoopsTpl->append('keywords', [
+            'keyword' => $oneelement->getVar('keyword'),
+            'date'    => formatTimestamp(strtotime($oneelement->getVar('datesearch')))
+        ]);
     }
 }
 
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

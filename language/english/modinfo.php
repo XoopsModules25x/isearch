@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\language
+ * @package   modules\Isearch\language
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -35,7 +35,6 @@ define('_MI_ISEARCH_ADMIN_PURGE_DESC', 'Delete old information');
 define('_MI_ISEARCH_ADMIN_EXPORT_DESC', 'Export a report');
 define('_MI_ISEARCH_ADMIN_BLACKLIST_DESC', 'Add/Remove words on the blacklist');
 define('_MI_ISEARCH_ADMIN_ABOUT_DESC', 'Info about this module');
-
 
 define('_MI_ISEARCH_OPT0', 'Count of searches to show on the module\'s index page');
 define('_MI_ISEARCH_OPT0_DSC', 'Select the number of searches users can see on the module\'s index page (0=show nothing)');

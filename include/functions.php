@@ -11,16 +11,17 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\includes
+ * @package   modules\Isearch\includes
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * ****************************************************************************
  */
+
 use WideImage\Operation\AddNoise;
 
-defined('XOOPS_ROOT_PATH') || exit("Restricted access");
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Returns a module's option
@@ -44,11 +45,11 @@ function isearch_getmoduleoption($option, $repmodule='isearch')
         }
 
     } else {
-        $module_handler = xoops_gethandler('module');
-        $module = $module_handler->getByDirname($repmodule);
-        $config_handler = xoops_gethandler('config');
+        $moduleHandler = xoops_getHandler('module');
+        $module = $moduleHandler->getByDirname($repmodule);
+        $configHandler = xoops_getHandler('config');
         if ($module) {
-            $moduleConfig = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+            $moduleConfig = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
             if(isset($moduleConfig[$option])) {
                 $retval= $moduleConfig[$option];
             }
@@ -67,33 +68,34 @@ function isearch_getmoduleoption($option, $repmodule='isearch')
  */
 function isearch_JavascriptLinkConfirm($msg)
 {
-    return "onclick=\"javascript:return confirm('".str_replace("'"," ",$msg)."')\"";
+    return "onclick=\"javascript:return confirm('" . str_replace("'", ' ', $msg) . "')\"";
 }
 
 /**
  * Verify that a field exists inside a mysql table
  *
- * @author    Instant Zero (http://instant-zero.com/xoops)
+ * @author        Instant Zero (http://instant-zero.com/xoops)
  * @copyright (c) Instant Zero
  *
- * @todo filter fieldname and table
+ * @todo          filter fieldname and table
  *
  * @param string $fieldname column to search for
- * @param string $table dB table to use
+ * @param string $table     dB table to use
  *
  * @return bool true if column exists in dB table
-*/
+ */
 function isearch_FieldExists($fieldname, $table)
 {
-    /** @var XoopsDatabase $GLOBALS['xoopsDB'] */
+    /** @var XoopsDatabase $GLOBALS ['xoopsDB'] */
     $result = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM $table LIKE '$fieldname'");
-    return($GLOBALS['xoopsDB']->getRowsNum($result) > 0);
+
+    return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0);
 }
 
 /**
  * Add a field to a mysql table
  *
- * @author Instant Zero (http://instant-zero.com/xoops)
+ * @author        Instant Zero (http://instant-zero.com/xoops)
  * @copyright (c) Instant Zero
  *
  * @param string $field table column to add
@@ -101,11 +103,12 @@ function isearch_FieldExists($fieldname, $table)
  *
  * @return mysqli_result|bool query result or FALSE if successful
  *                      or TRUE if successful and no result
-*/
+ */
 function isearch_AddField($field, $table)
 {
-    /** @var XoopsDatabase $GLOBALS['xoopsDB'] */
-    $result = $GLOBALS['xoopsDB']->queryF("ALTER TABLE " . $table . " ADD $field;");
+    /** @var XoopsDatabase $GLOBALS ['xoopsDB'] */
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $table . " ADD $field;");
+
     return $result;
 }
 
@@ -117,32 +120,27 @@ function isearch_AddField($field, $table)
 function isearch_IP()
 {
     $proxy_ip = '';
-    if (! empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+   if (\Xmf\Request::hasVar('HTTP_X_FORWARDED_FOR', 'SERVER')) {
         $proxy_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else
-        if (! empty($_SERVER['HTTP_X_FORWARDED'])) {
-            $proxy_ip = $_SERVER['HTTP_X_FORWARDED'];
-        } else
-            if (! empty($_SERVER['HTTP_FORWARDED_FOR'])) {
-                $proxy_ip = $_SERVER['HTTP_FORWARDED_FOR'];
-            } else
-                if (! empty($_SERVER['HTTP_FORWARDED'])) {
-                    $proxy_ip = $_SERVER['HTTP_FORWARDED'];
-                } else
-                    if (! empty($_SERVER['HTTP_VIA'])) {
-                        $proxy_ip = $_SERVER['HTTP_VIA'];
-                    } else
-                        if (! empty($_SERVER['HTTP_X_COMING_FROM'])) {
-                            $proxy_ip = $_SERVER['HTTP_X_COMING_FROM'];
-                        } else
-                            if (! empty($_SERVER['HTTP_COMING_FROM'])) {
-                                $proxy_ip = $_SERVER['HTTP_COMING_FROM'];
-                            }
-    $regs = array();
-    if (! empty($proxy_ip) && $is_ip = ereg('^([0-9]{1,3}\.){3,3}[0-9]{1,3}', $proxy_ip, $regs) && count($regs) > 0) {
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED'])) {
+        $proxy_ip = $_SERVER['HTTP_X_FORWARDED'];
+    } elseif (!empty($_SERVER['HTTP_FORWARDED_FOR'])) {
+        $proxy_ip = $_SERVER['HTTP_FORWARDED_FOR'];
+    } elseif (!empty($_SERVER['HTTP_FORWARDED'])) {
+        $proxy_ip = $_SERVER['HTTP_FORWARDED'];
+    } elseif (!empty($_SERVER['HTTP_VIA'])) {
+        $proxy_ip = $_SERVER['HTTP_VIA'];
+    } elseif (!empty($_SERVER['HTTP_X_COMING_FROM'])) {
+        $proxy_ip = $_SERVER['HTTP_X_COMING_FROM'];
+    } elseif (!empty($_SERVER['HTTP_COMING_FROM'])) {
+        $proxy_ip = $_SERVER['HTTP_COMING_FROM'];
+    }
+    $regs = [];
+    if (!empty($proxy_ip) && ($is_ip = preg_match('/^([0-9]{1,3}\.){3,3}[0-9]{1,3}/', $proxy_ip, $regs)) && count($regs) > 0) {
         $the_IP = $regs[0];
     } else {
         $the_IP = $_SERVER['REMOTE_ADDR'];
     }
+
     return $the_IP;
 }

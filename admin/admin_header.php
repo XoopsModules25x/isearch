@@ -12,22 +12,24 @@
 /**
  * Admin display header file
  *
- * @package   module\isearch\admin
+ * @package   module\Isearch\admin
  * @author    XOOPS Module Development Team
- * @copyright Copyright (c) 2001-2017 {@link http://xoops.org XOOPS Project}
+ * @copyright Copyright (c) 2001-2017 {@link https://xoops.org XOOPS Project}
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
- * @since::   1.91
+ * @since     ::   1.91
  *
- * @see Xmf\Module\Admin
- * @see Xmf\Module\Helper
+ * @see       Xmf\Module\Admin
+ * @see       Xmf\Module\Helper
  */
+
+use XoopsModules\Isearch;
 
 $moduleDirName = basename(dirname(__DIR__));
 // leave the following line until XOOPS core ./include/cp_header.php REQUIRES ./mainfile.php
 require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 require_once $GLOBALS['xoops']->path('include/cp_header.php');
 
-$isHelper    = Xmf\Module\Helper::getHelper($moduleDirName);
+$isHelper    = \XoopsModules\Isearch\Helper::getInstance();
 $adminObject = Xmf\Module\Admin::getInstance();
 
 // Load language files

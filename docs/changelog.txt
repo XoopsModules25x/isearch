@@ -1,5 +1,5 @@
-1.91 ALPHA 1 NOT RELEASED
-=============================
+<h5>1.91 ALPHA 1 [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.3
+                         <hr>
 - added filtering to most input user vars
 - added visibility (public, private, etc) to class methods and vars
 - added Admin About and Help pages
@@ -21,42 +21,54 @@
 - updated minor PSRx cleanup
 - use XoopsSecurity on forms submitted using POST
 - use \Xmf\Module\Helper to get configs
+- changed footer (mamba)
+- removed default for datetime (mamba)
+- Type strict comparison (mamba)
+- Callable name case mismatched in a call (mamba)
+- Unnecessary double quotes (mamba)
+- Function preg is deprecated (mamba)
+- Alias functions usage (mamba)
+- added SCANDIR_SORT_NONE to scandir() (mamba)
+- 'str(i)str(...)' could be replaced with 'str(i)pos(...)' (mamba)
+- PhpDocs Missing @return tag (mamba)
+- update readme.md (mamba)
+- changed _handler to Handler (mamba)
 
-1.9
-=============================
+<h5>1.9</h5>
+   <hr>
 - New module's logo
 - Addition of a new module's option to select a list of IPs you don't want to record
 - UTF8 translations (French & English)
 - There was somes changes in the translations (see lang.diff)
 
-1.8
-=============================
+<h5>1.8</h5>
+   <hr>
 - The module is now Xoops 2.3 compatible
 - Bugs corrections in class/blacklist.php
 - Minor change in the search
 
-1.6
-=============================
+<h5>1.6</h5>
+   <hr>
 - Bug correction in the nederlands translation
 - Added statistics per IP in the module's administration
 - In the module's admin part, in the daily view, you can filter results per searched word, user and IP
   So I have added a new constant in xoops/modules/isearch/yourlanguage/admin.php :
     define('_AM_ISEARCH_FILTER_BY',"Filter by");
 
-1.5
-=============================
+<h5>1.5</h5>
+   <hr>
 - Some bugs in the admin's part
 - Possibility, in the admin, to remove by IP directly from the keywords list
 
-1.4
-=============================
+<h5>1.4</h5>
+   <hr>
 - A bug was corrected in the words deletion
 - The search in the blacklist is now case insensitive
 - The code is lighter
 - The export now uses the IP
 
-1.3
-=============================
+<h5>1.3</h5>
+   <hr>
 - The module now records visitors IPs (because of spamers), so the database was modified.
   I have made a small upgrade script you can call here :
       http://www.example.com/modules/isearch/admin/upgrade.php

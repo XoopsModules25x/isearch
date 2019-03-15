@@ -12,23 +12,23 @@
 /**
  * Category Admin file
  *
- * @package   module\isearch\admin
+ * @package   module\Isearch\admin
  * @author    Mage
  * @author    Mamba
  * @author    XOOPS Module Development Team
- * @copyright Copyright (c) 2001-2017 {@link http://xoops.org XOOPS Project}
+ * @copyright Copyright (c) 2001-2017 {@link https://xoops.org XOOPS Project}
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
- * @since::   1.91
+ * @since     ::   1.91
  *
- * @see Xmf\Module\Admin
+ * @see       Xmf\Module\Admin
  */
 
-include_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 
 xoops_cp_header();
 
 $adminObject->displayNavigation('about.php');
-$adminObject->setPaypal('xoopsfoundation@gmail.com');
+$adminObject::setPaypal('xoopsfoundation@gmail.com');
 $adminObject->displayAbout(false);
 
-include __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

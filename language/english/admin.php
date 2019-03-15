@@ -11,7 +11,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\language
+ * @package   modules\Isearch\language
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
@@ -42,7 +42,7 @@ define('_AM_ISEARCH_PRUNE_DESC', 'If you don\'t enter a word the script will pru
 define('_AM_ISEARCH_PRUNE_CONFIRM', 'Do you confirm the deletion of %u elements?');
 define('_AM_ISEARCH_NOTHING_PRUNE', 'Nothing to delete');
 define('_AM_ISEARCH_EXPORT', 'Export');
-define('_AM_ISEARCH_EXPORT_BETWEEN','Export searches made between ');
+define('_AM_ISEARCH_EXPORT_BETWEEN', 'Export searches made between ');
 define('_AM_ISEARCH_EXPORT_AND', ' and ');
 define('_AM_ISEARCH_DATE_FORMAT', 'Date\'s format (in PHP format)');
 define('_AM_ISEARCH_DELIMITER', 'Fields delimiter');

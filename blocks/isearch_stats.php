@@ -11,37 +11,42 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   modules\isearch\blocks
+ * @package   modules\Isearch\blocks
  * @copyright Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author    Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  *
  * ****************************************************************************
  */
+
+use XoopsModules\Isearch;
+
 function b_isearch_stats_show()
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $isHelper      = Xmf\Module\Helper::getHelper($moduleDirName);
+    $isHelper      = \XoopsModules\Isearch\Helper::getInstance();
 
-    include_once $isHelper->path('include/functions.php');
+    require_once $isHelper->path('include/functions.php');
 
-    $isearch_handler = $isHelper->getHandler('searches');
+    $isearchHandler = $isHelper->getHandler('Searches');
 
-    $block = array();
+    $block           = [];
     $visiblekeywords = $isHelper->getConfig('showindex', 10);
-    if($visiblekeywords > 0) {
+    if ($visiblekeywords > 0) {
         $keywords_count = $isHelper->getConfig('admincount', 10);
 
         // Total keywords count
-        $block['total_keywords'] = $isearch_handler->getCount();
+        $block['total_keywords'] = $isearchHandler->getCount();
 
         // Most searched elements
-        $elements = $isearch_handler->getMostSearched(0,$keywords_count);
-        foreach($elements as $keywordid => $datas) {
-            $block['mostsearched'][] = array('keyword' => $datas['keyword'],
-                                               'count' => $datas['count']
-            );
+        $elements = $isearchHandler->getMostSearched(0, $keywords_count);
+        foreach ($elements as $keywordid => $datas) {
+            $block['mostsearched'][] = [
+                'keyword' => $datas['keyword'],
+                'count'   => $datas['count']
+            ];
         }
     }
+
     return $block;
 }
